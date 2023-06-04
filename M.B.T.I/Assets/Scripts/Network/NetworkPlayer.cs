@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using Photon.Pun;
+using Unity.XR.CoreUtils;
 
 public class NetworkPlayer : MonoBehaviour
 {
@@ -11,34 +12,76 @@ public class NetworkPlayer : MonoBehaviour
     public Transform rightHand;
     private PhotonView photonView;
 
+    public Animator leftHandAnimator;
+    public Animator rightHandAnimator;
+
+
+    private Transform headRig;
+    private Transform leftHandRig;
+    private Transform rightHandRig;
+
     // Start is called before the first frame update
     void Start()
     {
         photonView = GetComponent<PhotonView>();
+        // 로컬상에 있는 XROrigin과 연결시킨다. 
+        XROrigin origin = FindObjectOfType<XROrigin>();
+        headRig = origin.transform.Find("Camera Offset/Main Camera");
+        leftHandRig = origin.transform.Find("Camera Offset/LeftHand Controller");
+        rightHandRig = origin.transform.Find("Camera Offset/RightHand Controller");
+        
+        //  네트워크 자기꺼 비활성화(대신 로컬상 XROrigin)
+        if (photonView.IsMine)
+        {
+            foreach (var item in GetComponentsInChildren<Renderer>())
+            {
+                item.enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 클라이언트가 조종 가능하면
         if (photonView.IsMine)
         {
-            rightHand.gameObject.SetActive(false);
-            leftHand.gameObject.SetActive(false);
-            head.gameObject.SetActive(false);
-            
-            MapPosition(head, XRNode.Head);
-            MapPosition(leftHand, XRNode.LeftHand);
-            MapPosition(rightHand, XRNode.RightHand);
+            MapPosition(head, headRig);
+            MapPosition(leftHand, leftHandRig);
+            MapPosition(rightHand, rightHandRig);
+
+            UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
+            UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
         }
     }
 
-    void MapPosition(Transform target, XRNode node)
+    void UpdateHandAnimation(InputDevice targetDevice, Animator handAnimator)
     {
-        InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position);
-        InputDevices.GetDeviceAtXRNode(node).TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation);
+        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+        {
+            handAnimator.SetFloat("Trigger", triggerValue);
+        }
+        else
+        {
+            handAnimator.SetFloat("Trigger", 0);
+        }
 
-        target.position = position;
-        target.rotation = rotation;
+        if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
+        {
+            handAnimator.SetFloat("Grip", gripValue);
+        }
+        else
+        {
+            handAnimator.SetFloat("Grip", 0);
+        }
+    }
 
+
+    void MapPosition(Transform target, Transform rigTransform)
+    {
+        // target = NetworkPlayer(네트워크)
+        // rigTransform = XROrigin(로컬)
+        target.position = rigTransform.position;
+        target.rotation = rigTransform.rotation;
     }
 }
