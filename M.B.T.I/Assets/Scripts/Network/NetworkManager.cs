@@ -12,7 +12,6 @@ public class DefaultRoom
     public int maxPlayer;
 }
 
-
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public List<DefaultRoom> defaultRooms;
@@ -27,7 +26,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // 방에 들어오면 콜백되는 함수
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Connected To Server... ");
+        Debug.Log("Connected To Server!!");
         base.OnConnectedToMaster();
         PhotonNetwork.JoinLobby();
     }
