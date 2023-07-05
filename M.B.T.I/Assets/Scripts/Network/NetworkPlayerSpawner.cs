@@ -14,6 +14,8 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", transform.position, transform.rotation);
+        // spawnedPlayerPrefab = PhotonNetwork.Instantiate("XROrigin", transform.position, transform.rotation);
+        // spawnedPlayerPrefab = PhotonNetwork.Instantiate("XROrigin_Rigid", transform.position, transform.rotation);        
     }
 
     // 방 퇴장시 호출
