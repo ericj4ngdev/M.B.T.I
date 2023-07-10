@@ -2,51 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+열기구 애니메이션 스크립트
+ */
+
 public class BezierCurveAnimation : MonoBehaviour
 {
     public Transform target;
     public List<GameObject> wayPoints;      
     public List<GameObject> lerpPoints;     // 중간점
-    [Range(0f, 10f)] [SerializeField] private float duration;       // 속도?
-    //[Range(0f, 3f)] [SerializeField] private float value03;
+    //[SerializeField] private float duration;       // 점에서 점으로 이동할 때까지의 시간
 
-    private int indexOfWayPoints1 = 0;      // 시작점 인덱스
-    private int indexOfWayPoints2 = 1;      // 도착점 인덱스
-    private int indexOfLerpPoints = 0;      // 중간점 인덱스
+    public int previousStopIndex = 0;      // 시작점 인덱스
+    public int nextStopIndex = 1;      // 도착점 인덱스
+    private int lerpPointsIndex = 0;      // 중간점 인덱스
 
-    // Start is called before the first frame update
-    void Start()
+    public bool wantToGetOff = true;
+
+    /// <summary>
+    /// 트랙을 도는 애니메이션,
+    /// duration을 증가시키면 속도 느려짐
+    /// </summary>
+    /// <param name="duration"></param>
+    public void StartAnimation(float duration)
     {
-        StartCoroutine(MoveAlongTrack());
+        StartCoroutine(MoveAlongTrack(duration));
     }
 
-    IEnumerator MoveAlongTrack()
+    IEnumerator MoveAlongTrack(float duration)
     {
         while (true)
         {
-            if (indexOfWayPoints1 == wayPoints.Count)
-                indexOfWayPoints1 = 0;
+            if (previousStopIndex == wayPoints.Count)
+                previousStopIndex = 0;
 
-            if (indexOfWayPoints2 == wayPoints.Count)
-                indexOfWayPoints2 = 0;
+            if (nextStopIndex == wayPoints.Count)
+                nextStopIndex = 0;
 
-            if (indexOfLerpPoints == lerpPoints.Count)
-                indexOfLerpPoints = 0;
+            if (lerpPointsIndex == lerpPoints.Count)
+                lerpPointsIndex = 0;
 
             float time = 0f;
+
 
             while (time < duration)
             {
                 time += Time.deltaTime;
                 Debug.Log(time);
                 float t = time / duration;  // 선형보간 가중치
-                target.position = BezierCurves(t, indexOfWayPoints1, indexOfWayPoints2, indexOfLerpPoints);
+                target.position = BezierCurves(t, previousStopIndex, nextStopIndex, lerpPointsIndex);
+
                 yield return null;
             }
 
-            indexOfWayPoints1++;
-            indexOfWayPoints2++;
-            indexOfLerpPoints++;
+            if (wantToGetOff)
+            {
+                Debug.Log("Time to Get Off!!");
+                yield return new WaitForSeconds(2f);
+                wantToGetOff = false;
+            }
+
+            previousStopIndex++;
+            nextStopIndex++;
+            lerpPointsIndex++;
         }
     }
 

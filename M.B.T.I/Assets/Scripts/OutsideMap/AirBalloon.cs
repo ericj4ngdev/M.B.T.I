@@ -4,44 +4,45 @@ using UnityEngine;
 
 public class AirBalloon : MonoBehaviour
 {
+    private BezierCurveAnimation bezierCurveAnimation;
+
     private float currentSpeed = 0;
     [SerializeField]
-    private float moveSpeed = 0.2f;
-    //private Vector3 currentLocation;
-    //private Vector3 startLocation;
+    private float duration = 10;       // 점에서 점으로 이동할 때까지의 시간
+    private Transform currentLocation;
+    private bool isPlayerOn = false;
 
-    public bool isPlayerOnBoard = false;
-
-    // Start is called before the first frame update
     void Start()
     {
-     //   InitAirballoon();
+        bezierCurveAnimation = GetComponent<BezierCurveAnimation>();
+        currentLocation = GetComponent<Transform>();
+        Move();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopToGetOff()
     {
-        
-    }
-
-    //public Vector3 GetAirBalloonLocation()
-    //{
-    //    return currentLocation;
-    //}
-
-    public void Stop()
-    {
-        currentSpeed = 0;
+        if (isPlayerOn)
+            bezierCurveAnimation.wantToGetOff = true;
     }
 
     private void Move()
     {
-        currentSpeed = moveSpeed;
+        bezierCurveAnimation.StartAnimation(duration);
     }
 
-    //void InitAirballoon()
-    //{
-    //    currentLocation = startLocation;
-    //}
+    public GameObject GetPreviousStop()   // 이전 정류장
+    {
+        return bezierCurveAnimation.wayPoints[bezierCurveAnimation.previousStopIndex];
+    }
+
+    public GameObject GetNextStop()      // 이전 정류장
+    {
+        return bezierCurveAnimation.wayPoints[bezierCurveAnimation.nextStopIndex];
+    }
+
+    public Transform GetTransform()     // 열기구의 현재 위치
+    {
+        return currentLocation;
+    }
 
 }
