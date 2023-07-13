@@ -35,7 +35,7 @@ public class AirBalloon : MonoBehaviour
         return bezierCurveAnimation.wayPoints[bezierCurveAnimation.previousStopIndex];
     }
 
-    public GameObject GetNextStop()      // 이전 정류장
+    public GameObject GetNextStop()      // 다음 정류장
     {
         return bezierCurveAnimation.wayPoints[bezierCurveAnimation.nextStopIndex];
     }
