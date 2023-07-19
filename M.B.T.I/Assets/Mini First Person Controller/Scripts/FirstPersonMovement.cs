@@ -4,6 +4,11 @@ using UnityEngine;
 public class FirstPersonMovement : MonoBehaviour
 {
     public float speed = 5;
+    public GameObject airballoon;
+    public GameObject airballoonPivot;
+
+    [SerializeField]
+    private int yPosition = 5;
 
     [Header("Running")]
     public bool canRun = true;
@@ -15,6 +20,7 @@ public class FirstPersonMovement : MonoBehaviour
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
 
+    private bool isOnPlane = false;
 
 
     void Awake()
@@ -41,4 +47,31 @@ public class FirstPersonMovement : MonoBehaviour
         // Apply movement.
         rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            isOnPlane = true;
+            Debug.Log("충돌!");
+
+            // 열기구 올라타기
+            Vector3 newPosition = new Vector3(airballoonPivot.GetComponent<AirBalloon>().GetTransform().position.x, airballoonPivot.GetComponent<AirBalloon>().GetTransform().position.y + yPosition, airballoonPivot.GetComponent<AirBalloon>().GetTransform().position.z);
+
+            transform.position = newPosition;
+            transform.SetParent(airballoon.transform);
+
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            isOnPlane = false;
+        }
+    }
+
+
 }

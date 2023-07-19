@@ -17,7 +17,7 @@ public class BezierCurveAnimation : MonoBehaviour
     public int nextStopIndex = 1;      // 도착점 인덱스
     private int lerpPointsIndex = 0;      // 중간점 인덱스
 
-    public bool wantToGetOff = true;
+    public bool wantToGetOff = false;
 
     /// <summary>
     /// 트랙을 도는 애니메이션,
@@ -48,7 +48,7 @@ public class BezierCurveAnimation : MonoBehaviour
             while (time < duration)
             {
                 time += Time.deltaTime;
-                Debug.Log(time);
+                //Debug.Log(time);
                 float t = time / duration;  // 선형보간 가중치
                 target.position = BezierCurves(t, previousStopIndex, nextStopIndex, lerpPointsIndex);
 

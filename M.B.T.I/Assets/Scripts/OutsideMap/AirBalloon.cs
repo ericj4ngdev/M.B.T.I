@@ -1,16 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AirBalloon : MonoBehaviour
 {
+    public static Action getLocation;
+
     private BezierCurveAnimation bezierCurveAnimation;
 
-    private float currentSpeed = 0;
+    // private float currentSpeed = 0;
     [SerializeField]
     private float duration = 10;       // 점에서 점으로 이동할 때까지의 시간
+    [SerializeField]
     private Transform currentLocation;
+    [SerializeField]
+    private Transform playerLocation;
     private bool isPlayerOn = false;
+
+    public bool isPlayerWantToGetOff = false;
+
+    private void Awake()
+    {
+        getLocation = () =>
+        {
+            GetTransform();
+        };
+    }
 
     void Start()
     {
@@ -21,7 +37,7 @@ public class AirBalloon : MonoBehaviour
 
     public void StopToGetOff()
     {
-        if (isPlayerOn)
+        if (isPlayerWantToGetOff)
             bezierCurveAnimation.wantToGetOff = true;
     }
 
@@ -42,7 +58,7 @@ public class AirBalloon : MonoBehaviour
 
     public Transform GetTransform()     // 열기구의 현재 위치
     {
-        return currentLocation;
+        return playerLocation;
     }
 
 }
