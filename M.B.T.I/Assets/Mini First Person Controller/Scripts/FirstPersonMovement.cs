@@ -6,6 +6,7 @@ public class FirstPersonMovement : MonoBehaviour
     public float speed = 5;
     public GameObject airballoon;
     public GameObject airballoonPivot;
+    public GameObject player;
 
     [SerializeField]
     private int yPosition = 5;
@@ -19,8 +20,6 @@ public class FirstPersonMovement : MonoBehaviour
     Rigidbody rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
-
-    private bool isOnPlane = false;
 
 
     void Awake()
@@ -53,23 +52,12 @@ public class FirstPersonMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Respawn"))
         {
-            isOnPlane = true;
             Debug.Log("충돌!");
 
             // 열기구 올라타기
-            Vector3 newPosition = new Vector3(airballoonPivot.GetComponent<AirBalloon>().GetTransform().position.x, airballoonPivot.GetComponent<AirBalloon>().GetTransform().position.y + yPosition, airballoonPivot.GetComponent<AirBalloon>().GetTransform().position.z);
-
-            transform.position = newPosition;
+            player.transform.position = airballoon.transform.position;
             transform.SetParent(airballoon.transform);
 
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Respawn"))
-        {
-            isOnPlane = false;
         }
     }
 

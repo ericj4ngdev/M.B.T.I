@@ -31,10 +31,7 @@ public class ControllerButton : MonoBehaviour
         if (PressY.action.WasPressedThisFrame())
         {
             Debug.Log("Pressed Y");
-            // 열기구 올라타기
-            Vector3 newPosition = new Vector3(airballoon.GetComponent<AirBalloon>().GetTransform().position.x, airballoon.GetComponent<AirBalloon>().GetTransform().position.y + 1, airballoon.GetComponent<AirBalloon>().GetTransform().position.z);
 
-            XROrigin.transform.position = newPosition;
         }
 
         if (PressA.action.WasPressedThisFrame())
