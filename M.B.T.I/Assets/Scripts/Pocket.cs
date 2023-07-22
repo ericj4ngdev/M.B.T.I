@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class Pocket : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Transform target;
+    public Vector3 offset;
+
+    private void Start()
     {
         
     }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        transform.position = target.position + Vector3.up * offset.y
+                                             + Vector3.ProjectOnPlane(target.right, Vector3.up).normalized * offset.x
+                                             + Vector3.ProjectOnPlane(target.forward, Vector3.up).normalized * offset.z;
+
+        transform.eulerAngles = new Vector3(0, target.eulerAngles.y, 0);
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        // ¼ÕÀÌ µé¾î¿À¸é Ãâ·ÂÇÏ±â 
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 
         if (other.CompareTag("Left Hand"))
         {
             Debug.Log("left Hand");
@@ -32,6 +37,6 @@ public class Pocket : MonoBehaviour
         {
             Debug.Log("left Hand");
         }
-        // gripÇÏ¸é µÈ´Ù. 
+        // gripï¿½Ï¸ï¿½ ï¿½È´ï¿½. 
     }
 }

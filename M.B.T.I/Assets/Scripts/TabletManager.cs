@@ -30,8 +30,7 @@ public class TabletManager : MonoBehaviour
         originalScale = transform.localScale;           // 원래 스케일 저장
         
         grabbable.selectEntered.AddListener(ShowUI);
-        grabbable.selectEntered.AddListener(setoffOpositeHand);
-        grabbable.selectExited.AddListener(HideUI);
+        grabbable.selectEntered.AddListener(setoffOppositeHand);
         grabbable.selectExited.AddListener(HideUI);
     }
     public void ShowUI(SelectEnterEventArgs arg)
@@ -42,7 +41,7 @@ public class TabletManager : MonoBehaviour
         transform.SetParent(null);
         transform.localScale = originalScale; // 원래 스케일로 설정
     }
-    public void setoffOpositeHand(SelectEnterEventArgs arg)
+    public void setoffOppositeHand(SelectEnterEventArgs arg)
     {
         // 왼손이 잡으면 오른손의 XRDirect컴포넌트를 false로 한다. 
         if (arg.interactorObject.transform.CompareTag("Left Hand"))

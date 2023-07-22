@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 5591033671855796938}
   - component: {fileID: 5591033671862754588}
   - component: {fileID: 1483262098}
+  - component: {fileID: 5424681380139020899}
   m_Layer: 0
   m_Name: Right Hand Model
   m_TagString: Untagged
@@ -204,19 +205,39 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  pointAnimationAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Point Animation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 568c34da-618e-4541-bc7a-1d8a66e72954
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   handAnimator: {fileID: 5591033671862754588}
+--- !u!114 &5424681380139020899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5591033671855500970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d648e6634de324f9be6f1063d0f41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 1
+  root: {fileID: 5591033671855796938}
+  animator: {fileID: 5591033671862754588}
+  fingerBones:
+  - {fileID: 5591033671855796986}
+  - {fileID: 5591033671855796980}
+  - {fileID: 5591033671855796982}
+  - {fileID: 5591033671855796978}
+  - {fileID: 5591033671855796972}
+  - {fileID: 5591033671855796974}
+  - {fileID: 5591033671855796970}
+  - {fileID: 5591033671855796964}
+  - {fileID: 5591033671855796966}
+  - {fileID: 5591033671855796960}
+  - {fileID: 5591033671855796956}
+  - {fileID: 5591033671855796958}
+  - {fileID: 5591033671855796952}
+  - {fileID: 5591033671855796948}
+  - {fileID: 5591033671855796950}
+  - {fileID: 5591033671855796944}
 --- !u!1 &5591033671855500972
 GameObject:
   m_ObjectHideFlags: 0

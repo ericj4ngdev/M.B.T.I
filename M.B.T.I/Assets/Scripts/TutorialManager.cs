@@ -60,6 +60,7 @@ public class TutorialManager : MonoBehaviour
     [Header("Tutorial Object")]
     public GameObject vrButton;
     public List<GameObject> grabableCube = new List<GameObject>();
+    public List<TicketGate> toolTip = new List<TicketGate>();
     public GameObject tablet;
     public GameObject portal;
     
@@ -304,18 +305,19 @@ public class TutorialManager : MonoBehaviour
         while (curIndex == 2)
         {
             Debug.Log("엄지로 아날로그 스틱을 움직여보세요.");
-            if (btnLThumbStick.action.WasPressedThisFrame() && !isBtn1Pressed)
-            {
-                Debug.Log("btnLThumbStick 돌림");
-                R_Button[curIndex].SetActive(false);
-                isBtn1Pressed = true;
-                temp = 0f;
-            }
+            
             if (btnRThumbStick.action.WasPressedThisFrame() && !isBtn2Pressed)
             {
                 Debug.Log("btnRThumbStick 돌림");
-                L_Button[curIndex].SetActive(false);
+                R_Button[curIndex].SetActive(false);
                 isBtn2Pressed = true;
+                temp = 0f;
+            }
+            if (btnLThumbStick.action.WasPressedThisFrame() && !isBtn1Pressed)
+            {
+                Debug.Log("btnLThumbStick 돌림");
+                L_Button[curIndex].SetActive(false);
+                isBtn1Pressed = true;
                 temp = 0f;
             }
             // 한번 누르면 카운트를 세고 다음 UI뜨기까지 딜레이를 줌
@@ -437,12 +439,12 @@ public class TutorialManager : MonoBehaviour
         {
             Debug.Log("주먹을 움켜쥐려면 그립 버튼과 트리거 버튼을 모두 쥐고 있으세요.");
             // 둘다 쥐기
-            if (btnRTrigger.action.WasPressedThisFrame() && btnRGrip.action.WasPressedThisFrame() && !isBtn1Pressed)
+            if (btnRTrigger.action.IsPressed() && btnRGrip.action.IsPressed() && !isBtn1Pressed)
             {
                 Debug.Log("오른쪽 주먹쥠");
                 isBtn1Pressed = true;
             }
-            if (btnLTrigger.action.WasPressedThisFrame() && btnLGrip.action.WasPressedThisFrame() && !isBtn2Pressed)
+            if (btnLTrigger.action.IsPressed() && btnLGrip.action.IsPressed() && !isBtn2Pressed)
             {
                 Debug.Log("왼쪽 주먹쥠");
                 isBtn2Pressed = true;
@@ -535,7 +537,7 @@ public class TutorialManager : MonoBehaviour
             {
                 grabbable[i].selectEntered.AddListener(OnGrab);        // 잡으면 isGrab = true로 바꾸는 함수 등록
             }
-            // 잡으면 다음 인덱스로 넘어가기
+            // 여러 개 큐브중 적어도 하나를 잡으면 다음 인덱스로 넘어가기
             if (isGrab)
             {
                 temp += Time.deltaTime;
@@ -647,7 +649,8 @@ public class TutorialManager : MonoBehaviour
                     npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
-                    portal.SetActive(true); // 포탈 소환
+                    portal.SetActive(true); // 포탈 활성화
+                    tablet.SetActive(true); // 테블릿 활성화
                     break;
                 }
             }
@@ -657,15 +660,17 @@ public class TutorialManager : MonoBehaviour
         // 이제 노란색 포탈로 이동해보겠습니다.  
         while (curIndex == tutorialTextIndex - 1)
         {
+            // 테블릿을 잡았을 때
+            XRGrabInteractable xrGrabInteractable = tablet.GetComponent<XRGrabInteractable>();
+            xrGrabInteractable.selectEntered.AddListener(OnGrab);
             // 플레이어가 포탈 위에 올라갔을 때
             isPortal = playercontroller.onPortal;
-            if (isPortal)
+            // 포탈에서 테블릿을 잡으면 다음 씬 
+            if (isPortal && isGrab)
             {
-                // 타블렛이 나타나는 이펙트
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
-                    tablet.SetActive(true);
                     portal.SetActive(false); // 포탈 소멸
                     curIndex = 0;
                     tabletNextSentence();
@@ -685,6 +690,11 @@ public class TutorialManager : MonoBehaviour
             npcText.text = ShowText;
             idx++;
             yield return new WaitForSeconds(4f);
+        }
+        // 다 끝나고 ToolTip 활성화
+        foreach (var VARIABLE in toolTip)
+        {
+            VARIABLE.ActiveToolTip();
         }
         print("코루틴 끝");
         // yield return;

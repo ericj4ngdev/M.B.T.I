@@ -13,7 +13,7 @@ public class TicketGate : MonoBehaviour
     private Vector3 r_initPos;
     public float delay;
     public bool isTaged;
-    
+    public GameObject toolTip;
     
     private void Start()
     {
@@ -22,6 +22,10 @@ public class TicketGate : MonoBehaviour
         isTaged = false;
         l_initPos = leftGate.transform.position;
         r_initPos = rightGate.transform.position;
+        if (transform.childCount > 0)
+        {
+            toolTip = transform.GetChild(0).gameObject;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,10 +36,17 @@ public class TicketGate : MonoBehaviour
             OpenGate();
         }
     }
+
+    public void ActiveToolTip()
+    {
+        toolTip.SetActive(true);
+    }
     private void OpenGate()
     {
         temp = 0;
         StartCoroutine(AnimateOpenGate());
+        toolTip.SetActive(false);
+        // StopAllCoroutines();
     }
 
     private void CloseGate()
@@ -52,8 +63,8 @@ public class TicketGate : MonoBehaviour
         {
             temp += Time.deltaTime * speed;
             // 닫혔을 때만
-            leftGate.transform.position = Vector3.Lerp(l_initPos, l_initPos + new Vector3(0.25f, 0, 0), temp);
-            rightGate.transform.position = Vector3.Lerp(r_initPos, r_initPos - new Vector3(0.25f, 0, 0), temp);
+            leftGate.transform.position = Vector3.Lerp(l_initPos, l_initPos - new Vector3(0.25f, 0, 0), temp);
+            rightGate.transform.position = Vector3.Lerp(r_initPos, r_initPos + new Vector3(0.25f, 0, 0), temp);
             
             print("문 열림");
 
@@ -73,8 +84,8 @@ public class TicketGate : MonoBehaviour
             // 열렸을 때만 실행
             // if (leftGate.transform.position != l_initPos && rightGate.transform.position != r_initPos)
             // {
-                leftGate.transform.position = Vector3.Lerp(l_initPos + new Vector3(0.25f, 0, 0),l_initPos, temp);
-                rightGate.transform.position = Vector3.Lerp(r_initPos - new Vector3(0.25f, 0, 0), r_initPos, temp);
+                leftGate.transform.position = Vector3.Lerp(l_initPos - new Vector3(0.25f, 0, 0),l_initPos, temp);
+                rightGate.transform.position = Vector3.Lerp(r_initPos + new Vector3(0.25f, 0, 0), r_initPos, temp);
             // }
             print("문 닫힘");
             isTaged = false;

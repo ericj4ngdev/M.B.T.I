@@ -7,7 +7,7 @@ public class GetOffAirBalloon : MonoBehaviour
     [SerializeField] private AirballoonAnimation airballoonAnim;
     [SerializeField] private GameObject player;
 
-    public void Awake()
+    private void Awake()
     {
         // 이벤트 Subscriber 추가
         airballoonAnim.OnBalloonArrive += GetOffwithDelay;
