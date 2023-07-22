@@ -1615,8 +1615,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1961392713}
-        m_TargetAssemblyTypeName: TakeAirBalloon, Assembly-CSharp
-        m_MethodName: OnClickAirballoon
+        m_TargetAssemblyTypeName: GetOffAirBalloon, Assembly-CSharp
+        m_MethodName: OnClickExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

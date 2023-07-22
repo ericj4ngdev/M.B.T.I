@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 public class TabletManager : MonoBehaviour
 {
@@ -13,6 +14,14 @@ public class TabletManager : MonoBehaviour
     
     public GameObject pocket;
     public GameObject menu;
+
+    public List<GameObject> panels = new List<GameObject>();
+    // public GameObject mapPanel;
+    // public GameObject airBalloonPanel;
+    // public GameObject stampPanel;
+    // public GameObject settingPanel;
+    // public GameObject endPanel;
+    // public GameObject btnPanel;
     
     private void Start()
     {
@@ -45,6 +54,21 @@ public class TabletManager : MonoBehaviour
         
     }
 
+    // 패널 모두 비활성화하는 함수 
+    private void setoffPanels()
+    {
+        foreach (var VARIABLE in panels)
+        {
+            VARIABLE.SetActive(false);
+        }
+    }
+    
+    public void PressBtn(int idx)
+    {
+        setoffPanels();
+        panels[idx].SetActive(true);
+    }
+    
     public void TeleportToBuildingForward(GameObject SpawnSpot)
     {
         XRPlayer.transform.position = SpawnSpot.transform.position;
