@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class ControllerButton : MonoBehaviour
 {
+    public GameObject airballoon;
     public GameObject BallPrefab;
+    public Transform XROrigin; 
     public Transform spawnspot;
     public InputActionProperty PressX;
     public InputActionProperty PressY;
@@ -29,6 +31,7 @@ public class ControllerButton : MonoBehaviour
         if (PressY.action.WasPressedThisFrame())
         {
             Debug.Log("Pressed Y");
+
         }
 
         if (PressA.action.WasPressedThisFrame())

@@ -6,24 +6,26 @@ using UnityEngine;
 열기구 애니메이션 스크립트
  */
 
-public class BezierCurveAnimation : MonoBehaviour
+public class AirballoonAnimation : AirBalloon
 {
-    public Transform target;
-    public List<GameObject> wayPoints;      
-    public List<GameObject> lerpPoints;     // 중간점
-    //[SerializeField] private float duration;       // 점에서 점으로 이동할 때까지의 시간
+    public delegate void BalloonArriveEventHandler();
+    public event BalloonArriveEventHandler OnBalloonArrive;
 
-    public int previousStopIndex = 0;      // 시작점 인덱스
-    public int nextStopIndex = 1;      // 도착점 인덱스
-    private int lerpPointsIndex = 0;      // 중간점 인덱스
-
-    public bool wantToGetOff = true;
+    [SerializeField] private List<GameObject> lerpPoints;     // 중간점
+    [SerializeField] private float duration = 10;             // 점에서 점으로 이동할 때까지의 시간, duration을 증가시키면 속도 느려짐
+    private int lerpPointsIndex = 0;                          // 중간점 인덱스
 
     /// <summary>
     /// 트랙을 도는 애니메이션,
     /// duration을 증가시키면 속도 느려짐
     /// </summary>
     /// <param name="duration"></param>
+
+    void Start()
+    {
+        StartAnimation(duration);
+    }
+
     public void StartAnimation(float duration)
     {
         StartCoroutine(MoveAlongTrack(duration));
@@ -48,19 +50,25 @@ public class BezierCurveAnimation : MonoBehaviour
             while (time < duration)
             {
                 time += Time.deltaTime;
-                Debug.Log(time);
                 float t = time / duration;  // 선형보간 가중치
-                target.position = BezierCurves(t, previousStopIndex, nextStopIndex, lerpPointsIndex);
+                transform.position = BezierCurves(t, previousStopIndex, nextStopIndex, lerpPointsIndex);
 
                 yield return null;
             }
 
-            if (wantToGetOff)
+            if (isPlayerWantToGetOff)
             {
-                Debug.Log("Time to Get Off!!");
                 yield return new WaitForSeconds(2f);
-                wantToGetOff = false;
+
+                // 하차 이벤트
+                if (OnBalloonArrive != null)
+                {
+                    OnBalloonArrive();
+                }
             }
+
+            Debug.Log("이번 정류장: " + GetPreviousStop().name);
+            Debug.Log("다음 정류장: " + GetNextStop().name);
 
             previousStopIndex++;
             nextStopIndex++;
