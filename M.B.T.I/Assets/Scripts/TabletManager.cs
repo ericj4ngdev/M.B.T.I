@@ -14,22 +14,24 @@ public class TabletManager : MonoBehaviour
     
     public GameObject pocket;
     public GameObject menu;
-
+    public XRDirectInteractor rightHand;
+    public XRDirectInteractor leftHand;
     public List<GameObject> panels = new List<GameObject>();
-    // public GameObject mapPanel;
-    // public GameObject airBalloonPanel;
-    // public GameObject stampPanel;
-    // public GameObject settingPanel;
-    // public GameObject endPanel;
-    // public GameObject btnPanel;
+    
+    
+    
     
     private void Start()
     {
         XRPlayer = FindObjectOfType<XROrigin>().gameObject;
         capsuleCollider = GetComponent<CapsuleCollider>();
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
+        
         originalScale = transform.localScale;           // 원래 스케일 저장
+        
         grabbable.selectEntered.AddListener(ShowUI);
+        grabbable.selectEntered.AddListener(setoffOpositeHand);
+        grabbable.selectExited.AddListener(HideUI);
         grabbable.selectExited.AddListener(HideUI);
     }
     public void ShowUI(SelectEnterEventArgs arg)
@@ -40,6 +42,20 @@ public class TabletManager : MonoBehaviour
         transform.SetParent(null);
         transform.localScale = originalScale; // 원래 스케일로 설정
     }
+    public void setoffOpositeHand(SelectEnterEventArgs arg)
+    {
+        // 왼손이 잡으면 오른손의 XRDirect컴포넌트를 false로 한다. 
+        if (arg.interactorObject.transform.CompareTag("Left Hand"))
+        {
+            // 오른손의 XRDirect컴포넌트를 false로 한다. 
+            rightHand.enabled = false;
+        }
+        if (arg.interactorObject.transform.CompareTag("Right Hand"))
+        {
+            leftHand.enabled = false;
+        }
+    }
+    
     public void HideUI(SelectExitEventArgs arg)
     {
         // isGrab = !isGrab;
@@ -48,7 +64,23 @@ public class TabletManager : MonoBehaviour
         transform.position = pocket.transform.position;
         transform.rotation = pocket.transform.rotation;
         transform.SetParent(pocket.transform);
+        rightHand.enabled = true;
+        leftHand.enabled = true;
     }
+    public void setOnOpositeHand(SelectExitEventArgs arg)
+    {
+        // 왼손이 잡으면 오른손의 XRDirect컴포넌트를 false로 한다. 
+        if (arg.interactorObject.transform.CompareTag("Left Hand"))
+        {
+            // 오른손의 XRDirect컴포넌트를 false로 한다. 
+            rightHand.enabled = true;
+        }
+        if (arg.interactorObject.transform.CompareTag("Right Hand"))
+        {
+            leftHand.enabled = true;
+        }
+    }
+    
     void Update()
     {
         

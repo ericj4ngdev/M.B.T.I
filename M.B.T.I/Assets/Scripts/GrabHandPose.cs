@@ -33,6 +33,7 @@ public class GrabHandPose : MonoBehaviour
         if(arg.interactorObject is XRDirectInteractor)
         {
             // XROrigin의 LeftHand Controller의 자식에 있는 HandData에 접근
+            // 무슨 손이든 다 된다. 
             HandData handData = arg.interactorObject.transform.GetComponentInChildren<HandData>();
             handData.animator.enabled = false;          // 원래 동작 멈추기
 
