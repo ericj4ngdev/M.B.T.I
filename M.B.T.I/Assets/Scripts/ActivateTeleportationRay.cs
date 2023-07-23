@@ -15,18 +15,22 @@ public class ActivateTeleportationRay : MonoBehaviour
     public InputActionProperty leftCancel;
     public InputActionProperty rightCancel;
 
-    // UI¿¡ »óÈ£ÀÛ¿ë½Ã ÅÚ·¹Æ÷Æ® Ray¿Í ÀÎÅÍ·º¼Ç Ray°¡ °ãÄ¡´Â ¹®Á¦
+    // UIï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½Æ® Rayï¿½ï¿½ ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ Rayï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public XRRayInteractor leftRay;
     public XRRayInteractor rightRay;
 
     void Update()
     {
-        // Çã°ø && grip X && trigger O = teleport ±¤¼± µîÀå
-        // µû¶ó¼­ gripÇÏ´Â µ¿¾È¿¡´Â ActiveµÇÁö ¾Ê´Â´Ù. 
-        bool isLeftRayHovering = leftRay.TryGetHitInfo(out Vector3 leftPos, out Vector3 leftNormal, out int leftNumber, out bool leftValid);
-        leftTeleportation.SetActive(!isLeftRayHovering && leftCancel.action.ReadValue<float>() == 0 && leftActivate.action.ReadValue<float>() > 0.1f);
-
-        bool isRightRayHovering = rightRay.TryGetHitInfo(out Vector3 rightPos, out Vector3 rightNormal, out int rightNumber, out bool rightValid);
-        rightTeleportation.SetActive(!isRightRayHovering && rightCancel.action.ReadValue<float>() == 0 && rightActivate.action.ReadValue<float>() > 0.1f);
+        // ï¿½ï¿½ï¿½ && grip X && trigger O = teleport ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ gripï¿½Ï´ï¿½ ï¿½ï¿½ï¿½È¿ï¿½ï¿½ï¿½ Activeï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½. 
+        // bool isLeftRayHovering = leftRay.TryGetHitInfo(out Vector3 leftPos, out Vector3 leftNormal, out int leftNumber, out bool leftValid);
+        // leftTeleportation.SetActive(!isLeftRayHovering && leftCancel.action.ReadValue<float>() == 0 && leftActivate.action.ReadValue<float>() > 0.1f);
+        // bool isRightRayHovering = rightRay.TryGetHitInfo(out Vector3 rightPos, out Vector3 rightNormal, out int rightNumber, out bool rightValid);
+        // rightTeleportation.SetActive(!isRightRayHovering && rightCancel.action.ReadValue<float>() == 0 && rightActivate.action.ReadValue<float>() > 0.1f);
+        
+        // leftActivateë¥¼ ëˆ„ë¥´ê³  leftCancelì„ ëˆ„ë¥´ì§€ ì•Šì€ ê²½ìš° ì ë©¸ ê´‘ì„  í™œì„±í™”
+        // ì¦‰, ë¬¼ê±´ì„ ì§‘ì€ ìƒíƒœ(leftCancel ëˆ„ë¦„)ì¼ ë•Œ í•´ë‹¹ ì†ìœ¼ë¡œ ì ë©¸ ê´‘ì„ ì€ ë‚˜ê°ˆ ìˆ˜ ì—†ë‹¤. 
+        leftTeleportation.SetActive(leftCancel.action.ReadValue<float>() == 0 && leftActivate.action.ReadValue<float>() > 0.1f);
+        rightTeleportation.SetActive(rightCancel.action.ReadValue<float>() == 0 && rightActivate.action.ReadValue<float>() > 0.1f);
     }
 }

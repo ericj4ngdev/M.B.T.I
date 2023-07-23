@@ -82,7 +82,7 @@ public class TutorialManager : MonoBehaviour
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(false);
         SetComponentEnabled<TeleportationProvider>(false);
         SetComponentEnabled<ActivateTeleportationRay>(false);
-        SetComponentEnabled<ActivateGrabRay>(false);
+        // SetComponentEnabled<ActivateGrabRay>(false);
         playercontroller = xrOrigin.GetComponent<PlayerController>();
         
         foreach (var VARIABLE in L_Button)
@@ -621,7 +621,7 @@ public class TutorialManager : MonoBehaviour
         {
             Debug.Log("검지로 Trigger버튼을 쥐면 바닥에 표시된 흰색 원으로 빠르게 이동할 수 있습니다.");
             SetComponentEnabled<TeleportationProvider>(true);
-            SetComponentEnabled<ActivateGrabRay>(true);
+            // SetComponentEnabled<ActivateGrabRay>(true);
             SetComponentEnabled<ActivateTeleportationRay>(true);
             
             if (btnRTrigger.action.WasPressedThisFrame() && !isBtn1Pressed)
