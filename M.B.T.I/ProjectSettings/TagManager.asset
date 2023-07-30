@@ -9,6 +9,7 @@ TagManager:
   - TutorialPortal
   - Tablet
   - Bullet
+  - Line
   layers:
   - Default
   - TransparentFX
