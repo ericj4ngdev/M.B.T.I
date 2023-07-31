@@ -9,7 +9,8 @@ public class SVImageControl : MonoBehaviour, IDragHandler, IPointerClickHandler
     private ColorPickerControl CC;
     private RectTransform rectTransform;
     private RectTransform pickerTransform;
-
+    public Camera camera;
+    
     public void OnDrag(PointerEventData eventData)
     {
         UpdateColor(eventData);
@@ -18,6 +19,7 @@ public class SVImageControl : MonoBehaviour, IDragHandler, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         UpdateColor(eventData);
+        
     }
     
     private void Awake()
@@ -28,18 +30,21 @@ public class SVImageControl : MonoBehaviour, IDragHandler, IPointerClickHandler
 
         pickerTransform = pickerImage.GetComponent<RectTransform>();
         pickerTransform.position =
-            new Vector3(-(rectTransform.sizeDelta.x * 0.5f), -(rectTransform.sizeDelta.y * 0.5f));
+            new Vector2(-(rectTransform.sizeDelta.x * 0.5f), -(rectTransform.sizeDelta.y * 0.5f));
     }
 
     void UpdateColor(PointerEventData eventData)
     {
-        Vector3 pos = rectTransform.InverseTransformPoint(eventData.position);
-
+        Vector2 localMousePosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, camera,
+            out localMousePosition);
+        
+        // Vector3 pos = rectTransform.InverseTransformPoint(new Vector3(eventData.position.x,eventData.position.y,0));
+        Vector3 pos = localMousePosition;
+        
         float deltaX = rectTransform.sizeDelta.x * 0.5f;
         float deltaY = rectTransform.sizeDelta.y * 0.5f;
-
-        // pos.x = (pos.x < -deltaX) ? -deltaX : deltaX;
-        // pos.y = (pos.y < -deltaY) ? -deltaY : deltaY;
+        
         if (pos.x < -deltaX) pos.x = -deltaX;
         else if (pos.x > deltaX) pos.x = deltaX;
         if (pos.y < -deltaY) pos.y = -deltaY;

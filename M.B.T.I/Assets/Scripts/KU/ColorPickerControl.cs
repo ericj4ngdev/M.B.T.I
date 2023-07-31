@@ -95,7 +95,7 @@ public class ColorPickerControl : MonoBehaviour
 
         outputTexture.Apply();
 
-        hexInputField.text = ColorUtility.ToHtmlStringRGB(currnetColor);
+        // hexInputField.text = ColorUtility.ToHtmlStringRGB(currnetColor);
         
         changeThisColor.material.SetColor("_BaseColor", currnetColor);
     }
@@ -133,11 +133,11 @@ public class ColorPickerControl : MonoBehaviour
         if (hexInputField.text.Length < 6) { return; }
 
         Color newColor;
-        if(ColorUtility.TryParseHtmlString("#" + hexInputField.text, out newColor))
-            Color.RGBToHSV(newColor, out currentHue, out currentSat,out currentVal);
+        // if(ColorUtility.TryParseHtmlString("#" + hexInputField.text, out newColor))
+        //     Color.RGBToHSV(newColor, out currentHue, out currentSat,out currentVal);
 
         hueSlider.value = currentHue;
-        hexInputField.text = "";
+        // hexInputField.text = "";
         UpdateOutputImage();
     }
 }
