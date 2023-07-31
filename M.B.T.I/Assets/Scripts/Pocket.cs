@@ -19,10 +19,10 @@ public class Pocket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // ¼ÕÀÌ µé¾î¿À¸é Ãâ·ÂÇÏ±â 
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 
         if (other.CompareTag("Left Hand"))
         {
-            Debug.Log("left Hand");
+            //Debug.Log("left Hand");
         }
     }
 
@@ -30,8 +30,8 @@ public class Pocket : MonoBehaviour
     {
         if (other.CompareTag("Left Hand"))
         {
-            Debug.Log("left Hand");
+            //Debug.Log("left Hand");
         }
-        // gripÇÏ¸é µÈ´Ù. 
+        // gripï¿½Ï¸ï¿½ ï¿½È´ï¿½. 
     }
 }
