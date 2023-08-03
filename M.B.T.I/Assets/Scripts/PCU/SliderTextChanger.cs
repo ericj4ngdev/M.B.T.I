@@ -9,6 +9,7 @@ public class SliderTextChanger : MonoBehaviour
     public MoveLever sliderReader;
     void Update()
     {
-        text.text = sliderReader.GetValue().ToString();; // Math.Round(sliderReader.GetValue(), 2).ToString();
+        //text.text = sliderReader.GetValue().ToString();; //
+        text.text = Math.Round(sliderReader.GetValue(), 2).ToString();
     }
 }
