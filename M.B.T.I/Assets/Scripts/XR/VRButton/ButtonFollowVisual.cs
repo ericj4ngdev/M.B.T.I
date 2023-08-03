@@ -83,5 +83,12 @@ public class ButtonFollowVisual : MonoBehaviour
             visualTarget.localPosition =
                 Vector3.Lerp(visualTarget.localPosition, initialLocalPos, Time.deltaTime * resetSpeed); // 버튼 위치 초기화
         }
+
+        if (visualTarget.localPosition.y < -0.0544f)
+        {
+            visualTarget.localPosition = new Vector3(visualTarget.localPosition.x, -0.05f, visualTarget.localPosition.z);
+        }
+
+
     }
 }
