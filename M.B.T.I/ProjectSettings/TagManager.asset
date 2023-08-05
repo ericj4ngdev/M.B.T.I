@@ -9,6 +9,8 @@ TagManager:
   - TutorialPortal
   - Tablet
   - Ground
+  - Target
+  - Arrow
   layers:
   - Default
   - TransparentFX

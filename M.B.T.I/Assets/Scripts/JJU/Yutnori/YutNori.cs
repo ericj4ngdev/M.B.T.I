@@ -25,20 +25,6 @@ public class YutNori : MonoBehaviour
         originalRotation = transform.rotation;
     }
 
-    //void Update()
-    //{
-    //    if (isGrabbed)
-    //    {
-    //        // 물체가 잡힌 상태에서 움직일 경우, 윷들도 함께 이동
-    //        Vector3 offset = transform.position - originalPosition;
-    //        foreach (Transform yut in yuts)
-    //        {
-    //            yut.position += offset;
-    //        }
-    //        originalPosition = transform.position;
-    //    }
-    //}
-
     void OnGrab(SelectEnterEventArgs args)
     {
         isGrabbed = true;

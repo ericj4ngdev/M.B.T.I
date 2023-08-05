@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3618551829144453149}
   - component: {fileID: 391696509192843659}
   - component: {fileID: 7314794480987717112}
+  - component: {fileID: 3164754068069804455}
   m_Layer: 6
   m_Name: ArrowParent
   m_TagString: Untagged
@@ -109,10 +110,22 @@ SphereCollider:
   m_GameObject: {fileID: 3120155244998400503}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.013546461
   m_Center: {x: 0.008566016, y: -0.00041250154, z: -0.37390494}
+--- !u!114 &3164754068069804455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120155244998400503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e6d5bdbe7a8b34f853dc321a1708cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4999955639720169348
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +179,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 4b43cb697dd871747b732224055ccc64, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,10 +200,10 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.5
+  m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.003
+    widthMultiplier: 0.01
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -272,10 +285,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5151750093877492272}
   - component: {fileID: 5151750093877492686}
-  - component: {fileID: 5151750093877492273}
-  m_Layer: 0
+  - component: {fileID: 8864414279762176938}
+  m_Layer: 6
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 5151750093877492275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1018289407282310606}
@@ -312,16 +325,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &5151750093877492273
+--- !u!114 &8864414279762176938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5151750093877492275}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ed65c8a376d964d942439af49829b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1caa2c51bef321a4c8f43503f4b18df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5151750093877492686}
+  myColider: {fileID: 7314794480987717112}
+  mats:
+  - {fileID: 8748892135801146194, guid: 85af9dcfc3d4e364cb4c3d6c4594c1f6, type: 3}
+  - {fileID: 8368722655750445499, guid: 85af9dcfc3d4e364cb4c3d6c4594c1f6, type: 3}
+  - {fileID: 6034957751646507721, guid: 85af9dcfc3d4e364cb4c3d6c4594c1f6, type: 3}
+  excludedRenderer: {fileID: 3618551829144453149}
+  trailRenderer: {fileID: 7353668658469437736}
+  isStuck: 0
+  target: {fileID: 8489301952366248869, guid: a48fb1a1bc6c72c4884b016450e24b1e, type: 3}

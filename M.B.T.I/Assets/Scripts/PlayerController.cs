@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool onPortal; 
+    public bool onPortal;
+    private Vector3 previousControllerPosition;
+    public float throwForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     private void OnTriggerEnter(Collider other)
     {
