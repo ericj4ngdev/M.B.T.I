@@ -6,7 +6,7 @@ using System;
 public class SliderTextChanger : MonoBehaviour
 {
     public TMPro.TextMeshPro text;
-    public MoveLever sliderReader;
+    public MoveSlider sliderReader;
     void Update()
     {
         //text.text = sliderReader.GetValue().ToString();; //
