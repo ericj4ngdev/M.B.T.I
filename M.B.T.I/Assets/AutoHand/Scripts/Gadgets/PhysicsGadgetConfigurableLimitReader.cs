@@ -13,7 +13,7 @@ namespace Autohand{
         protected ConfigurableJoint joint;
 
         protected Vector3 axisPos;
-        float value;
+        public float value;
         Vector3 limitAxis;
 
         protected virtual void Start(){
