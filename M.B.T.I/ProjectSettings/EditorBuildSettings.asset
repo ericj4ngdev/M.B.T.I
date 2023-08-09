@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MBTI/MBTI_KMU.unity
-    guid: 6d4be6fb6dc608847a9dddf78a576ea2
+    path: Assets/Scenes/MH/LoadScene/Main.unity
+    guid: 979caa2895f80c546a0d805ea8fdffaf
   - enabled: 1
-    path: Assets/Scenes/MBTI/MBTI_Main.unity
-    guid: 3d7b024d88d86504cab0aac98e41f356
+    path: Assets/Scenes/MH/LoadScene/JJU.unity
+    guid: 7285bd206876cba4cb11f7739fac453d
+  - enabled: 1
+    path: Assets/Scenes/MH/LoadScene/KU.unity
+    guid: 001c295ae4041d348b3e0b2c5f160b08
+  - enabled: 1
+    path: Assets/Scenes/MH/LoadScene/KYU.unity
+    guid: 01cf99c3ee2992345a0ab01eebc3a4b5
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0ce83808899a92148a31264552372a7d,
       type: 2}

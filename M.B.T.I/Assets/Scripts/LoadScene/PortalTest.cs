@@ -3,28 +3,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class PortalTest : MonoBehaviour
 {
-    public int idx;
+    public int nextSceneIdx;
 
     [Range(0, 100)] public float percent;
     public float timer;
-    public float fakeLoadingTime = 2f; // 페이크 로딩 시간 설정 (초 단위)
+    public float fakeLoadingTime = 1f; // 페이크 로딩 시간 설정 (초 단위)
     
     // trigger되었을때 LoadScene호출
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            LoadNextScene(idx);
+            // 이전 씬의 인덱스 저장
+            Debug.Log("현재 씬 인덱스 : " + SceneManager.GetActiveScene().buildIndex);
+            SceneMgr.Instance.SetPreviousSceneIndex(SceneManager.GetActiveScene().buildIndex);
+            other.GetComponent<FirstPersonMovement>().speed = 1;        // 닿는 순간 속도 제한
+            LoadNextScene(nextSceneIdx);
         }
     }
     
     public void LoadNextScene(int sceneBuildIndex)
     {
         // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
+        StartCoroutine(FadeOut());
         StartCoroutine(LoadMyAsyncScene(sceneBuildIndex));
+    }
+    public Image fadeImage;
+    public float fadeDuration = 1.0f;
+    private IEnumerator FadeOut()
+    {
+        Color originalColor = fadeImage.color;
+        Color targetColor = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            fadeImage.color = Color.Lerp(originalColor, targetColor, elapsedTime / fadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        fadeImage.color = targetColor;
     }
     
     IEnumerator LoadMyAsyncScene(int idx)
