@@ -43,37 +43,33 @@ public class XRPlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Move();
-        cameraAngleInRadians = forwardSource.rotation.eulerAngles.y * Mathf.Deg2Rad;
-
-        cosTheta = Math.Cos(cameraAngleInRadians);
-        sinTheta = Math.Sin(cameraAngleInRadians);
+        Move();
         Turn();
     }
 
     public void Move()
     {
         cameraAngleInRadians = forwardSource.rotation.eulerAngles.y * Mathf.Deg2Rad;
-        //Vector2 temp = new Vector2(1, 1);
+        // Vector2 temp = new Vector2(1, 1);
         
         cosTheta = Math.Cos(cameraAngleInRadians);
         sinTheta = Math.Sin(cameraAngleInRadians);
-        rotationMatrix = new List<List<double>>()
-        {
-            new List<double>() { cosTheta, -sinTheta },
-            new List<double>() { sinTheta, cosTheta }
-        };
-        
+
         leftHandValue = m_LeftHandMoveAction.action.ReadValue<Vector2>();
-        des.x = (float)(rotationMatrix[0][0] * leftHandValue.x + rotationMatrix[0][1] * leftHandValue.y);
-        des.y = (float)(rotationMatrix[1][0] * leftHandValue.x + rotationMatrix[1][1] * leftHandValue.y);
-        transform.position += new Vector3(des.x * moveSpeed, 0, des.y * moveSpeed);
+        /*des.x = (float)(-leftHandValue.y * cosTheta + leftHandValue.x * sinTheta);
+        des.y = (float)(leftHandValue.x * cosTheta + leftHandValue.y * sinTheta);*/
+        des.x = (float)(-leftHandValue.x * cosTheta + leftHandValue.y * sinTheta);
+        des.y = (float)(leftHandValue.y * cosTheta + leftHandValue.x * sinTheta);
+        // des.x = (float)( - rotationMatrix[0][0] * leftHandValue.y + rotationMatrix[0][1] * leftHandValue.y);
+        // des.y = (float)(rotationMatrix[1][0] * leftHandValue.x + rotationMatrix[1][1] * leftHandValue.y);
+        transform.position += new Vector3(- des.x * moveSpeed * Time.deltaTime, 0, des.y * moveSpeed * Time.deltaTime);
     }
     
     public void Turn()
     {
         rightHandValue = m_RightHandMoveAction.action.ReadValue<Vector2>();
-        transform.rotation = Quaternion.Euler(0, rightHandValue.x * turnSpeed, 0);
+        Quaternion joystickRotation = Quaternion.Euler(0, rightHandValue.x * turnSpeed * Time.deltaTime, 0);
+        transform.rotation *= joystickRotation;
     }
     
     void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)
@@ -85,5 +81,7 @@ public class XRPlayerController : MonoBehaviour
         if (Application.isPlaying && isActiveAndEnabled)
             property.EnableDirectAction();
     }
+    
+    
     
 }
