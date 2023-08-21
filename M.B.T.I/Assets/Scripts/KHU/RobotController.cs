@@ -7,6 +7,14 @@ using UnityEngine.Events;
 public class RobotController : MonoBehaviour
 {
     public UnityEvent failEvent;
+    private Rigidbody rb;
+    [SerializeField]
+    private Animator jumpAnim;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     // 로봇의 행동패턴
     public enum RobotBehaviour
@@ -17,7 +25,7 @@ public class RobotController : MonoBehaviour
         Jump
     }
 
-    private static float moveSpeed = 5.0f;
+    private static float moveSpeed = 5f;
     private static float oneBlockDistance = 10.0f;
     private float duration = oneBlockDistance / moveSpeed;
 
@@ -36,6 +44,7 @@ public class RobotController : MonoBehaviour
             {
                 case (int)RobotBehaviour.Go:
                     Debug.Log("case: Go");
+                    jumpAnim.enabled = false;
                     StartCoroutine(MoveForward());
                     break;
                 case (int)RobotBehaviour.TurnRight:
@@ -48,6 +57,12 @@ public class RobotController : MonoBehaviour
                     break;
                 case (int)RobotBehaviour.Jump:
                     Debug.Log("case: Jump");
+                    jumpAnim.enabled = true;
+                    if (jumpAnim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == false)
+                    {
+                        Debug.Log(" 점프 실헹");
+                        jumpAnim.Play("Jump", -1, 0);
+                    }
                     StartCoroutine(Jump());
                     break;
             }
@@ -58,12 +73,14 @@ public class RobotController : MonoBehaviour
     {
         float elapsedTime = 0.0f;
 
-        while (elapsedTime < (oneBlockDistance / moveSpeed))
+        while (elapsedTime < duration)
         {
-            float step = moveSpeed * Time.deltaTime;
-            transform.Translate(Vector3.forward * step);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            float step = moveSpeed * Time.fixedDeltaTime;
+            Vector3 newOffset = transform.position + transform.TransformDirection(Vector3.forward) * step;
+            rb.MovePosition(newOffset);
+            //transform.Translate(Vector3.forward * step);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -77,10 +94,10 @@ public class RobotController : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            float t = elapsedTime / duration;
-            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            float step = 45 * Time.fixedDeltaTime;
+            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, targetRotation, step));
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -93,10 +110,10 @@ public class RobotController : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            float t = elapsedTime / duration;
-            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            float step = 45 * Time.fixedDeltaTime;
+            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, targetRotation, step));
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -106,12 +123,12 @@ public class RobotController : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            float step = moveSpeed * 2 * Time.deltaTime;
-            transform.Translate(Vector3.forward * step);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            float step = moveSpeed * 2 * Time.fixedDeltaTime;
+            Vector3 newOffset = transform.position + transform.TransformDirection(Vector3.forward) * step;
+            rb.MovePosition(newOffset);
+            //transform.Translate(Vector3.forward * step);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
     }
-
-
 }
