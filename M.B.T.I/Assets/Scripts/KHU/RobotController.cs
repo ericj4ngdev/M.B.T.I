@@ -29,6 +29,7 @@ public class RobotController : MonoBehaviour
     private static float oneBlockDistance = 10.0f;
     private float duration = oneBlockDistance / moveSpeed;
     private Coroutine myCoroutine;
+    private bool isSuccessed = false;
 
     public void PlayBehaviour(List<int> behaviourList)
     {
@@ -67,6 +68,8 @@ public class RobotController : MonoBehaviour
                     break;
             }
         }
+        if (!isSuccessed)
+            OnFailed();
     }
 
     private IEnumerator MoveForward()
@@ -134,13 +137,22 @@ public class RobotController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("on collision");
-        //this.gameObject.SetActive(false);
-        //StopCoroutine(myCoroutine);
+        if (collision.gameObject.name == "Trophy")
+        {
+            OnFailed();
+            Debug.Log("성공");
+        }
+        else
+            OnFailed(); 
+    }
+
+    private void OnFailed()
+    {
         Vector3 newPosition = new Vector3(-18.0f, 7.0f, 21.0f);
+        Vector3 newRotation = new Vector3(0, 180, 0);
         transform.position = newPosition;
-        //this.gameObject.SetActive(true);
-        failEvent.Invoke();   
+        transform.rotation = Quaternion.Euler(newRotation);
+        failEvent.Invoke();
     }
 
 }

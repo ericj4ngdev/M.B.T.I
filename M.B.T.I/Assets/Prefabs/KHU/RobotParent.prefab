@@ -453,7 +453,6 @@ GameObject:
   - component: {fileID: 5844626079463233377}
   - component: {fileID: 6269804040688335932}
   - component: {fileID: 2526882793489434904}
-  - component: {fileID: 9046663015274817156}
   m_Layer: 0
   m_Name: RobotParent
   m_TagString: Untagged
@@ -543,21 +542,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9046663015274817156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6542743256000982078}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb454579554f0c498213a38b8ae6afc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 6542743256000982078}
-  respawnTransform: {fileID: 1986542309812524180, guid: 1fe3ad3b18bca6d49b71d1c0dc496b49,
-    type: 3}
 --- !u!1 &7628485456885313970
 GameObject:
   m_ObjectHideFlags: 0

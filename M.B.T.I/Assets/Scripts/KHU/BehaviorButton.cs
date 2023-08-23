@@ -43,7 +43,7 @@ public class BehaviorButton : MonoBehaviour
         if (countBtn == maxBehaviourCount)
         {
             // 이벤트 발생
-            behaviourFilledEvent.Invoke(robotBehaviorArray);
+            OnBehaviourBtnFilled();
         }
     }
 
@@ -60,7 +60,7 @@ public class BehaviorButton : MonoBehaviour
         if (countBtn == maxBehaviourCount)
         {
             // 이벤트 발생
-            behaviourFilledEvent.Invoke(robotBehaviorArray);
+            OnBehaviourBtnFilled();
         }
     }
 
@@ -77,7 +77,7 @@ public class BehaviorButton : MonoBehaviour
         if (countBtn == maxBehaviourCount)
         {
             // 이벤트 발생
-            behaviourFilledEvent.Invoke(robotBehaviorArray);
+            OnBehaviourBtnFilled();
         }
     }
 
@@ -94,13 +94,12 @@ public class BehaviorButton : MonoBehaviour
         if (countBtn == maxBehaviourCount)
         {
             // 이벤트 발생
-            behaviourFilledEvent.Invoke(robotBehaviorArray);
+            OnBehaviourBtnFilled();
         }
     }
 
     public void OnClickedUndoButton()
     {
-        Debug.Log("undo");
         if (btnArray.Count > 0 && countBtn < maxBehaviourCount)
         { 
 
@@ -123,6 +122,29 @@ public class BehaviorButton : MonoBehaviour
         }
     }
 
+    private void OnBehaviourBtnFilled()
+    {
+        // 버튼 비활성화 해야함
+        behaviourFilledEvent.Invoke(robotBehaviorArray);
+        
+    }
+
+    private void ResetBtn()
+    {
+        foreach(GameObject btns in btnArray)
+        {
+            btns.SetActive(false);
+        }
+
+        foreach (GameObject btnUI in BtnTypeArr)
+        {
+            btnUI.SetActive(true);
+        }
+
+        countBtn = 0;
+        currentAnchoredPosition = new Vector2(5, -55);
+    }
+
 
     private void AddBtnToCanvas(int type, Vector2 anchoredPosition)
     {
@@ -135,14 +157,8 @@ public class BehaviorButton : MonoBehaviour
 
     public void btnReset()
     {
-        Debug.Log("reset");
-        for (int i = 0; i < maxBehaviourCount; i++)
-        {
-            OnClickedUndoButton();
-        }
+        ResetBtn();
         robotBehaviorArray.Clear();
         btnArray.Clear();
-        Debug.Log(robotBehaviorArray.Count);
-        Debug.Log(btnArray.Count);
     }
 }
