@@ -100,6 +100,7 @@ public class BehaviorButton : MonoBehaviour
 
     public void OnClickedUndoButton()
     {
+        Debug.Log("undo");
         if (btnArray.Count > 0 && countBtn < maxBehaviourCount)
         { 
 
@@ -130,5 +131,18 @@ public class BehaviorButton : MonoBehaviour
         btnArray.Push(newButton);
         RectTransform buttonRectTransform = newButton.GetComponent<RectTransform>();
         buttonRectTransform.anchoredPosition = anchoredPosition;
+    }
+
+    public void btnReset()
+    {
+        Debug.Log("reset");
+        for (int i = 0; i < maxBehaviourCount; i++)
+        {
+            OnClickedUndoButton();
+        }
+        robotBehaviorArray.Clear();
+        btnArray.Clear();
+        Debug.Log(robotBehaviorArray.Count);
+        Debug.Log(btnArray.Count);
     }
 }

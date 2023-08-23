@@ -28,11 +28,11 @@ public class RobotController : MonoBehaviour
     private static float moveSpeed = 5f;
     private static float oneBlockDistance = 10.0f;
     private float duration = oneBlockDistance / moveSpeed;
-
+    private Coroutine myCoroutine;
 
     public void PlayBehaviour(List<int> behaviourList)
     {
-        StartCoroutine(ExecuteBehavioursWithDelay(behaviourList));
+        myCoroutine = StartCoroutine(ExecuteBehavioursWithDelay(behaviourList));
     }
 
     private IEnumerator ExecuteBehavioursWithDelay(List<int> behaviourList)
@@ -131,4 +131,16 @@ public class RobotController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("on collision");
+        //this.gameObject.SetActive(false);
+        //StopCoroutine(myCoroutine);
+        Vector3 newPosition = new Vector3(-18.0f, 7.0f, 21.0f);
+        transform.position = newPosition;
+        //this.gameObject.SetActive(true);
+        failEvent.Invoke();   
+    }
+
 }
