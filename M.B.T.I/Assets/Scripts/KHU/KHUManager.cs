@@ -5,24 +5,20 @@ using UnityEngine;
 public class KHUManager : MonoBehaviour
 {
     [SerializeField]
+    private GameObject robotPrefab;
     private GameObject robot;
+    [SerializeField]
+    private Transform respawnedTransform;
 
     // Start is called before the first frame update
     void Start()
-    {
-        //GameObject newObject = Instantiate(robot);
+    { 
+        //robot = Instantiate(robotPrefab, respawnedTransform.position, Quaternion.identity, null);
     }
 
     public void Fail()
     {
-        Invoke("RespawnRobot", 1f);
+        Debug.Log("실패");
 
-    }
-
-    private void RespawnRobot()
-    {
-        GameObject newObject = Instantiate(robot);
-
-        Destroy(robot);
     }
 }

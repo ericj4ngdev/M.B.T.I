@@ -16,17 +16,18 @@ public class RespawnalbeObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("on collision");
         if (collision.gameObject.tag == "Ground")
         {
+
             Debug.Log("땅에 떨어짐!");
-            Invoke("RespawnObject", 1f);
+            //Invoke("RespawnObject", 1f);
         }
     }
 
     private void RespawnObject()
     {
-        GameObject newObject = Instantiate(prefab, respawnTransform);
-
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        Instantiate(prefab, respawnTransform);
     }
 }

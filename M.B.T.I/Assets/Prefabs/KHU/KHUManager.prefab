@@ -39,9 +39,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3231451766264210863}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d12704f10766341499aa7922cda2e36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robot: {fileID: 6542743256000982078, guid: 12a2aef7949e24844b97dfc1797fdabe, type: 3}
+  robotPrefab: {fileID: 0}
+  respawnedTransform: {fileID: 0}
