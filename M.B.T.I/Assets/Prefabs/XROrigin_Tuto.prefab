@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 4787313499799160007}
   - component: {fileID: 4787313499799160004}
   - component: {fileID: 4787313499799160005}
-  - component: {fileID: 4787313499799160002}
+  - component: {fileID: 4866311798490889127}
   - component: {fileID: 4787313499799160000}
   - component: {fileID: 4787313499799160001}
   - component: {fileID: 4787313499799160014}
@@ -871,7 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_System: {fileID: 4787313499799160006}
   m_DelayTime: 0
---- !u!114 &4787313499799160002
+--- !u!114 &4866311798490889127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4787313499799160015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b4bb4a30decb64cb0fa97d0a0d5382, type: 3}
+  m_Script: {fileID: 11500000, guid: 6018b3c6cddc6e64dbe5606a39ecd2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftTeleportation: {fileID: 4787313499686349434}
@@ -891,7 +891,7 @@ MonoBehaviour:
       m_Name: Left Activate
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 8258125b-09b9-4ae3-aa1b-1b95dd769cbb
+      m_Id: af62c43a-c0b4-4ccd-8942-895af6443bb8
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -904,7 +904,7 @@ MonoBehaviour:
       m_Name: Right Activate
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 243be9ab-81b1-4adb-ae5d-024bb1887195
+      m_Id: a5717623-a6a9-4c95-b4db-1da8935af47f
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -917,7 +917,7 @@ MonoBehaviour:
       m_Name: Left Cancel
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 6ada1877-83de-46eb-8344-e457b5eb50c4
+      m_Id: 9fa4e757-6d69-4c0a-9da7-c7ba8c59667f
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -930,15 +930,13 @@ MonoBehaviour:
       m_Name: Right Cancel
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: e8525a6c-c61f-483e-839d-f0c59d699290
+      m_Id: 85e51a2b-bc21-4ebb-84b7-2dd66961c127
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  leftRay: {fileID: 0}
-  rightRay: {fileID: 0}
 --- !u!143 &4787313499799160000
 CharacterController:
   m_ObjectHideFlags: 0
@@ -985,6 +983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPortal: 0
+  throwForce: 0
 --- !u!114 &4787313499799160029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1834,57 +1833,25 @@ MonoBehaviour:
   m_PositionInput:
     m_UseReference: 0
     m_Action:
-      m_Name: Position
+      m_Name: 
       m_Type: 0
-      m_ExpectedControlType: Vector3
-      m_Id: a43cc083-d43d-4e1f-b892-b60992b157ac
+      m_ExpectedControlType: 
+      m_Id: 
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: d07a9013-f48e-48ec-9eb2-764e0d8ec7a7
-        m_Path: <XRHMD>/centerEyePosition
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Position
-        m_Flags: 0
-      - m_Name: 
-        m_Id: e7ff24f6-b161-4598-a6ba-1c6a60bf926b
-        m_Path: <HandheldARInputDevice>/devicePosition
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Position
-        m_Flags: 0
+      m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_RotationInput:
     m_UseReference: 0
     m_Action:
-      m_Name: Rotation
+      m_Name: 
       m_Type: 0
-      m_ExpectedControlType: Quaternion
-      m_Id: 8ebfff6c-e2ed-44cb-8059-e123228c76fd
+      m_ExpectedControlType: 
+      m_Id: 
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 143fb42a-2119-4161-8266-872b3658c5df
-        m_Path: <XRHMD>/centerEyeRotation
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Rotation
-        m_Flags: 0
-      - m_Name: 
-        m_Id: f98c38d5-e4b9-480f-9a37-34c714e17a01
-        m_Path: <HandheldARInputDevice>/deviceRotation
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Rotation
-        m_Flags: 0
+      m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_TrackingStateInput:
