@@ -7,14 +7,14 @@ public class BehaviorButton : MonoBehaviour
 {
     public UnityEvent<List<int>> behaviourFilledEvent;
 
-    private const int btnDistance = 60;
+    private const int btnDistance = 250;
 
     [SerializeField]
     private Transform canvasTransform;
     [SerializeField]
     private GameObject[] BtnTypeArr = new GameObject[4];
 
-    private Vector2 currentAnchoredPosition = new Vector2(5, -55);
+    private Vector2 currentAnchoredPosition = new Vector2(78, -1045);
 
     private void Start()
     {
@@ -151,7 +151,7 @@ public class BehaviorButton : MonoBehaviour
         }
 
         behaviourCount = 0;
-        currentAnchoredPosition = new Vector2(5, -55);
+        currentAnchoredPosition = new Vector2(78, -1045);
     }
 
 
