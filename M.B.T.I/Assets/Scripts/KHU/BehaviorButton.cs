@@ -7,7 +7,7 @@ public class BehaviorButton : MonoBehaviour
 {
     public UnityEvent<List<int>> behaviourFilledEvent;
 
-    private const int btnDistance = 250;
+    private const int btnDistance = 250;    
 
     [SerializeField]
     private Transform canvasTransform;
