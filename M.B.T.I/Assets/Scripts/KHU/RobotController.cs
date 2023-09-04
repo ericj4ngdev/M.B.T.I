@@ -37,7 +37,8 @@ public class RobotController : MonoBehaviour
 
     public void PlayBehaviour(List<int> behaviourList)
     {
-        myCoroutine = StartCoroutine(ExecuteBehavioursWithDelay(behaviourList));
+        if (gameObject.activeInHierarchy)
+            myCoroutine = StartCoroutine(ExecuteBehavioursWithDelay(behaviourList));
     }
 
     private IEnumerator ExecuteBehavioursWithDelay(List<int> behaviourList)
@@ -164,8 +165,10 @@ public class RobotController : MonoBehaviour
 
     private void Respawn()
     {
+        Debug.Log("Respawn");
         Vector3 newPosition = respawnTransform;
         Vector3 newRotation = new Vector3(0, 180, 0);
+        Debug.Log(newPosition);
         transform.position = newPosition;
         transform.rotation = Quaternion.Euler(newRotation);
     }
