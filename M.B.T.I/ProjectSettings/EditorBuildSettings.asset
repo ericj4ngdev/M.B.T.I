@@ -6,14 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NetWork/Lobby.unity
+    path: Assets/Scenes/MBTI/Lobby.unity
     guid: c0ed3aba00091a140a7b8a32cf6863d4
   - enabled: 1
-    path: Assets/Scenes/NetWork/NetWorkVR 1.unity
-    guid: 45e27b764fa066e4292eea0289b4ff7b
+    path: Assets/Scenes/MBTI/MBTI_Main_Net.unity
+    guid: 830f304d74b897243b4769234ee06011
   - enabled: 1
-    path: Assets/Scenes/NetWork/NetWorkVR 2.unity
-    guid: 2025e7ec9ec1c8a41aea10f96109c985
+    path: Assets/Scenes/MBTI/MBTI_KMU_AddUI.unity
+    guid: 7fb9c2ae45fdb7c4d85d9aeed6cc6607
+  - enabled: 1
+    path: Assets/Scenes/MBTI/MBTI_KU_Net.unity
+    guid: 927fced6919e2f446aad3441717bbbbc
+  - enabled: 1
+    path: Assets/Scenes/MBTI/MBTI_KWU_Net.unity
+    guid: 80165ddbb6f9269499708f1a5b38b895
+  - enabled: 1
+    path: Assets/Scenes/MBTI/MBTI_KHU_Net.unity
+    guid: 75b9a051d6ad5d84daae32a71bbb830c
+  - enabled: 1
+    path: Assets/Scenes/MBTI/MBTI_PCU_Net.unity
+    guid: 206c37906dac35042b24f1096f702d69
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0ce83808899a92148a31264552372a7d,
       type: 2}

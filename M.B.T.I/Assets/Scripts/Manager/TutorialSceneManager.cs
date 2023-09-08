@@ -1,26 +1,45 @@
+﻿using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TutorialSceneManager : MonoBehaviour
-{
-    public string nextSceneName = "MBTI_Main";
-    [Range(0, 100)] public float percent;
-    public float timer;
-    public float fakeLoadingTime = 2f; // 페이크 로딩 시간 설정 (초 단위)
-    
-    // 이벤트 등록?
-    // trigger되었을때 LoadScene호출되도록 이벤트 등록
-    
+public class TutorialSceneManager : MonoBehaviourPunCallbacks
+{    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            LoadNextScene();
+            MoveToRoom();
         }
     }
-    
-    private void LoadNextScene()
+
+    public int maxPlayer;
+
+    public void MoveToRoom()
+    {
+        LoadLevel();       // LoadLevel
+        JoinRoom();        // JoinOrCreateRoom
+    }
+
+    private void LoadLevel()
+    {
+        PhotonNetwork.LoadLevel("MBTI_Main_Net");    // 불러올 씬 
+        Debug.Log("main 레벨 불러옴");
+    }
+
+    private void JoinRoom()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = maxPlayer;
+        roomOptions.IsVisible = true;       // 참가자들이 볼수 있다.
+        roomOptions.IsOpen = true;          // 방이 열려있다.
+
+        PhotonNetwork.JoinOrCreateRoom("Main", roomOptions, TypedLobby.Default);     // Room은 가상의 이름 "main"으로 지은 것
+        Debug.Log("main 방참가");
+    }
+
+    /*private void LoadNextScene()
     {
         // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
         StartCoroutine(LoadMyAsyncScene());
@@ -57,5 +76,5 @@ public class TutorialSceneManager : MonoBehaviour
             }
             yield return null;
         }
-    }
+    }*/
 }
