@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -664,6 +664,10 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator tabletSentence_Play()
     {
+        SetComponentEnabled<ActionBasedContinuousMoveProvider>(true);
+        SetComponentEnabled<ActionBasedContinuousTurnProvider>(true);
+        SetComponentEnabled<TeleportationProvider>(true);
+        SetComponentEnabled<ActivateTeleportationRay_Tuto>(true);
         int idx = 0;
         while (idx < tabletUIIndex)
         {
