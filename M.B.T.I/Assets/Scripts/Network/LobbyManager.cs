@@ -41,7 +41,7 @@ namespace mbti
 
         public void JoinKmu()
         {
-            SceneManager.LoadScene("MBTI_KMU_AddUI");
+            SceneManager.LoadScene("MBTI_KMU");
         }
     }
 }

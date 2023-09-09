@@ -2276,7 +2276,7 @@ GameObject:
   - component: {fileID: 1438083324}
   - component: {fileID: 1438083328}
   m_Layer: 0
-  m_Name: SpawnSpot_Pcu
+  m_Name: SpawnSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

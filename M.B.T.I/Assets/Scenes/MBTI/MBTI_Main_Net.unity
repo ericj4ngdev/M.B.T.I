@@ -24124,7 +24124,7 @@ GameObject:
   - component: {fileID: 511192928}
   - component: {fileID: 511192927}
   m_Layer: 0
-  m_Name: SpawnSpot_Khu
+  m_Name: KHU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34844,6 +34844,7 @@ GameObject:
   - component: {fileID: 722829734}
   - component: {fileID: 722829733}
   - component: {fileID: 722829735}
+  - component: {fileID: 722829736}
   m_Layer: 0
   m_Name: SpawnSpot_Pcu
   m_TagString: Untagged
@@ -34931,6 +34932,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &722829736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722829731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d63a84a5e952f469cc6f9e86dda0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectToServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToRoomEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102265934}
+        m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+        m_MethodName: MoveToRoom
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &722883233
 GameObject:
   m_ObjectHideFlags: 0
@@ -36220,7 +36251,7 @@ GameObject:
   - component: {fileID: 746940554}
   - component: {fileID: 746940553}
   m_Layer: 0
-  m_Name: SpawnSpot_Pcu
+  m_Name: PCU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48078,6 +48109,7 @@ GameObject:
   - component: {fileID: 971474640}
   - component: {fileID: 971474639}
   - component: {fileID: 971474641}
+  - component: {fileID: 971474642}
   m_Layer: 0
   m_Name: SpawnSpot_KU
   m_TagString: Untagged
@@ -48099,7 +48131,7 @@ Transform:
   m_Children:
   - {fileID: 801781862}
   m_Father: {fileID: 2137330809}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &971474639
 MeshRenderer:
@@ -48165,6 +48197,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &971474642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971474637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d63a84a5e952f469cc6f9e86dda0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectToServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToRoomEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102265934}
+        m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+        m_MethodName: MoveToRoom
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &972148372
 GameObject:
   m_ObjectHideFlags: 0
@@ -49413,12 +49475,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1985033016}
+  - {fileID: 1070008042}
   - {fileID: 1898349493}
   - {fileID: 511192926}
   - {fileID: 746940552}
+  - {fileID: 1985033016}
   - {fileID: 1841319465}
-  - {fileID: 1070008042}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52744,7 +52806,7 @@ GameObject:
   - component: {fileID: 1070008044}
   - component: {fileID: 1070008043}
   m_Layer: 0
-  m_Name: SpawnSpot_KU
+  m_Name: KU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52763,7 +52825,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1004611032}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1070008043
 MeshRenderer:
@@ -54768,27 +54830,30 @@ MonoBehaviour:
   Rooms:
   - Name: Main
     sceneIndex: 1
-    maxPlayer: 3
+    maxPlayer: 5
   - Name: KU
     sceneIndex: 3
-    maxPlayer: 3
+    maxPlayer: 5
   - Name: KWU
     sceneIndex: 4
-    maxPlayer: 3
+    maxPlayer: 5
   - Name: KHU
     sceneIndex: 5
     maxPlayer: 3
   - Name: PCU
     sceneIndex: 6
-    maxPlayer: 3
+    maxPlayer: 5
+  - Name: CAU
+    sceneIndex: 7
+    maxPlayer: 5
   previousRoomName: 
   spawnPoint:
-  - {fileID: 1812768473}
-  - {fileID: 2043721423}
-  - {fileID: 2080675438}
-  - {fileID: 722829732}
-  - {fileID: 1635686123}
-  - {fileID: 971474638}
+  - {fileID: 1070008042}
+  - {fileID: 1898349493}
+  - {fileID: 511192926}
+  - {fileID: 746940552}
+  - {fileID: 1841319465}
+  - {fileID: 1985033016}
   player: {fileID: 0}
   isMaster: 0
 --- !u!4 &1102265935
@@ -82319,13 +82384,14 @@ GameObject:
   - component: {fileID: 1635686125}
   - component: {fileID: 1635686124}
   - component: {fileID: 1635686126}
+  - component: {fileID: 1635686127}
   m_Layer: 0
   m_Name: SpawnSpot_JJU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1635686123
 Transform:
   m_ObjectHideFlags: 0
@@ -82340,7 +82406,7 @@ Transform:
   m_Children:
   - {fileID: 1362240647}
   m_Father: {fileID: 2137330809}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1635686124
 MeshRenderer:
@@ -82406,6 +82472,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1635686127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635686122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d63a84a5e952f469cc6f9e86dda0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectToServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToRoomEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102265934}
+        m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+        m_MethodName: MoveToRoom
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1639186767
 GameObject:
   m_ObjectHideFlags: 0
@@ -91825,6 +91921,7 @@ GameObject:
   - component: {fileID: 1812768475}
   - component: {fileID: 1812768474}
   - component: {fileID: 1812768476}
+  - component: {fileID: 1812768477}
   m_Layer: 0
   m_Name: SpawnSpot_Cau
   m_TagString: Untagged
@@ -91846,7 +91943,7 @@ Transform:
   m_Children:
   - {fileID: 427576565}
   m_Father: {fileID: 2137330809}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1812768474
 MeshRenderer:
@@ -91912,6 +92009,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1812768477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812768472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d63a84a5e952f469cc6f9e86dda0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectToServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToRoomEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102265934}
+        m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+        m_MethodName: MoveToRoom
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1813155249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92899,7 +93026,7 @@ GameObject:
   - component: {fileID: 1841319467}
   - component: {fileID: 1841319466}
   m_Layer: 0
-  m_Name: SpawnSpot_JJU
+  m_Name: JJU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92918,7 +93045,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1004611032}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1841319466
 MeshRenderer:
@@ -95937,7 +96064,7 @@ GameObject:
   - component: {fileID: 1898349495}
   - component: {fileID: 1898349494}
   m_Layer: 0
-  m_Name: SpawnSpot_Kwu
+  m_Name: KWU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100413,7 +100540,7 @@ GameObject:
   - component: {fileID: 1985033018}
   - component: {fileID: 1985033017}
   m_Layer: 0
-  m_Name: SpawnSpot_Cau
+  m_Name: CAU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100432,7 +100559,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1004611032}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1985033017
 MeshRenderer:
@@ -103838,6 +103965,7 @@ GameObject:
   - component: {fileID: 2043721425}
   - component: {fileID: 2043721424}
   - component: {fileID: 2043721426}
+  - component: {fileID: 2043721427}
   m_Layer: 0
   m_Name: SpawnSpot_Kwu
   m_TagString: Untagged
@@ -103925,6 +104053,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &2043721427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043721422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d63a84a5e952f469cc6f9e86dda0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectToServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToRoomEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102265934}
+        m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+        m_MethodName: MoveToRoom
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2044179387
 GameObject:
   m_ObjectHideFlags: 0
@@ -106021,6 +106179,7 @@ GameObject:
   - component: {fileID: 2080675440}
   - component: {fileID: 2080675439}
   - component: {fileID: 2080675441}
+  - component: {fileID: 2080675442}
   m_Layer: 0
   m_Name: SpawnSpot_Khu
   m_TagString: Untagged
@@ -106108,6 +106267,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &2080675442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080675437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d63a84a5e952f469cc6f9e86dda0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectToServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MoveToRoomEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102265934}
+        m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+        m_MethodName: MoveToRoom
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2081408075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109030,12 +109219,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1812768473}
+  - {fileID: 971474638}
   - {fileID: 2043721423}
   - {fileID: 2080675438}
   - {fileID: 722829732}
+  - {fileID: 1812768473}
   - {fileID: 1635686123}
-  - {fileID: 971474638}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
