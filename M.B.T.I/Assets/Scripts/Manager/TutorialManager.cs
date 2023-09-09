@@ -664,6 +664,7 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator tabletSentence_Play()
     {
+        ChangeController();
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(true);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(true);
         SetComponentEnabled<TeleportationProvider>(true);

@@ -1320,18 +1320,6 @@ Transform:
   m_Father: {fileID: 2096372056}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &396821321 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7975333654568888364, guid: f2475f13b5e692f428e41d8f5dc38679,
-    type: 3}
-  m_PrefabInstance: {fileID: 7975333654780767077}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2213c36610e3b1c4bbf886810ed9db12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &396821322 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7975333654568888367, guid: f2475f13b5e692f428e41d8f5dc38679,
@@ -4608,7 +4596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7317aa6576ad042ab9ddb7cdf84154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapTurn: {fileID: 396821321}
+  snapTurn: {fileID: 0}
   continuousTurn: {fileID: 396821322}
 --- !u!1 &1644873651
 GameObject:
@@ -5873,6 +5861,11 @@ PrefabInstance:
     - target: {fileID: 7975333654568888353, guid: f2475f13b5e692f428e41d8f5dc38679,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975333654568888354, guid: f2475f13b5e692f428e41d8f5dc38679,
+        type: 3}
+      propertyPath: m_RightHandMoveAction.m_UseReference
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7975333654568888359, guid: f2475f13b5e692f428e41d8f5dc38679,
