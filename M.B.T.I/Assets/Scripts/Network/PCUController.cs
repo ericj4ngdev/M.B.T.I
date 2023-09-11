@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using UnityEngine;
 
-namespace MyNamespace
+namespace PCU
 {
     public class PCUController : MonoBehaviourPunCallbacks
     {
@@ -24,32 +24,20 @@ namespace MyNamespace
         {
             ColorData custom = new ColorData();
             // 큐브의 색상을 변경합니다.
-            custom.r = (byte)material.color.r;
-            custom.g = (byte)material.color.g;
-            custom.b = (byte)material.color.b;
-            custom.a = (byte)material.color.a;
+            // material 값은 0~1 사이 값(float)이다. 
+            custom.r = (int)(material.color.r * 255);
+            custom.g = (int)(material.color.g * 255);
+            custom.b = (int)(material.color.b * 255);
+            custom.a = (int)(material.color.a * 255);
 
-            Debug.Log("(byte)material.color.r : " + (byte)material.color.r + "\n" + "custom.r: " + custom.r);
-            Debug.Log("(byte)material.color.g : " + (byte)material.color.g + "\n" + "custom.g: " + custom.g);
-            Debug.Log("(byte)material.color.b : " + (byte)material.color.b + "\n" + "custom.b: " + custom.b);
-            Debug.Log("(byte)material.color.a : " + (byte)material.color.a + "\n" + "custom.a: " + custom.a);
+            Debug.Log("material.color.r : " + material.color.r + "\n" + "custom.r: " + custom.r);
+            Debug.Log("material.color.g : " + material.color.g + "\n" + "custom.g: " + custom.g);
+            Debug.Log("material.color.b : " + material.color.b + "\n" + "custom.b: " + custom.b);
+            Debug.Log("material.color.a : " + material.color.a + "\n" + "custom.a: " + custom.a);
             
-            // Debug.Log("custom.r: " + custom.r);
-            // Debug.Log("custom.g: " + custom.g);
-            // Debug.Log("custom.b: " + custom.b);
-            // Debug.Log("custom.a: " + custom.a);
             pcuCharactor.SetColor(custom);
-            // RPC를 사용하여 다른 클라이언트에게 큐브 색상 변경을 동기화합니다.
-            // pv.RPC("SyncCubeColor", RpcTarget.AllBuffered, custom);
         }
 
-        /*[PunRPC]
-        private void SyncCubeColor(ColorData _custumType)
-        {
-            // 다른 클라이언트에서 호출되는 RPC로써 큐브의 색상을 동기화합니다.
-            Color myColor =new Color(_custumType.r / 255f, _custumType.g / 255f, _custumType.b / 255f, 1.0f);
-            charactorRender.material.color = myColor;
-        }*/
     }
 }
 
