@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
@@ -80,6 +80,11 @@ public class TabletManager : MonoBehaviour
         }
     }
     
+    void Update()
+    {
+        
+    }
+
     // 패널 모두 비활성화하는 함수 
     private void setoffPanels()
     {

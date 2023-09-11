@@ -29,11 +29,8 @@ public class ButtonFollowVisual : MonoBehaviour
         interactable.hoverExited.AddListener(Reset); 
         interactable.selectEntered.AddListener(Freeze);
     }
-
-    // 손가락이 버튼 따라 내려감
     public void Follow(BaseInteractionEventArgs hover)
     {
-        Debug.Log("Follow");
         if (hover.interactorObject is XRPokeInteractor)
         {
             XRPokeInteractor interactor = (XRPokeInteractor)hover.interactorObject;
@@ -51,10 +48,8 @@ public class ButtonFollowVisual : MonoBehaviour
         }
     }
 
-    // 원래자리로 돌아옴
     public void Reset(BaseInteractionEventArgs hover)
     {
-        Debug.Log("Reset");
         if (hover.interactorObject is XRPokeInteractor)
         {
             isFollowing = false;
@@ -62,10 +57,8 @@ public class ButtonFollowVisual : MonoBehaviour
         }
     }
     
-    // 완전히 누를 때 트리거
     public void Freeze(BaseInteractionEventArgs hover)
     {
-        Debug.Log("Freeze");
         if (hover.interactorObject is XRPokeInteractor)
         {
             freeze = true;
@@ -93,7 +86,6 @@ public class ButtonFollowVisual : MonoBehaviour
 
         if (visualTarget.localPosition.y < -0.0544f)
         {
-            Debug.Log("y");
             visualTarget.localPosition = new Vector3(visualTarget.localPosition.x, -0.05f, visualTarget.localPosition.z);
         }
 

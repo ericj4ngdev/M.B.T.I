@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,25 +13,20 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 public class TutorialManager : MonoBehaviour
 {
     [Header("UI Message")]
-    // [TextArea] public string[] m_wellcomeTextData;
-    // [TextArea] public string[] m_tutorialTextData;
-    // [TextArea] public string[] m_tabletTextData;
-
-    [Header("UI Image")] 
-    public Sprite[] m_wellcomeImgData;
-    public Sprite[] m_tutorialImgData;
-    public Sprite[] m_tabletImgData;
+    [TextArea]
+    public string[] m_wellcomeTextData;
+    [TextArea]
+    public string[] m_tutorialTextData;
+    [TextArea]
+    public string[] m_tabletTextData;
     
-    [FormerlySerializedAs("wellcomeTextIndex")] 
     [Header("Debug")]
-    public int wellcomeUIIndex;
-    [FormerlySerializedAs("tutorialTextIndex")] public int tutorialUIIndex;
-    [FormerlySerializedAs("tabletTextIndex")] public int tabletUIIndex;
+    public int wellcomeTextIndex;
+    public int tutorialTextIndex;
+    public int tabletTextIndex;
     public int curIndex;
-    // public string ShowText;
-    public Image showUI;
-    
-    // public TextMeshProUGUI npcText;
+    public string ShowText;
+    public TextMeshProUGUI npcText;
     public float delay = 5f;
     public float temp = 0;
     public bool isBtn1Pressed;
@@ -86,7 +81,7 @@ public class TutorialManager : MonoBehaviour
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(false);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(false);
         SetComponentEnabled<TeleportationProvider>(false);
-        SetComponentEnabled<ActivateTeleportationRay_Tuto>(false);
+        SetComponentEnabled<ActivateTeleportationRay>(false);
         // SetComponentEnabled<ActivateGrabRay>(false);
         playercontroller = xrOrigin.GetComponent<PlayerController>();
         
@@ -105,13 +100,12 @@ public class TutorialManager : MonoBehaviour
         }
         
         curIndex = 0;
-        wellcomeUIIndex = m_wellcomeImgData.Length;
-        tutorialUIIndex = m_tutorialImgData.Length;
-        tabletUIIndex = m_tabletImgData.Length;
+        wellcomeTextIndex = m_wellcomeTextData.Length;
+        tutorialTextIndex = m_tutorialTextData.Length;
+        tabletTextIndex = m_tabletTextData.Length;
         temp = 0;
-        // ShowText = m_wellcomeImgData[curIndex];
-        // npcText.text = ShowText;
-        showUI.sprite = m_wellcomeImgData[curIndex];
+        ShowText = m_wellcomeTextData[curIndex];
+        npcText.text = ShowText;
         isBtn1Pressed = false;
         isBtn2Pressed = false;
         isPressed = false;
@@ -119,6 +113,14 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(WellcomeSentence_Play());
     }
     
+    
+    
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     // 컨트롤러 -> 손
     void ChangeController()
     {
@@ -128,6 +130,11 @@ public class TutorialManager : MonoBehaviour
         rightController.SetActive(false);
     }
     
+    public void PressBtn()
+    {
+        isPressed = true;
+    }
+
     void SpawnCube()
     {
         foreach (var VARIABLE in grabableCube)
@@ -136,34 +143,42 @@ public class TutorialManager : MonoBehaviour
         }
     }
     
-    /*void tutorialNextSentence(SelectEnterEventArgs arg)
+    void tutorialNextSentence(SelectEnterEventArgs arg)
     {
         // 다음 UI띄우기
         curIndex++;
         ShowText = m_tutorialTextData[curIndex];
         npcText.text = ShowText;
-    }*/
+        // StartCoroutine(tutorialSentence_Play());
+    }
 
-    public void PressBtn() => isPressed = true;
-    void OnGrab(SelectEnterEventArgs arg) => isGrab = true;
-    void OnRelease(SelectExitEventArgs arg) => isGrab = false;
-    void tabletNextSentence() => StartCoroutine(tabletSentence_Play());
+    void OnGrab(SelectEnterEventArgs arg)
+    {
+        isGrab = true;
+    }
     
-    #region WelcomeFlow
-
+    void OnRelease(SelectExitEventArgs arg)
+    {
+        isGrab = false;
+    }
+    
+    void tabletNextSentence()
+    {
+        StartCoroutine(tabletSentence_Play());
+    }
+    
     IEnumerator WellcomeSentence_Play()
     {
         int idx = 0;
-        while (idx < wellcomeUIIndex)
+        while (idx < wellcomeTextIndex)
         {
-            showUI.sprite = m_wellcomeImgData[idx];
-            // ShowText = m_wellcomeTextData[idx];
-            // npcText.text = ShowText;
+            ShowText = m_wellcomeTextData[idx];
+            npcText.text = ShowText;
             idx++;
             yield return new WaitForSeconds(3f);
         }
 
-        while (idx == wellcomeUIIndex)
+        while (idx == wellcomeTextIndex)
         {
             // if(Input.GetKeyDown(KeyCode.Keypad1))
             if (btnA.action.WasPressedThisFrame())
@@ -187,10 +202,6 @@ public class TutorialManager : MonoBehaviour
         print("모든 코루틴이 끝남");
     }
 
-    #endregion
-
-    #region TutorialFlow
-
     IEnumerator tutorialSentence_Play()
     {
         while ((curIndex == 0) && (temp < delay))
@@ -200,10 +211,8 @@ public class TutorialManager : MonoBehaviour
             // 코루틴 시작 후 delay 후에 나타남
             if (temp >= delay)
             {
-                // ShowText = m_tutorialTextData[curIndex];
-                // npcText.text = ShowText;
-                
-                showUI.sprite = m_tutorialImgData[curIndex];
+                ShowText = m_tutorialTextData[curIndex];
+                npcText.text = ShowText;
                 isBtn1Pressed = false;
                 isBtn2Pressed = false;
                 L_Button[curIndex].SetActive(true);
@@ -240,7 +249,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     L_Button[curIndex].SetActive(true);
@@ -279,7 +289,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     L_Button[curIndex].SetActive(true);
@@ -317,7 +328,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     L_Button[curIndex].SetActive(true);
@@ -355,7 +367,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     L_Button[curIndex].SetActive(true);
@@ -392,7 +405,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     break;
@@ -412,7 +426,8 @@ public class TutorialManager : MonoBehaviour
                 Debug.Log("손 바뀜");
                 ChangeController();
                 curIndex++;
-                showUI.sprite = m_tutorialImgData[curIndex];
+                ShowText = m_tutorialTextData[curIndex];
+                npcText.text = ShowText;
                 temp = 0;
                 break;
             }
@@ -443,7 +458,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     break;
@@ -478,7 +494,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     temp = 0f;
@@ -501,7 +518,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     vrButton.SetActive(false);
                     SpawnCube();
                     temp = 0f;
@@ -527,7 +545,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     temp = 0f;
                     break;
                 }
@@ -551,7 +570,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     temp = 0f;
                     break;
                 }
@@ -586,7 +606,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     break;
@@ -600,7 +621,8 @@ public class TutorialManager : MonoBehaviour
         {
             Debug.Log("검지로 Trigger버튼을 쥐면 바닥에 표시된 흰색 원으로 빠르게 이동할 수 있습니다.");
             SetComponentEnabled<TeleportationProvider>(true);
-            SetComponentEnabled<ActivateTeleportationRay_Tuto>(true);
+            // SetComponentEnabled<ActivateGrabRay>(true);
+            SetComponentEnabled<ActivateTeleportationRay>(true);
             
             if (btnRTrigger.action.WasPressedThisFrame() && !isBtn1Pressed)
             {
@@ -623,7 +645,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     // 다음 UI띄우기
                     curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    ShowText = m_tutorialTextData[curIndex];
+                    npcText.text = ShowText;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     portal.SetActive(true); // 포탈 활성화
@@ -635,7 +658,7 @@ public class TutorialManager : MonoBehaviour
         }
         
         // 이제 노란색 포탈로 이동해보겠습니다.  
-        while (curIndex == tutorialUIIndex - 1)
+        while (curIndex == tutorialTextIndex - 1)
         {
             // 테블릿을 잡았을 때
             XRGrabInteractable xrGrabInteractable = tablet.GetComponent<XRGrabInteractable>();
@@ -658,21 +681,13 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region TabletFlow
-
     IEnumerator tabletSentence_Play()
     {
-        ChangeController();
-        SetComponentEnabled<ActionBasedContinuousMoveProvider>(true);
-        SetComponentEnabled<ActionBasedContinuousTurnProvider>(true);
-        SetComponentEnabled<TeleportationProvider>(true);
-        SetComponentEnabled<ActivateTeleportationRay_Tuto>(true);
         int idx = 0;
-        while (idx < tabletUIIndex)
+        while (idx < tabletTextIndex)
         {
-            showUI.sprite = m_tabletImgData[idx];
+            ShowText = m_tabletTextData[idx];
+            npcText.text = ShowText;
             idx++;
             yield return new WaitForSeconds(4f);
         }
@@ -682,10 +697,8 @@ public class TutorialManager : MonoBehaviour
             VARIABLE.ActiveToolTip();
         }
         print("코루틴 끝");
+        // yield return;
     }
-
-    #endregion
-    
 
     
 }

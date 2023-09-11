@@ -7,17 +7,13 @@ using UnityEngine.Events;
 public class RobotController : MonoBehaviour
 {
     public UnityEvent failEvent;
-    public UnityEvent successEvent;
     private Rigidbody rb;
     [SerializeField]
     private Animator jumpAnim;
-    private Vector3 respawnTransform;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        respawnTransform = GetComponent<Transform>().position;
-
     }
 
     // 로봇의 행동패턴
@@ -37,8 +33,7 @@ public class RobotController : MonoBehaviour
 
     public void PlayBehaviour(List<int> behaviourList)
     {
-        if (gameObject.activeInHierarchy)
-            myCoroutine = StartCoroutine(ExecuteBehavioursWithDelay(behaviourList));
+        myCoroutine = StartCoroutine(ExecuteBehavioursWithDelay(behaviourList));
     }
 
     private IEnumerator ExecuteBehavioursWithDelay(List<int> behaviourList)
@@ -73,14 +68,8 @@ public class RobotController : MonoBehaviour
                     break;
             }
         }
-
-        Invoke("TestFail", duration);
-    }
-
-    private void TestFail()
-    {
         if (!isSuccessed)
-            Respawn();
+            OnFailed();
     }
 
     private IEnumerator MoveForward()
@@ -150,27 +139,20 @@ public class RobotController : MonoBehaviour
     {
         if (collision.gameObject.name == "Trophy")
         {
+            OnFailed();
             Debug.Log("성공");
-            isSuccessed = true;
-            successEvent.Invoke();
         }
         else
-        {
-            // 코루틴 버그 수정 필요
-            Debug.Log("실패");
-            failEvent.Invoke();
-        }
-        Respawn();
+            OnFailed(); 
     }
 
-    private void Respawn()
+    private void OnFailed()
     {
-        Debug.Log("Respawn");
-        Vector3 newPosition = respawnTransform;
+        Vector3 newPosition = new Vector3(-18.0f, 7.0f, 21.0f);
         Vector3 newRotation = new Vector3(0, 180, 0);
-        Debug.Log(newPosition);
         transform.position = newPosition;
         transform.rotation = Quaternion.Euler(newRotation);
+        failEvent.Invoke();
     }
 
 }
