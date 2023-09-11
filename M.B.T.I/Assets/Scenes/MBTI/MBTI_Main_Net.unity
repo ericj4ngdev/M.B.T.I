@@ -81072,6 +81072,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4147991626971580805, guid: 69a50df4455f68346af775a82d47e576,
+        type: 3}
+      propertyPath: m_PositionInput.m_Action.m_Id
+      value: 5b424690-4698-415e-9888-da033f9818eb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147991626971580805, guid: 69a50df4455f68346af775a82d47e576,
+        type: 3}
+      propertyPath: m_RotationInput.m_Action.m_Id
+      value: d97b45f3-e558-4ccc-86fd-8c01f3ccf936
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147991626971580805, guid: 69a50df4455f68346af775a82d47e576,
+        type: 3}
+      propertyPath: m_PositionInput.m_Action.m_Name
+      value: Position Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147991626971580805, guid: 69a50df4455f68346af775a82d47e576,
+        type: 3}
+      propertyPath: m_RotationInput.m_Action.m_Name
+      value: Rotation Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734533493526220987, guid: 69a50df4455f68346af775a82d47e576,
+        type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a50df4455f68346af775a82d47e576, type: 3}
 --- !u!1 &1662745275
