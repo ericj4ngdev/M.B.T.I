@@ -34,6 +34,7 @@ public class TicketGate : MonoBehaviour
         {
             isTaged = true;     // 한번만 태그하게 하기
             OpenGate();
+            PlayerPrefs.SetInt("달성한 도전과제 수", 1);
         }
     }
 

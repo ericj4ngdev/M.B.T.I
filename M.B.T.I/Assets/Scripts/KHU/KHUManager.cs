@@ -77,6 +77,7 @@ public class KHUManager : MonoBehaviour
             Debug.Log("도전과제 완료");
             trophyAnim5X5.enabled = true;
             trophyAnim5X5.Play("GetTrophy", -1, 0);
+            PlayerPrefs.SetFloat("도전과제", 1);
         }
         else
         {
