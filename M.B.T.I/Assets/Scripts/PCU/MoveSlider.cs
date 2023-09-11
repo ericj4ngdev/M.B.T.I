@@ -13,11 +13,15 @@ public class MoveSlider : MonoBehaviour
     public Vector3 limitAxis;
     public Transform slider;
     public Slider Smoothness_silder;
+    public Vector3 preScale;
+    public Transform controllerScale;
     
     void Start()
     {
+        preScale = transform.localScale;
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.selectEntered.AddListener(SetParent);
+        grabbable.selectExited.AddListener(SetOffParent);
         joint = GetComponent<ConfigurableJoint>();
         limitAxis = new Vector3(joint.xMotion == ConfigurableJointMotion.Locked ? 0 : 1,
             joint.yMotion == ConfigurableJointMotion.Locked ? 0 : 1,
@@ -29,7 +33,24 @@ public class MoveSlider : MonoBehaviour
     public void SetParent(SelectEnterEventArgs arg)
     {
         transform.SetParent(slider);
+        // 아무리 스케일 값을 넣어도 잡는 동안에는 커질수밖에 없다. 
     }
+    public void SetOffParent(SelectExitEventArgs arg)
+    {
+        // preScale = controllerScale.localScale;
+        // 부모의 스케일에 따라 스케일 값을 조정
+        Vector3 newLocalScale = new Vector3(
+            preScale.x / controllerScale.localScale.x,
+            preScale.y / controllerScale.localScale.y,
+            preScale.z / controllerScale.localScale.z
+        );
+        Debug.Log("controllerScale.localScale.x : " + controllerScale.localScale.x);
+        // 아무리 스케일 값을 넣어도 잡는 동안에는 커질수밖에 없다. 
+        // // 새로운 로컬 스케일을 설정
+        transform.localScale = newLocalScale;
+        // 부모 설정은 둘째치고 잡을 때마다 계속 커진다. 
+    }
+    
     
     public float GetValue() 
     {

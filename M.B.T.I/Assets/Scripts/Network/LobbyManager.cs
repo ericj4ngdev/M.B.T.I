@@ -10,7 +10,8 @@ namespace mbti
     public class LobbyManager : MonoBehaviourPunCallbacks
     {
         private ServerLogger log;
-
+        public GameObject UI;
+        
         private void Awake()
         {
             // 빌드 창 설정
@@ -37,11 +38,12 @@ namespace mbti
         public override void OnJoinedLobby()
         {
             Debug.Log("WE JOINED THE LOBBY");
+            UI.SetActive(true);
         }
 
         public void JoinKmu()
         {
-            SceneManager.LoadScene("MBTI_KMU_AddUI");
+            SceneManager.LoadScene("MBTI_KMU");
         }
     }
 }
