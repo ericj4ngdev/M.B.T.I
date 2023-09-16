@@ -10375,11 +10375,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: XROrigin
       objectReference: {fileID: 0}
-    - target: {fileID: 2664096210896891147, guid: c1549fb069818c646b268dd80a0f8039,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2664096210896891149, guid: c1549fb069818c646b268dd80a0f8039,
         type: 3}
       propertyPath: m_RootOrder
@@ -10437,25 +10432,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1549fb069818c646b268dd80a0f8039, type: 3}
---- !u!1 &861033695 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2664096210896891147, guid: c1549fb069818c646b268dd80a0f8039,
-    type: 3}
-  m_PrefabInstance: {fileID: 861033694}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &861033696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861033695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b747b250a499374bae892a98c676e00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
 --- !u!1 &861954394
 GameObject:
   m_ObjectHideFlags: 0

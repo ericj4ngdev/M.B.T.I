@@ -1678,6 +1678,7 @@ GameObject:
   - component: {fileID: 4147991625380367902}
   - component: {fileID: 4147991625380367903}
   - component: {fileID: 4147991625380367900}
+  - component: {fileID: 1662025116}
   m_Layer: 6
   m_Name: XROrigin_Main
   m_TagString: Player
@@ -1963,6 +1964,19 @@ MonoBehaviour:
   rightGrabRay: {fileID: 4147991626062440024}
   leftDirectGrab: {fileID: 4147991626157021825}
   rightDirectGrab: {fileID: 4147991625646094904}
+--- !u!114 &1662025116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147991625380367888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b747b250a499374bae892a98c676e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &4147991625547408569
 GameObject:
   m_ObjectHideFlags: 0
@@ -4115,10 +4129,10 @@ MonoBehaviour:
   m_PositionInput:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Position Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 5b424690-4698-415e-9888-da033f9818eb
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -4127,10 +4141,10 @@ MonoBehaviour:
   m_RotationInput:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Rotation Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: d97b45f3-e558-4ccc-86fd-8c01f3ccf936
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -6763,7 +6777,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 12
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}

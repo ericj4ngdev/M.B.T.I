@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 2664096210896891141}
   - component: {fileID: 2664096210896891140}
   - component: {fileID: 2664096210896891143}
+  - component: {fileID: 861033696}
   m_Layer: 6
   m_Name: XROrigin
   m_TagString: Player
@@ -480,6 +481,19 @@ MonoBehaviour:
   rightGrabRay: {fileID: 2664096211288556867}
   leftDirectGrab: {fileID: 2664096211728660890}
   rightDirectGrab: {fileID: 2664096211165813027}
+--- !u!114 &861033696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664096210896891147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b747b250a499374bae892a98c676e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &2664096210923934890
 GameObject:
   m_ObjectHideFlags: 0
