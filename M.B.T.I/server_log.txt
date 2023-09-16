@@ -1,1 +1,2 @@
-2023-09-11 오후 6:28:20 destination : KU
+2023-09-16 오후 9:51:51 destination : PCU
+2023-09-16 오후 9:52:42 destination : Main
