@@ -1,50 +1,45 @@
-using System;
+﻿using System;
 using System.IO;
-
+using UnityEngine;
 public class ColorData
 {
-    public int r;
-    public int g;
-    public int b;
-    public int a;
+    public float r;
+    public float g;
+    public float b;
+    public float a;
 
+    // 보내는 값
     public static byte[] Serialize(object customobject)
     {
         ColorData cd = (ColorData)customobject;
         MemoryStream ms = new MemoryStream(sizeof(int) * 4);
         
         // 각 변수들을 Byte 형식으로 변환, 마지막은 개별 사이즈
-        ms.Write(BitConverter.GetBytes(cd.r), 0, sizeof(int));
-        ms.Write(BitConverter.GetBytes(cd.g), 0, sizeof(int));
-        ms.Write(BitConverter.GetBytes(cd.b), 0, sizeof(int));
-        ms.Write(BitConverter.GetBytes(cd.a), 0, sizeof(int));
-        
-        return ms.ToArray();
-        
-        // byte[] result = new byte[4];
-        // result[0] = cd.r;
-        // result[1] = cd.g;
-        // result[2] = cd.b;
-        // result[3] = cd.a;
+        ms.Write(BitConverter.GetBytes(cd.r), 0, sizeof(float));
+        ms.Write(BitConverter.GetBytes(cd.g), 0, sizeof(float));
+        ms.Write(BitConverter.GetBytes(cd.b), 0, sizeof(float));
+        ms.Write(BitConverter.GetBytes(cd.a), 0, sizeof(float));
 
-        // return result;
+        return ms.ToArray();        
     }
 
+    // 전달받은 값
     public static object Deserialize(byte[] bytes)
     {
         ColorData cd = new ColorData();
-        
+
         // 바이트 배열을 필요한 만큼 자르고, 원하는 자료형으로 변환
-        cd.r = BitConverter.ToInt32(bytes, sizeof(char));
-        cd.g = BitConverter.ToInt32(bytes, sizeof(char));
-        cd.b = BitConverter.ToInt32(bytes, sizeof(char));
-        cd.a = BitConverter.ToInt32(bytes, sizeof(char));
-        
-        /*cd.r = bytes[0];
-        cd.g = bytes[1];
-        cd.b = bytes[2];
-        cd.a = bytes[3];*/
-        
+        cd.r = BitConverter.ToSingle(bytes, 0);
+        cd.g = BitConverter.ToSingle(bytes, sizeof(float));
+        cd.b = BitConverter.ToSingle(bytes, sizeof(float) * 2);
+        cd.a = BitConverter.ToSingle(bytes, sizeof(float) * 3);
+
+        /*Debug.Log("cd.r: " + cd.r);
+        Debug.Log("cd.g: " + cd.g);
+        Debug.Log("cd.b: " + cd.b);
+        Debug.Log("cd.a: " + cd.a);*/
+
         return cd;
     }
+
 }

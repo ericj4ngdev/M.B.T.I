@@ -24,6 +24,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         previousRoomName = log.ExtractWord();
         if (previousRoomName == "Main") return;     // 메인에 해당하는 spawnPoint가 없으므로 예외 처리
 
+        if(spawnPoint.Count == 0)
+        {
+            return;
+        }
+
         foreach (var VARIABLE in spawnPoint)
         {
             string spot = VARIABLE.name;

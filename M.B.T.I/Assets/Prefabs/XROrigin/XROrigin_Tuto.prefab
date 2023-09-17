@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: 4787313499799160005}
   - component: {fileID: 4866311798490889127}
   - component: {fileID: 4787313499799160014}
+  - component: {fileID: -794126162414959222}
   m_Layer: 6
   m_Name: XROrigin_Tuto
   m_TagString: Player
@@ -983,6 +984,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPortal: 0
   throwForce: 0
+--- !u!114 &-794126162414959222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787313499799160015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b747b250a499374bae892a98c676e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &4787313499857621224
 GameObject:
   m_ObjectHideFlags: 0

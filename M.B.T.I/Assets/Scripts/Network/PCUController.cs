@@ -25,10 +25,10 @@ namespace PCU
             ColorData custom = new ColorData();
             // 큐브의 색상을 변경합니다.
             // material 값은 0~1 사이 값(float)이다. 
-            custom.r = (int)(material.color.r * 255);
-            custom.g = (int)(material.color.g * 255);
-            custom.b = (int)(material.color.b * 255);
-            custom.a = (int)(material.color.a * 255);
+            custom.r = (material.color.r * 255);
+            custom.g = (material.color.g * 255);
+            custom.b = (material.color.b * 255);
+            custom.a = (material.color.a * 255);
 
             Debug.Log("material.color.r : " + material.color.r + "\n" + "custom.r: " + custom.r);
             Debug.Log("material.color.g : " + material.color.g + "\n" + "custom.g: " + custom.g);

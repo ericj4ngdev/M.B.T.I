@@ -5326,6 +5326,7 @@ GameObject:
   - component: {fileID: 3466515074274846736}
   - component: {fileID: 3466515074274846737}
   - component: {fileID: 3466515074274846738}
+  - component: {fileID: -2417286780131693106}
   m_Layer: 6
   m_Name: XROrigin_KU
   m_TagString: Player
@@ -5611,6 +5612,19 @@ MonoBehaviour:
   rightGrabRay: {fileID: 3466515073593819222}
   leftDirectGrab: {fileID: 3466515073437383823}
   rightDirectGrab: {fileID: 3466515073982913590}
+--- !u!114 &-2417286780131693106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466515074274846750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b747b250a499374bae892a98c676e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &3575650678168997385
 GameObject:
   m_ObjectHideFlags: 0
