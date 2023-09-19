@@ -3,7 +3,107 @@ guid: 06f50ecc7f8e81f42b99f83fbf373e63
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BLUE_LIGH_GLOW
+    second: {fileID: 2100000, guid: 1594a6f3194c19548ad26bfd1866311d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CENTER ROUND
+    second: {fileID: 2100000, guid: 941068f32cd2c3b4bb57b12a326cf41b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FLOOR MAT
+    second: {fileID: 2100000, guid: e042504ee673eca49a4e688388e84f3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FLOOR2
+    second: {fileID: 2100000, guid: 1225b91c04488a24295afe29e9d97847, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KEYBORD BLACK
+    second: {fileID: 2100000, guid: d772d7f3f277f0042942c91adfa68774, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KEYBORD WHITE
+    second: {fileID: 2100000, guid: 1bfa5f770589fe94c8c73730ad3625ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 71118d2da06e4aa45ab5fe57070a2cd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #615 Slot #1.007
+    second: {fileID: 2100000, guid: 824a9e560d8be9d42baa9b300c8436da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: ee594a8f1446ce2498d0293d331f9a53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: f84a818ccb4237b41b2af97a77be4027, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ROUNG 3
+    second: {fileID: 2100000, guid: 43a3f686ce246c443b152ee804e4d08b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SCREEN_SIDE
+    second: {fileID: 2100000, guid: 9bb7e69b4c0e78544a3bca33c4576648, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SIDE GALE_WHITE
+    second: {fileID: 2100000, guid: e934daceffc8c0e478d2ff070160906e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SIDE GATE
+    second: {fileID: 2100000, guid: cae85cc76f24a834b85da521eba2aa36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SILVER
+    second: {fileID: 2100000, guid: 418309a4747fee74fb2c8619f6f29a79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WALL
+    second: {fileID: 2100000, guid: c07b6f20e92d6254f9e25264a5b7699d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow_LIGHT
+    second: {fileID: 2100000, guid: d627a31e05889b14abbc060334fe6e78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 86c68b9b0df262c44b33e64dd6a525b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: b1abcda308e5c9945b0992e3b4d689c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: 3faec23834688304eb9ef15efea05475, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
