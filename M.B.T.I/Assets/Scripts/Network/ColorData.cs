@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using UnityEngine;
 public class ColorData
 {
     public float r;
@@ -33,11 +32,6 @@ public class ColorData
         cd.g = BitConverter.ToSingle(bytes, sizeof(float));
         cd.b = BitConverter.ToSingle(bytes, sizeof(float) * 2);
         cd.a = BitConverter.ToSingle(bytes, sizeof(float) * 3);
-
-        /*Debug.Log("cd.r: " + cd.r);
-        Debug.Log("cd.g: " + cd.g);
-        Debug.Log("cd.b: " + cd.b);
-        Debug.Log("cd.a: " + cd.a);*/
 
         return cd;
     }

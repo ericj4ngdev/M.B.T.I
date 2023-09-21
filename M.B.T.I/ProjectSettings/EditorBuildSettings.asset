@@ -24,8 +24,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MBTI/MBTI_KHU_Net.unity
     guid: 75b9a051d6ad5d84daae32a71bbb830c
   - enabled: 1
-    path: Assets/Scenes/MBTI/MBTI_PCU_Net.unity
-    guid: 206c37906dac35042b24f1096f702d69
+    path: Assets/Scenes/MBTI/MBTI_PCU_sejin.unity
+    guid: 4070cad683ba34e42b8ae12876387037
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_CAU_Net.unity
     guid: 929acecb557c66e4ea9af5d56ca0e772
