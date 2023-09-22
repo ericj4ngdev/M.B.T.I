@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +7,18 @@ using UnityEngine.Events;
 public class RobotController : MonoBehaviour
 {
     public UnityEvent failEvent;
+    public UnityEvent successEvent;
     private Rigidbody rb;
     [SerializeField]
     private Animator jumpAnim;
+    [SerializeField]
+    private AudioSource moveSound, jumpSound;
+    private Vector3 startTransform;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startTransform = this.transform.position;
     }
 
     // 로봇의 행동패턴
@@ -25,8 +30,8 @@ public class RobotController : MonoBehaviour
         Jump
     }
 
-    private static float moveSpeed = 5f;
-    private static float oneBlockDistance = 10.0f;
+    private static float moveSpeed = 1f;
+    private static float oneBlockDistance = 2.0f;
     private float duration = oneBlockDistance / moveSpeed;
     private Coroutine myCoroutine;
     private bool isSuccessed = false;
@@ -38,25 +43,27 @@ public class RobotController : MonoBehaviour
 
     private IEnumerator ExecuteBehavioursWithDelay(List<int> behaviourList)
     {
+        Debug.Log("다 채움");
         foreach(int behaviour in behaviourList)
         {
             yield return new WaitForSeconds(duration);
             switch (behaviour)
             {
                 case (int)RobotBehaviour.Go:
-                    Debug.Log("case: Go");
+                    moveSound.Play();
                     jumpAnim.enabled = false;
                     StartCoroutine(MoveForward());
                     break;
                 case (int)RobotBehaviour.TurnRight:
-                    Debug.Log("case: TurnRight");
+                    moveSound.Play();
                     StartCoroutine(TurnRight());
                     break;
                 case (int)RobotBehaviour.TurnLeft:
-                    Debug.Log("case: TurnLeft");
+                    moveSound.Play();
                     StartCoroutine(TurnLeft());
                     break;
                 case (int)RobotBehaviour.Jump:
+                    jumpSound.Play();
                     Debug.Log("case: Jump");
                     jumpAnim.enabled = true;
                     if (jumpAnim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == false)
@@ -68,8 +75,15 @@ public class RobotController : MonoBehaviour
                     break;
             }
         }
+
+        yield return new WaitForSeconds(duration);
+
         if (!isSuccessed)
-            OnFailed();
+        {
+            Debug.Log("에잉");
+            isSuccessed = false;
+            failEvent.Invoke();
+        }
     }
 
     private IEnumerator MoveForward()
@@ -90,7 +104,6 @@ public class RobotController : MonoBehaviour
     // 오른쪽으로 회전하는 코루틴
     private IEnumerator TurnRight()
     {
-        Debug.Log("turn right start");
         float elapsedTime = 0.0f;
         Quaternion startRotation = transform.rotation;
         Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90, 0);
@@ -137,22 +150,29 @@ public class RobotController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("충돌");
         if (collision.gameObject.name == "Trophy")
         {
-            OnFailed();
+            RespawnRobot();
             Debug.Log("성공");
+            isSuccessed = true;
+            successEvent.Invoke();
         }
         else
-            OnFailed(); 
+        {
+            Debug.Log("실패");
+            isSuccessed = false;
+            failEvent.Invoke();
+        }
     }
 
-    private void OnFailed()
+    public void RespawnRobot()
     {
-        Vector3 newPosition = new Vector3(-18.0f, 7.0f, 21.0f);
+        Vector3 newPosition = startTransform;
         Vector3 newRotation = new Vector3(0, 180, 0);
         transform.position = newPosition;
         transform.rotation = Quaternion.Euler(newRotation);
-        failEvent.Invoke();
+        isSuccessed = false;
     }
 
 }

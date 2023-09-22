@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,44 +6,54 @@ public class KHUUIManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject mainUI, tutorial, blockArray3x3, blockArray5x5, success, fail;
+    private GameObject currentUI;
 
     // Start is called before the first frame update
     void Start()
     {
         mainUI.SetActive(true);
+        currentUI = mainUI;
     }
 
-    private void backToMainUI()
+    public void backToMainUI()
     {
         mainUI.SetActive(true);
-        success.SetActive(false);
+        currentUI.SetActive(false);
+        currentUI = mainUI;
     }
 
+    public void explainUI()
+    {
+        currentUI.SetActive(false);
+        tutorial.SetActive(true);
+        currentUI = tutorial;
+    }
     
     public void setTutoUI()
     {
-        mainUI.SetActive(false);
+        currentUI.SetActive(false);
         blockArray3x3.SetActive(true);
+        currentUI = blockArray3x3;
     }
 
     public void setMainGameUI()
     {
-        mainUI.SetActive(false);
+        currentUI.SetActive(false);
         blockArray5x5.SetActive(true);
+        currentUI = blockArray5x5;
     }
 
     public void setSuccessUI()
     {
-        blockArray3x3.SetActive(false);
-        blockArray5x5.SetActive(false);
+        currentUI.SetActive(false);
         success.SetActive(true);
-        Invoke("backToMainUI", 2f);
+        currentUI = success;
     }
 
     public void setFailUI()
     {
-        blockArray3x3.SetActive(false);
-        blockArray5x5.SetActive(false);
+        currentUI.SetActive(false);
         fail.SetActive(true);
+        currentUI = fail;
     }
 }
