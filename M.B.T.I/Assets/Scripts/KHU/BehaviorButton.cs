@@ -17,7 +17,7 @@ public class BehaviorButton : MonoBehaviour
     [SerializeField]
     private GameObject[] BtnObjects = new GameObject[5];
 
-    private Vector2 currentAnchoredPosition = new Vector2(30, -385);
+    private Vector2 currentAnchoredPosition = new Vector2(40, -1074);
 
     private void Start()
     {
@@ -170,7 +170,7 @@ public class BehaviorButton : MonoBehaviour
         }
 
         behaviourCount = 0;
-        currentAnchoredPosition = new Vector2(30, -385);
+        currentAnchoredPosition = new Vector2(40, -1074);
     }
 
 

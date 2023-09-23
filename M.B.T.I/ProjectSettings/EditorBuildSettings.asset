@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MBTI/MBTI_Main_Net.unity
     guid: 830f304d74b897243b4769234ee06011
   - enabled: 1
-    path: Assets/Scenes/MBTI/MBTI_KMU.unity
-    guid: 7fb9c2ae45fdb7c4d85d9aeed6cc6607
+    path: Assets/Scenes/MBTI/MBTI_KMU_AddUI.unity
+    guid: 91c7125695181d94aabf2c1ecfe96fcb
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_KU_Net.unity
     guid: 927fced6919e2f446aad3441717bbbbc
@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 80165ddbb6f9269499708f1a5b38b895
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_KHU_Net.unity
-    guid: 75b9a051d6ad5d84daae32a71bbb830c
+    guid: d4e0ec9eb02f2a04a99af3628fdf837b
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_PCU_Net.unity
     guid: 206c37906dac35042b24f1096f702d69
