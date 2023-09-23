@@ -9,6 +9,8 @@ namespace PCU
     public class PCUController : MonoBehaviourPunCallbacks
     {
         public PCUCharactor pcuCharactor;         // 캐릭터 가져오기
+        public Animator animator;
+        
         
         private void Awake()
         {
@@ -35,6 +37,11 @@ namespace PCU
             pcuCharactor.SetColor(custom);
         }
 
+        public void SetAnimator(int idx)
+        {
+            pcuCharactor.SetAnim(idx);
+            // animator.SetInteger("Index", idx);
+        }
     }
 }
 

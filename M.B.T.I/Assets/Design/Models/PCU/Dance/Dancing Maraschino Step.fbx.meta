@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd14ffe7d14ca0d44a1bc0f4dc785f91
+guid: 8240963281e3c5f4298dc5e68daec953
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Dancing Maraschino Step
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 143
+      lastFrame: 97
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -82,8 +82,8 @@ ModelImporter:
     weldVertices: 1
     bakeAxisConversion: 0
     preserveHierarchy: 0
-    skinWeightsMode: 1
-    maxBonesPerVertex: 10
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
     meshOptimizationFlags: -1
@@ -118,7 +118,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -126,7 +126,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0

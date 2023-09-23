@@ -14,14 +14,16 @@ namespace PCU
         // Start is called before the first frame update
         void Start()
         {
+            transform.position = new Vector3(transform.position.x, 0.76f, transform.position.z);
             pv = GetComponent<PhotonView>();
             animator = GetComponent<Animator>();
         }
 
-        public void SetAnim(IndexData indexData)
+        public void SetAnim(int indexData)
         {
             // RPC를 사용하여 다른 클라이언트에게 큐브 색상 변경을 동기화합니다.
-            pv.RPC("SyncAnim", RpcTarget.AllBuffered, indexData);
+            pv.RequestOwnership();
+            animator.SetInteger("Index", indexData);
         }
 
         public void SetColor(ColorData colorData)
@@ -40,12 +42,6 @@ namespace PCU
                                       _custumType.a / 255f);
             GetComponentInChildren<SkinnedMeshRenderer>().material.color = myColor;
             // GetComponent<Renderer>().material.color = myColor;
-        }
-
-        [PunRPC]
-        void SyncAnim(IndexData _custumType)
-        {
-            animator.runtimeAnimatorController = animationControllers[_custumType.index];
         }
     }
 }
