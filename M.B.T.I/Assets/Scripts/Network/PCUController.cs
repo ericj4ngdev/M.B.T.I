@@ -9,23 +9,20 @@ namespace PCU
     public class PCUController : MonoBehaviourPunCallbacks
     {
         public PCUCharactor pcuCharactor;         // 캐릭터 가져오기
-        // private Renderer charactorRender;
-        // public PhotonView pv;
         
         private void Awake()
         {
             // 포톤 네트워크에 타입을 등록
             PhotonPeer.RegisterType(typeof(ColorData), 0, ColorData.Serialize, ColorData.Deserialize);
-            // charactorRender = pcuCharactor.GetComponent<Renderer>();
         }
 
         // 각 버튼에서 이 함수를 이벤트로 호출한다. 
         public void SetColorData(Material material)
         {
             ColorData custom = new ColorData();
-            // 큐브의 색상을 변경합니다.
-            // material 값은 0~1 사이 값(float)이다. 
-            custom.r = (material.color.r * 255);
+            
+            // 캐릭터 색상 변경
+            custom.r = (material.color.r * 255);        // material 값은 0~1 사이 값(float)이다. 
             custom.g = (material.color.g * 255);
             custom.b = (material.color.b * 255);
             custom.a = (material.color.a * 255);

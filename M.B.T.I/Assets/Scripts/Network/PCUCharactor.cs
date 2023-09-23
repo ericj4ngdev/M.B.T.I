@@ -39,6 +39,7 @@ namespace PCU
                                       _custumType.b / 255f,
                                       _custumType.a / 255f);
             GetComponentInChildren<SkinnedMeshRenderer>().material.color = myColor;
+            // GetComponent<Renderer>().material.color = myColor;
         }
 
         [PunRPC]
