@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -17,10 +17,11 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         
     }
 
+    [PunRPC]
     
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
-        // ÇöÀç ·ÎÄÃ ÇÃ·¹ÀÌ¾î¿¡°Ô ¼ÒÀ¯±Ç ÁÖÀå
+        // í˜„ì¬ ë¡œì»¬ í”Œë ˆì´ì–´ì—ê²Œ ì†Œìœ ê¶Œ ì£¼ì¥
         photonView.RequestOwnership();
         base.OnSelectEntered(interactor);
     }
