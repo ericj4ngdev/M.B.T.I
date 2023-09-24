@@ -153,35 +153,30 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator WellcomeSentence_Play()
     {
-        int idx = 0;
-        while (idx < wellcomeUIIndex)
+        int idx = 0;           // wellcomeUIIndex = 4
+        // 3되면 탈출하는데... 문제는 화면이 안바뀜
+        while (idx < wellcomeUIIndex - 1)
         {
-            showUI.sprite = m_wellcomeImgData[idx];
-            // ShowText = m_wellcomeTextData[idx];
-            // npcText.text = ShowText;
-            idx++;
+            showUI.sprite = m_wellcomeImgData[idx];    // 0번 3초간,1,2,
             yield return new WaitForSeconds(3f);
+            idx++;
         }
 
-        while (idx == wellcomeUIIndex)
+        while (idx == wellcomeUIIndex - 1)
         {
-            // if(Input.GetKeyDown(KeyCode.Keypad1))
-            if (btnA.action.WasPressedThisFrame())
+            showUI.sprite = m_wellcomeImgData[idx];
+            if (btnA.action.IsPressed())
             {
-                // tutorialNextSentence();
                 yield return StartCoroutine(tutorialSentence_Play());
                 Debug.Log("A누름");
                 break;
             }
-            // if(Input.GetKeyDown(KeyCode.Keypad2))
-            if (btnB.action.WasPressedThisFrame())
+            if (btnB.action.IsPressed())
             {
-                // tabletNextSentence();
                 yield return StartCoroutine(tabletSentence_Play());
                 Debug.Log("B누름");
                 break;              // 입력받으면 while문 탈출. 코루틴 종료
             }
-            // print("idx = 3 while문 끝남");
             yield return null;      // 입력받을떄까지 대기
         }
         print("모든 코루틴이 끝남");

@@ -1,46 +1,73 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class BehaviorButton : MonoBehaviour
 {
     public UnityEvent<List<int>> behaviourFilledEvent;
 
+    private const int btnDistance = 300;
+
     [SerializeField]
     private Transform canvasTransform;
     [SerializeField]
     private GameObject[] BtnTypeArr = new GameObject[4];
+    [SerializeField]
+    private GameObject[] BtnObjects = new GameObject[5];
 
-    private Vector2 currentAnchoredPosition = new Vector2(5, -55);
+    private Vector2 currentAnchoredPosition = new Vector2(30, -385);
 
     private void Start()
     {
         if (behaviourFilledEvent == null)
         {
-            behaviourFilledEvent = new UnityEvent<List<int>> ();
+            behaviourFilledEvent = new UnityEvent<List<int>>();
         }
     }
 
-    private const int maxBehaviourCount = 10;
+    private int maxBehaviourCount = 10;
     private List<int> robotBehaviorArray = new List<int>();  // 로봇 행동 배열
     private Stack<GameObject> btnArray = new Stack<GameObject>(); // 버튼 스택
 
     private GameObject addedBtn;
-    private int countBtn = 0;
+    private int behaviourCount;
 
+    public void set3x3Obstacle()
+    {
+        behaviourCount = 0;
+        maxBehaviourCount = 8;
+
+        foreach (GameObject btnObject in BtnObjects)
+        {
+            btnObject.GetComponent<XRSimpleInteractable>().enabled = true;
+        }
+    }
+
+    public void set5x5Obstacle()
+    {
+        behaviourCount = 0;
+
+        maxBehaviourCount = 11;
+
+        foreach (GameObject btnObject in BtnObjects)
+        {
+            btnObject.GetComponent<XRSimpleInteractable>().enabled = true;
+        }
+    }
 
     public void OnClickedGoButton()
     {
-        if (countBtn < maxBehaviourCount)
+        if (behaviourCount < maxBehaviourCount)
         {
             robotBehaviorArray.Add(0);
             AddBtnToCanvas(0, currentAnchoredPosition);
-            currentAnchoredPosition.x += 60;
-            countBtn += 1;
+            currentAnchoredPosition.x += btnDistance;
+            behaviourCount += 1;
         }
 
-        if (countBtn == maxBehaviourCount)
+        if (behaviourCount == maxBehaviourCount)
         {
             // 이벤트 발생
             OnBehaviourBtnFilled();
@@ -49,15 +76,15 @@ public class BehaviorButton : MonoBehaviour
 
     public void OnClickedRightButton()
     {
-        if (countBtn < maxBehaviourCount)
+        if (behaviourCount < maxBehaviourCount)
         {
             robotBehaviorArray.Add(1);
             AddBtnToCanvas(1, currentAnchoredPosition);
-            currentAnchoredPosition.x += 60;
-            countBtn += 1;
+            currentAnchoredPosition.x += btnDistance;
+            behaviourCount += 1;
         }
 
-        if (countBtn == maxBehaviourCount)
+        if (behaviourCount == maxBehaviourCount)
         {
             // 이벤트 발생
             OnBehaviourBtnFilled();
@@ -66,15 +93,15 @@ public class BehaviorButton : MonoBehaviour
 
     public void OnClickedLeftButton()
     {
-        if (countBtn < maxBehaviourCount)
+        if (behaviourCount < maxBehaviourCount)
         {
             robotBehaviorArray.Add(2);
             AddBtnToCanvas(2, currentAnchoredPosition);
-            currentAnchoredPosition.x += 60;
-            countBtn += 1;
+            currentAnchoredPosition.x += btnDistance;
+            behaviourCount += 1;
         }
 
-        if (countBtn == maxBehaviourCount)
+        if (behaviourCount == maxBehaviourCount)
         {
             // 이벤트 발생
             OnBehaviourBtnFilled();
@@ -83,15 +110,15 @@ public class BehaviorButton : MonoBehaviour
 
     public void OnClickedJumpButton()
     {
-        if (countBtn < maxBehaviourCount - 1)
+        if (behaviourCount < maxBehaviourCount - 1)
         {
             robotBehaviorArray.Add(3);
             AddBtnToCanvas(3, currentAnchoredPosition);
-            currentAnchoredPosition.x += 110;
-            countBtn += 2;
+            currentAnchoredPosition.x += btnDistance * 2;
+            behaviourCount += 2;
         }
 
-        if (countBtn == maxBehaviourCount)
+        if (behaviourCount == maxBehaviourCount)
         {
             // 이벤트 발생
             OnBehaviourBtnFilled();
@@ -100,20 +127,17 @@ public class BehaviorButton : MonoBehaviour
 
     public void OnClickedUndoButton()
     {
-        if (btnArray.Count > 0 && countBtn < maxBehaviourCount)
-        { 
-
+        if (btnArray.Count > 0 && behaviourCount < maxBehaviourCount)
+        {
             if (btnArray.Peek().name == "Idx_JUMP(Clone)")
             {
-                Debug.Log("점프버튼");
-                currentAnchoredPosition.x -= 110;
-                countBtn -= 2;
+                currentAnchoredPosition.x -= btnDistance * 2;
+                behaviourCount -= 2;
             }
             else
             {
-                Debug.Log("점프버튼 아님");
-                currentAnchoredPosition.x -= 55;
-                countBtn -= 1;
+                currentAnchoredPosition.x -= btnDistance;
+                behaviourCount -= 1;
             }
 
             btnArray.Peek().SetActive(false);
@@ -125,13 +149,17 @@ public class BehaviorButton : MonoBehaviour
     private void OnBehaviourBtnFilled()
     {
         // 버튼 비활성화 해야함
+        foreach (GameObject btnObject in BtnObjects)
+        {
+            btnObject.GetComponent<XRSimpleInteractable>().enabled = false;
+        }
+
         behaviourFilledEvent.Invoke(robotBehaviorArray);
-        
     }
 
     private void ResetBtn()
     {
-        foreach(GameObject btns in btnArray)
+        foreach (GameObject btns in btnArray)
         {
             btns.SetActive(false);
         }
@@ -141,8 +169,8 @@ public class BehaviorButton : MonoBehaviour
             btnUI.SetActive(true);
         }
 
-        countBtn = 0;
-        currentAnchoredPosition = new Vector2(5, -55);
+        behaviourCount = 0;
+        currentAnchoredPosition = new Vector2(30, -385);
     }
 
 
