@@ -20,13 +20,13 @@ public class TutorialManager : MonoBehaviour
     [Header("UI Image")] 
     public Sprite[] m_wellcomeImgData;
     public Sprite[] m_tutorialImgData;
-    public Sprite[] m_tabletImgData;
+    public Sprite[] m_entrancetImgData;
     
     [FormerlySerializedAs("wellcomeTextIndex")] 
     [Header("Debug")]
     public int wellcomeUIIndex;
     [FormerlySerializedAs("tutorialTextIndex")] public int tutorialUIIndex;
-    [FormerlySerializedAs("tabletTextIndex")] public int tabletUIIndex;
+    [FormerlySerializedAs("tabletTextIndex")] public int entranceUIIndex;
     public int curIndex;
     // public string ShowText;
     public Image showUI;
@@ -60,7 +60,6 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> L_Button = new List<GameObject>();
     public List<GameObject> R_Button = new List<GameObject>();
     private XROrigin xrOrigin;
-    private PlayerController playercontroller;
     
     [Header("Tutorial Object")]
     public GameObject vrButton;
@@ -86,9 +85,7 @@ public class TutorialManager : MonoBehaviour
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(false);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(false);
         SetComponentEnabled<TeleportationProvider>(false);
-        SetComponentEnabled<ActivateTeleportationRay_Tuto>(false);
         // SetComponentEnabled<ActivateGrabRay>(false);
-        playercontroller = xrOrigin.GetComponent<PlayerController>();
         
         foreach (var VARIABLE in L_Button)
         {
@@ -107,7 +104,7 @@ public class TutorialManager : MonoBehaviour
         curIndex = 0;
         wellcomeUIIndex = m_wellcomeImgData.Length;
         tutorialUIIndex = m_tutorialImgData.Length;
-        tabletUIIndex = m_tabletImgData.Length;
+        entranceUIIndex = m_entrancetImgData.Length;
         temp = 0;
         // ShowText = m_wellcomeImgData[curIndex];
         // npcText.text = ShowText;
@@ -147,7 +144,7 @@ public class TutorialManager : MonoBehaviour
     public void PressBtn() => isPressed = true;
     void OnGrab(SelectEnterEventArgs arg) => isGrab = true;
     void OnRelease(SelectExitEventArgs arg) => isGrab = false;
-    void tabletNextSentence() => StartCoroutine(tabletSentence_Play());
+    void tabletNextSentence() => StartCoroutine(EntranceSentence_Play());
     
     #region WelcomeFlow
 
@@ -173,7 +170,7 @@ public class TutorialManager : MonoBehaviour
             }
             if (btnB.action.IsPressed())
             {
-                yield return StartCoroutine(tabletSentence_Play());
+                yield return StartCoroutine(EntranceSentence_Play());
                 Debug.Log("B누름");
                 break;              // 입력받으면 while문 탈출. 코루틴 종료
             }
@@ -595,7 +592,6 @@ public class TutorialManager : MonoBehaviour
         {
             Debug.Log("검지로 Trigger버튼을 쥐면 바닥에 표시된 흰색 원으로 빠르게 이동할 수 있습니다.");
             SetComponentEnabled<TeleportationProvider>(true);
-            SetComponentEnabled<ActivateTeleportationRay_Tuto>(true);
             
             if (btnRTrigger.action.WasPressedThisFrame() && !isBtn1Pressed)
             {
@@ -636,9 +632,8 @@ public class TutorialManager : MonoBehaviour
             XRGrabInteractable xrGrabInteractable = tablet.GetComponent<XRGrabInteractable>();
             xrGrabInteractable.selectEntered.AddListener(OnGrab);
             // 플레이어가 포탈 위에 올라갔을 때
-            isPortal = playercontroller.onPortal;
             // 포탈에서 테블릿을 잡으면 다음 씬 
-            if (isPortal && isGrab)
+            if (isGrab)
             {
                 temp += Time.deltaTime;
                 if (temp >= delay)
@@ -655,26 +650,20 @@ public class TutorialManager : MonoBehaviour
 
     #endregion
 
-    #region TabletFlow
+    #region EntranceFlow
 
-    IEnumerator tabletSentence_Play()
+    IEnumerator EntranceSentence_Play()
     {
         ChangeController();
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(true);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(true);
         SetComponentEnabled<TeleportationProvider>(true);
-        SetComponentEnabled<ActivateTeleportationRay_Tuto>(true);
         int idx = 0;
-        while (idx < tabletUIIndex)
+        while (idx < entranceUIIndex)
         {
-            showUI.sprite = m_tabletImgData[idx];
+            showUI.sprite = m_entrancetImgData[idx];
             idx++;
             yield return new WaitForSeconds(4f);
-        }
-        // 다 끝나고 ToolTip 활성화
-        foreach (var VARIABLE in toolTip)
-        {
-            VARIABLE.ActiveToolTip();
         }
         print("코루틴 끝");
     }
