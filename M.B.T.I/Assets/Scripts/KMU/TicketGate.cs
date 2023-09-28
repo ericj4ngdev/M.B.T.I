@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -42,7 +42,7 @@ public class TicketGate : MonoBehaviour
     {
         toolTip.SetActive(true);
     }
-    private void OpenGate()
+    public void OpenGate()
     {
         temp = 0;
         StartCoroutine(AnimateOpenGate());
@@ -73,7 +73,7 @@ public class TicketGate : MonoBehaviour
         }
         yield return new WaitForSeconds(openDuration);
 
-        CloseGate();
+        // CloseGate();
     }
     IEnumerator AnimateCloseGate()
     {

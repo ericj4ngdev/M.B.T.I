@@ -9,29 +9,25 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using tutorial;
 
 public class TutorialManager : MonoBehaviour
 {
-    [Header("UI Message")]
-    // [TextArea] public string[] m_wellcomeTextData;
-    // [TextArea] public string[] m_tutorialTextData;
-    // [TextArea] public string[] m_tabletTextData;
-
     [Header("UI Image")] 
     public Sprite[] m_wellcomeImgData;
     public Sprite[] m_tutorialImgData;
     public Sprite[] m_entrancetImgData;
-    
-    [FormerlySerializedAs("wellcomeTextIndex")] 
+
+    [Header("Audio")]
+    public List<AudioClip> audioClips;
+    private AudioSource audioSource;
+
     [Header("Debug")]
     public int wellcomeUIIndex;
-    [FormerlySerializedAs("tutorialTextIndex")] public int tutorialUIIndex;
-    [FormerlySerializedAs("tabletTextIndex")] public int entranceUIIndex;
-    public int curIndex;
-    // public string ShowText;
+    public int tutorialUIIndex;
+    public int entranceUIIndex;
+    public int curIndex;    
     public Image showUI;
-    
-    // public TextMeshProUGUI npcText;
     public float delay = 5f;
     public float temp = 0;
     public bool isBtn1Pressed;
@@ -39,18 +35,6 @@ public class TutorialManager : MonoBehaviour
     public bool isPressed;
     public bool isGrab;
     public bool isPortal;
-    
-    [Header("Key")]
-    public InputActionProperty btnA;
-    public InputActionProperty btnB;
-    public InputActionProperty btnX;
-    public InputActionProperty btnY;
-    public InputActionProperty btnLGrip;
-    public InputActionProperty btnRGrip;
-    public InputActionProperty btnLTrigger;
-    public InputActionProperty btnRTrigger;
-    public InputActionProperty btnLThumbStick;
-    public InputActionProperty btnRThumbStick;
 
     [Header("XROrigin")] 
     public GameObject leftHand;
@@ -63,14 +47,25 @@ public class TutorialManager : MonoBehaviour
     
     [Header("Tutorial Object")]
     public GameObject vrButton;
+    public GameObject portal;
     public List<GameObject> grabableCube = new List<GameObject>();
     public List<TicketGate> toolTip = new List<TicketGate>();
-    public GameObject tablet;
-    public GameObject portal;
+    public List<TicketGate> ticketGates;
     
     private List<XRGrabInteractable> grabbable = new List<XRGrabInteractable>();
-    
-    
+
+    [Header("Key")]
+    public InputActionProperty btnA;
+    public InputActionProperty btnB;
+    public InputActionProperty btnX;
+    public InputActionProperty btnY;
+    public InputActionProperty btnLGrip;
+    public InputActionProperty btnRGrip;
+    public InputActionProperty btnLTrigger;
+    public InputActionProperty btnRTrigger;
+    public InputActionProperty btnLThumbStick;
+    public InputActionProperty btnRThumbStick;
+
     void SetComponentEnabled<T>(bool isEnabled) where T : MonoBehaviour
     {
         MonoBehaviour componentToDisable = xrOrigin.GetComponent<T>();
@@ -85,7 +80,7 @@ public class TutorialManager : MonoBehaviour
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(false);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(false);
         SetComponentEnabled<TeleportationProvider>(false);
-        // SetComponentEnabled<ActivateGrabRay>(false);
+        SetComponentEnabled<tutorial.ActivateTeleportationRay>(false);
         
         foreach (var VARIABLE in L_Button)
         {
@@ -106,13 +101,15 @@ public class TutorialManager : MonoBehaviour
         tutorialUIIndex = m_tutorialImgData.Length;
         entranceUIIndex = m_entrancetImgData.Length;
         temp = 0;
-        // ShowText = m_wellcomeImgData[curIndex];
-        // npcText.text = ShowText;
         showUI.sprite = m_wellcomeImgData[curIndex];
         isBtn1Pressed = false;
         isBtn2Pressed = false;
         isPressed = false;
         isGrab = false;
+        isPortal = false;
+
+        audioSource = GetComponent<AudioSource>();
+
         StartCoroutine(WellcomeSentence_Play());
     }
     
@@ -132,51 +129,59 @@ public class TutorialManager : MonoBehaviour
             VARIABLE.SetActive(true);
         }
     }
-    
-    /*void tutorialNextSentence(SelectEnterEventArgs arg)
-    {
-        // 다음 UI띄우기
-        curIndex++;
-        ShowText = m_tutorialTextData[curIndex];
-        npcText.text = ShowText;
-    }*/
 
     public void PressBtn() => isPressed = true;
     void OnGrab(SelectEnterEventArgs arg) => isGrab = true;
     void OnRelease(SelectExitEventArgs arg) => isGrab = false;
-    void tabletNextSentence() => StartCoroutine(EntranceSentence_Play());
-    
+    public void OnPortal() => isPortal = true;
+    void EntranceSentence() => StartCoroutine(EntranceSentence_Play());
+
+    void PlayVoice(int index)
+    {
+        audioSource.clip = audioClips[index];
+        audioSource.Play();
+    }
+
+
     #region WelcomeFlow
 
     IEnumerator WellcomeSentence_Play()
     {
         int idx = 0;           // wellcomeUIIndex = 4
+        
         // 3되면 탈출하는데... 문제는 화면이 안바뀜
         while (idx < wellcomeUIIndex - 1)
         {
             showUI.sprite = m_wellcomeImgData[idx];    // 0번 3초간,1,2,
-            yield return new WaitForSeconds(3f);
+            audioSource.clip = audioClips[idx];
+            audioSource.Play();
+            yield return new WaitUntil(() => !audioSource.isPlaying);
+            yield return new WaitForSeconds(1f);
             idx++;
         }
 
+        showUI.sprite = m_wellcomeImgData[idx];
+        PlayVoice(idx);
+
         while (idx == wellcomeUIIndex - 1)
         {
-            showUI.sprite = m_wellcomeImgData[idx];
             if (btnA.action.IsPressed())
             {
+                audioSource.Stop();
                 yield return StartCoroutine(tutorialSentence_Play());
                 Debug.Log("A누름");
                 break;
             }
             if (btnB.action.IsPressed())
             {
+                audioSource.Stop();
                 yield return StartCoroutine(EntranceSentence_Play());
                 Debug.Log("B누름");
-                break;              // 입력받으면 while문 탈출. 코루틴 종료
+                break;              
             }
             yield return null;      // 입력받을떄까지 대기
         }
-        print("모든 코루틴이 끝남");
+        print("WellcomeSentence_Play 코루틴이 끝남");
     }
 
     #endregion
@@ -185,17 +190,15 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator tutorialSentence_Play()
     {
+        PlayVoice(curIndex + 4);
         while ((curIndex == 0) && (temp < delay))
         {
             Debug.Log("튜토리얼 시작");
+            showUI.sprite = m_tutorialImgData[curIndex];
             temp += Time.deltaTime;
             // 코루틴 시작 후 delay 후에 나타남
             if (temp >= delay)
             {
-                // ShowText = m_tutorialTextData[curIndex];
-                // npcText.text = ShowText;
-                
-                showUI.sprite = m_tutorialImgData[curIndex];
                 isBtn1Pressed = false;
                 isBtn2Pressed = false;
                 L_Button[curIndex].SetActive(true);
@@ -230,6 +233,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -243,6 +247,7 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
         
+        PlayVoice(curIndex + 4);
         // 엄지로 빛나는 버튼 B, Y를 모두 눌러보세요.
         while (curIndex == 1)
         {
@@ -269,6 +274,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -281,7 +287,8 @@ public class TutorialManager : MonoBehaviour
             }
             yield return null;
         }
-        
+
+        PlayVoice(curIndex + 4);
         // 엄지로 아날로그 스틱을 움직여보세요.
         while (curIndex == 2)
         {
@@ -307,6 +314,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -320,6 +328,7 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
         
+        PlayVoice(curIndex + 4);
         // 이번엔 검지를 이용해 컨트롤러의 트리거를 쥐어보세요.
         while (curIndex == 3)
         {
@@ -345,6 +354,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -358,6 +368,7 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
         
+        PlayVoice(curIndex + 4);
         // 그립 버튼을 확인하고 중지로 쥐어보세요.
         while (curIndex == 4)
         {
@@ -382,6 +393,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -393,24 +405,19 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
         
+        PlayVoice(curIndex + 4);
         // 이제 이 가상 손으로 무엇을 할 수 있는지 볼까요?
         while (curIndex == 5)
         {
             Debug.Log("이제 이 가상 손으로 무엇을 할 수 있는지 볼까요?");
-            temp += Time.deltaTime;
-            // 파티클 호출 함수 
-            if (temp >= 5)
-            {
-                Debug.Log("손 바뀜");
-                ChangeController();
-                curIndex++;
-                showUI.sprite = m_tutorialImgData[curIndex];
-                temp = 0;
-                break;
-            }
-            yield return null;
+            yield return new WaitUntil(() => !audioSource.isPlaying);
+            ChangeController();
+            curIndex++;
+            showUI.sprite = m_tutorialImgData[curIndex];
+            temp = 0;
         }
-        
+
+        PlayVoice(curIndex + 4);
         // 주먹을 움켜쥐려면 그립 버튼과 트리거 버튼을 모두 쥐고 있으세요.
         while (curIndex == 6)
         {
@@ -433,6 +440,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -443,7 +451,8 @@ public class TutorialManager : MonoBehaviour
             }
             yield return null;
         }
-        
+
+        PlayVoice(curIndex + 4);
         // 가리키려면 그립버튼을 쥔 상태에서 검지만 떼세요.
         while (curIndex == 7)
         {
@@ -468,6 +477,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -480,7 +490,8 @@ public class TutorialManager : MonoBehaviour
             }
             yield return null;
         }
-        
+
+        PlayVoice(curIndex + 4);
         // 이제 검지를 이용해 앞에 있는 버튼을 눌러보세요
         while (curIndex == 8)
         {
@@ -491,6 +502,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -502,7 +514,8 @@ public class TutorialManager : MonoBehaviour
             }
             yield return null;
         }
-        
+
+        PlayVoice(curIndex + 4);
         // 물체를 집으려면 중지로 그립 버튼을 쥔 상태를 유지하면 됩니다.
         // 손을 뻗어서 블록 하나를 집어보세요.
         while (curIndex == 9)
@@ -517,6 +530,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -526,7 +540,8 @@ public class TutorialManager : MonoBehaviour
             }
             yield return null;
         }
-        
+
+        PlayVoice(curIndex + 4);
         // 놓으려면 그립 버튼을 때세요.
         while (curIndex == 10)
         {
@@ -541,6 +556,7 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
@@ -550,7 +566,8 @@ public class TutorialManager : MonoBehaviour
             }
             yield return null;
         }
-        
+
+        PlayVoice(curIndex + 4);
         // 이동하려면 엄지로 아날로그 스틱을 움직여보세요.
         // 왼쪽은 이동, 오른쪽은 회전입니다.
         while (curIndex == 11)
@@ -576,71 +593,36 @@ public class TutorialManager : MonoBehaviour
                 temp += Time.deltaTime;
                 if (temp >= 5)
                 {
+                    audioSource.Stop();
                     // 다음 UI띄우기
                     curIndex++;
                     showUI.sprite = m_tutorialImgData[curIndex];
-                    isBtn1Pressed = false;
-                    isBtn2Pressed = false;
-                    break;
-                }
-            }
-            yield return null;
-        }
-        
-        // 검지로 Trigger버튼을 쥐면 바닥에 표시된 흰색 원으로 빠르게 이동할 수 있습니다.
-        while (curIndex == 12)
-        {
-            Debug.Log("검지로 Trigger버튼을 쥐면 바닥에 표시된 흰색 원으로 빠르게 이동할 수 있습니다.");
-            SetComponentEnabled<TeleportationProvider>(true);
-            
-            if (btnRTrigger.action.WasPressedThisFrame() && !isBtn1Pressed)
-            {
-                Debug.Log("RTrigger 누름");
-                isBtn1Pressed = true;
-                temp = 0f;
-            }
-            if (btnLTrigger.action.WasPressedThisFrame() && !isBtn2Pressed)
-            {
-                Debug.Log("LTrigger 누름");
-                isBtn2Pressed = true;
-                temp = 0f;
-            }
-            
-            // 한번 누르면 카운트를 세고 다음 UI뜨기까지 딜레이를 줌
-            if (isBtn1Pressed && isBtn2Pressed)
-            {
-                temp += Time.deltaTime;
-                if (temp >= delay)
-                {
-                    // 다음 UI띄우기
-                    curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    temp = 0f;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
                     portal.SetActive(true); // 포탈 활성화
-                    tablet.SetActive(true); // 테블릿 활성화
                     break;
                 }
             }
             yield return null;
         }
-        
-        // 이제 노란색 포탈로 이동해보겠습니다.  
+
+        PlayVoice(curIndex + 4);
+        // 거대한 원기둥에 레이저를 갖다대면 빠르게 이동이 가능합니다.
         while (curIndex == tutorialUIIndex - 1)
         {
-            // 테블릿을 잡았을 때
-            XRGrabInteractable xrGrabInteractable = tablet.GetComponent<XRGrabInteractable>();
-            xrGrabInteractable.selectEntered.AddListener(OnGrab);
-            // 플레이어가 포탈 위에 올라갔을 때
-            // 포탈에서 테블릿을 잡으면 다음 씬 
-            if (isGrab)
+            Debug.Log("투명 원기둥를 향해 검지로 트리거 버튼을 쥐었다 피면 원기둥으로 빠르게 이동이 가능합니다.");
+            SetComponentEnabled<TeleportationProvider>(true);
+            SetComponentEnabled<tutorial.ActivateTeleportationRay>(true);
+            
+            // 한번 누르면 카운트를 세고 다음 UI뜨기까지 딜레이를 줌
+            if (isPortal)
             {
                 temp += Time.deltaTime;
                 if (temp >= delay)
                 {
-                    portal.SetActive(false); // 포탈 소멸
-                    curIndex = 0;
-                    tabletNextSentence();
+                    audioSource.Stop();
+                    EntranceSentence();
                     break;
                 }
             }
@@ -658,18 +640,23 @@ public class TutorialManager : MonoBehaviour
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(true);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(true);
         SetComponentEnabled<TeleportationProvider>(true);
+        SetComponentEnabled<tutorial.ActivateTeleportationRay>(true);
+        foreach (var item in ticketGates)
+        {
+            item.OpenGate();
+        }
         int idx = 0;
+        PlayVoice(audioClips.Count - 1);        // 음성 재생
         while (idx < entranceUIIndex)
         {
             showUI.sprite = m_entrancetImgData[idx];
             idx++;
-            yield return new WaitForSeconds(4f);
+            yield return new WaitUntil(() => !audioSource.isPlaying);
         }
+        
         print("코루틴 끝");
     }
 
-    #endregion
-    
+    #endregion   
 
-    
 }
