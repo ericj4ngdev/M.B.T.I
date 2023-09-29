@@ -10,9 +10,14 @@ using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using tutorial;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class TutorialManager : MonoBehaviour
+public class TutorialManager : MonoBehaviourPunCallbacks
 {
+    public float timer;
+    public float lerpValue;
+
     [Header("UI Image")] 
     public Sprite[] m_wellcomeImgData;
     public Sprite[] m_tutorialImgData;
@@ -20,7 +25,8 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Audio")]
     public List<AudioClip> audioClips;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioSource mainAudioSource;
 
     [Header("Debug")]
     public int wellcomeUIIndex;
@@ -28,7 +34,7 @@ public class TutorialManager : MonoBehaviour
     public int entranceUIIndex;
     public int curIndex;    
     public Image showUI;
-    public float delay = 5f;
+    public float delay;
     public float temp = 0;
     public bool isBtn1Pressed;
     public bool isBtn2Pressed;
@@ -51,8 +57,10 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> grabableCube = new List<GameObject>();
     public List<TicketGate> toolTip = new List<TicketGate>();
     public List<TicketGate> ticketGates;
-    
+
+    private ServerLogger log;
     private List<XRGrabInteractable> grabbable = new List<XRGrabInteractable>();
+    public Image loadingImage;
 
     [Header("Key")]
     public InputActionProperty btnA;
@@ -71,7 +79,37 @@ public class TutorialManager : MonoBehaviour
         MonoBehaviour componentToDisable = xrOrigin.GetComponent<T>();
         componentToDisable.enabled = isEnabled;
     }
-    
+    private void Awake()
+    {
+        // 빌드 창 설정
+        Screen.SetResolution(960, 540, false);
+        log = new ServerLogger();
+        ConnectToServer();
+    }
+    // 서버 접속
+    public void ConnectToServer()
+    {
+        PhotonNetwork.ConnectUsingSettings();
+        log.CleanLog();
+        Debug.Log("Try Connect To Server...");
+    }
+
+    // 서버에 연결되면 콜백되는 함수
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Connected To Server!!");
+        PhotonNetwork.JoinLobby();      // 로비에 바로 입장
+    }
+
+    // 로비에 입장시 콜백되는 함수
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("WE JOINED THE LOBBY");
+        
+        // 로비 입장시 씬이 밝아진다. 그러고서 welcome 코루틴 재생
+        StartCoroutine(FadeInScene());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,12 +145,41 @@ public class TutorialManager : MonoBehaviour
         isPressed = false;
         isGrab = false;
         isPortal = false;
-
-        audioSource = GetComponent<AudioSource>();
-
-        StartCoroutine(WellcomeSentence_Play());
     }
-    
+
+    IEnumerator FadeInScene()
+    {
+        timer = 0;
+        float delay = 5f;
+        float percent = 50f;
+        Color targetColor = new Color(0, 0, 0, 0); // 목표 알파 값
+        while (timer < delay)
+        {
+            timer += Time.deltaTime;
+            lerpValue = Mathf.Clamp01(timer / percent);       // 타이머가 얼마나 진행되었는지 비율로 계산
+            loadingImage.color = Color.Lerp(loadingImage.color, targetColor, lerpValue);    // 색상의 알파 값을 서서히 변경
+            yield return null;
+        }
+        yield return StartCoroutine(FadeOutImage());
+    }
+
+    IEnumerator FadeOutImage()
+    {
+        timer = 0;
+        lerpValue = 0;
+        float delay = 2f;
+        float percent = 20f;
+        Color targetColor = new Color(1, 1, 1, 1); // 목표 알파 값
+        while (timer < delay)
+        {
+            timer += Time.deltaTime;
+            lerpValue = Mathf.Clamp01(timer / percent);       // 타이머가 얼마나 진행되었는지 비율로 계산
+            showUI.color = Color.Lerp(showUI.color, targetColor, lerpValue);    // 색상의 알파 값을 서서히 변경
+            yield return null;
+        }
+        yield return StartCoroutine(WellcomeSentence_Play());
+    }
+
     // 컨트롤러 -> 손
     void ChangeController()
     {
@@ -148,13 +215,13 @@ public class TutorialManager : MonoBehaviour
     IEnumerator WellcomeSentence_Play()
     {
         int idx = 0;           // wellcomeUIIndex = 4
+        mainAudioSource.Play();     // 메인 음악 재생
         
         // 3되면 탈출하는데... 문제는 화면이 안바뀜
         while (idx < wellcomeUIIndex - 1)
         {
             showUI.sprite = m_wellcomeImgData[idx];    // 0번 3초간,1,2,
-            audioSource.clip = audioClips[idx];
-            audioSource.Play();
+            PlayVoice(idx);
             yield return new WaitUntil(() => !audioSource.isPlaying);
             yield return new WaitForSeconds(1f);
             idx++;
