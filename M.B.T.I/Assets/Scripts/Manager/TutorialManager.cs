@@ -17,6 +17,11 @@ public class TutorialManager : MonoBehaviourPunCallbacks
 {
     public float timer;
     public float lerpValue;
+    public ParticleSystem leftHandTransition;
+    public ParticleSystem rightHandTransition;
+    public List<ParticleSystem> l_clickEffects;
+    public List<ParticleSystem> r_clickEffects;
+
 
     [Header("UI Image")] 
     public Sprite[] m_wellcomeImgData;
@@ -26,7 +31,10 @@ public class TutorialManager : MonoBehaviourPunCallbacks
     [Header("Audio")]
     public List<AudioClip> audioClips;
     public AudioSource audioSource;
+    public AudioSource l_controllerBtnSound;
+    public AudioSource r_controllerBtnSound;
     public AudioSource mainAudioSource;
+
 
     [Header("Debug")]
     public int wellcomeUIIndex;
@@ -258,22 +266,14 @@ public class TutorialManager : MonoBehaviourPunCallbacks
     IEnumerator tutorialSentence_Play()
     {
         PlayVoice(curIndex + 4);
-        while ((curIndex == 0) && (temp < delay))
-        {
-            Debug.Log("튜토리얼 시작");
-            showUI.sprite = m_tutorialImgData[curIndex];
-            temp += Time.deltaTime;
-            // 코루틴 시작 후 delay 후에 나타남
-            if (temp >= delay)
-            {
-                isBtn1Pressed = false;
-                isBtn2Pressed = false;
-                L_Button[curIndex].SetActive(true);
-                R_Button[curIndex].SetActive(true);
-                break;
-            }
-            yield return null;
-        }
+        
+        Debug.Log("튜토리얼 시작");
+        showUI.sprite = m_tutorialImgData[curIndex];
+        
+        L_Button[curIndex].SetActive(true);
+        R_Button[curIndex].SetActive(true);            
+        
+        yield return new WaitForSeconds(1f);
         
         //엄지로 빛나는 버튼 A, X를 모두 눌러보세요.
         while (curIndex == 0)
@@ -281,6 +281,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             Debug.Log("엄지로 빛나는 버튼 A, X를 모두 눌러보세요.");
             if (btnA.action.WasPressedThisFrame() && !isBtn1Pressed)
             {
+                r_controllerBtnSound.Play();      // 블록같은 효과음
+                r_clickEffects[curIndex].gameObject.SetActive(true);
+                r_clickEffects[curIndex].Play();
                 Debug.Log("A 누름");
                 R_Button[curIndex].SetActive(false);
                 isBtn1Pressed = true;
@@ -288,6 +291,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             }
             if (btnX.action.WasPressedThisFrame() && !isBtn2Pressed)
             {
+                l_controllerBtnSound.Play();
+                l_clickEffects[curIndex].gameObject.SetActive(true);
+                l_clickEffects[curIndex].Play();
                 Debug.Log("X 누름");
                 L_Button[curIndex].SetActive(false);
                 isBtn2Pressed = true;
@@ -322,6 +328,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             Debug.Log("엄지로 빛나는 버튼 B, Y를 모두 눌러보세요.");
             if (btnB.action.WasPressedThisFrame() && !isBtn1Pressed)
             {
+                r_controllerBtnSound.Play();      // 블록같은 효과음
+                r_clickEffects[curIndex].gameObject.SetActive(true);
+                r_clickEffects[curIndex].Play();
                 Debug.Log("B 누름");
                 R_Button[curIndex].SetActive(false);
                 isBtn1Pressed = true;
@@ -329,6 +338,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             }
             if (btnY.action.WasPressedThisFrame() && !isBtn2Pressed)
             {
+                l_controllerBtnSound.Play();      // 블록같은 효과음
+                l_clickEffects[curIndex].gameObject.SetActive(true);
+                l_clickEffects[curIndex].Play();
                 Debug.Log("Y 누름");
                 L_Button[curIndex].SetActive(false);
                 isBtn2Pressed = true;
@@ -363,6 +375,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             
             if (btnRThumbStick.action.WasPressedThisFrame() && !isBtn2Pressed)
             {
+                r_controllerBtnSound.Play();      // 블록같은 효과음
+                r_clickEffects[curIndex].gameObject.SetActive(true);
+                r_clickEffects[curIndex].Play();
                 Debug.Log("btnRThumbStick 돌림");
                 R_Button[curIndex].SetActive(false);
                 isBtn2Pressed = true;
@@ -370,6 +385,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             }
             if (btnLThumbStick.action.WasPressedThisFrame() && !isBtn1Pressed)
             {
+                l_controllerBtnSound.Play();      // 블록같은 효과음
+                l_clickEffects[curIndex].gameObject.SetActive(true);
+                l_clickEffects[curIndex].Play();
                 Debug.Log("btnLThumbStick 돌림");
                 L_Button[curIndex].SetActive(false);
                 isBtn1Pressed = true;
@@ -402,6 +420,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             Debug.Log("이번엔 검지를 이용해 컨트롤러의 트리거를 쥐어보세요.");
             if (btnRTrigger.action.WasPressedThisFrame() && !isBtn1Pressed)
             {
+                r_controllerBtnSound.Play();      // 블록같은 효과음
+                r_clickEffects[curIndex].gameObject.SetActive(true);
+                r_clickEffects[curIndex].Play();
                 Debug.Log("RTrigger 누름");
                 R_Button[curIndex].SetActive(false);
                 isBtn1Pressed = true;
@@ -409,6 +430,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             }
             if (btnLTrigger.action.WasPressedThisFrame() && !isBtn2Pressed)
             {
+                l_controllerBtnSound.Play();      // 블록같은 효과음
+                l_clickEffects[curIndex].gameObject.SetActive(true);
+                l_clickEffects[curIndex].Play();
                 Debug.Log("LTrigger 누름");
                 L_Button[curIndex].SetActive(false);
                 isBtn2Pressed = true;
@@ -442,6 +466,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             Debug.Log("그립 버튼을 확인하고 중지로 쥐어보세요.");
             if (btnRGrip.action.WasPressedThisFrame() && !isBtn1Pressed)
             {
+                r_controllerBtnSound.Play();      // 블록같은 효과음
+                r_clickEffects[curIndex].gameObject.SetActive(true);
+                r_clickEffects[curIndex].Play();
                 Debug.Log("RGrip 누름");
                 R_Button[curIndex].SetActive(false);
                 isBtn1Pressed = true;
@@ -449,6 +476,9 @@ public class TutorialManager : MonoBehaviourPunCallbacks
             }
             if (btnLGrip.action.WasPressedThisFrame() && !isBtn2Pressed)
             {
+                l_controllerBtnSound.Play();      // 블록같은 효과음
+                l_clickEffects[curIndex].gameObject.SetActive(true);
+                l_clickEffects[curIndex].Play();
                 Debug.Log("LGrip 누름");
                 L_Button[curIndex].SetActive(false);
                 isBtn2Pressed = true;
@@ -477,8 +507,16 @@ public class TutorialManager : MonoBehaviourPunCallbacks
         while (curIndex == 5)
         {
             Debug.Log("이제 이 가상 손으로 무엇을 할 수 있는지 볼까요?");
-            yield return new WaitUntil(() => !audioSource.isPlaying);
+            leftHandTransition.gameObject.SetActive(true);
+            rightHandTransition.gameObject.SetActive(true);
+            leftHandTransition.Play();
+            rightHandTransition.Play();
+            yield return new WaitForSeconds(3f);
             ChangeController();
+            yield return new WaitUntil(() => !rightHandTransition.isPlaying);
+            yield return new WaitForSeconds(1f);
+            leftHandTransition.gameObject.SetActive(false);
+            rightHandTransition.gameObject.SetActive(false);
             curIndex++;
             showUI.sprite = m_tutorialImgData[curIndex];
             temp = 0;
