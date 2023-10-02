@@ -79,7 +79,6 @@ public class KHUManager : MonoBehaviour
         if (!isTutorial)
         {
             stamp.SetActive(true);
-            Debug.Log("도전과제 완료");
             trophyAnim5X5.enabled = true;
             trophyAnim5X5.Play("GetTrophy", -1, 0);
         }
@@ -88,8 +87,15 @@ public class KHUManager : MonoBehaviour
             Debug.Log("튜토리얼 완료");
             trophyAnim3X3.enabled = true;
             trophyAnim3X3.Play("GetTrophy", -1, 0);
+
+            ChallengeManager.GetInstance().CompleteKHUChallenge();
         }
         StartCoroutine(CloseGate());
+    }
+
+    public void TestSuccess()
+    {
+        ChallengeManager.GetInstance().CompleteKHUChallenge();
     }
 
     private IEnumerator OpenGate()
