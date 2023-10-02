@@ -17,7 +17,7 @@ namespace mbti
             // 빌드 창 설정
             Screen.SetResolution(960, 540, false);
             log = new ServerLogger();
-
+            ConnectToServer();
         }
         // 서버 접속
         public void ConnectToServer()

@@ -3,24 +3,44 @@ using Photon.Realtime;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TutorialSceneManager : MonoBehaviourPunCallbacks
 {    
+    public int maxPlayer;
+    public Image loadingImage;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            MoveToRoom();
+            StartCoroutine(MoveToRoom());
         }
     }
 
-    public int maxPlayer;
-
-    public void MoveToRoom()
+    IEnumerator MoveToRoom()
     {
+        yield return StartCoroutine(FadeOutScene());        // 로딩 씬
         LoadLevel();       // LoadLevel
         JoinRoom();        // JoinOrCreateRoom
     }
+
+    IEnumerator FadeOutScene()
+    {
+        float timer = 0;
+        float delay = 2f;
+        float percent = 25f;
+        Color targetColor = new Color(0, 0, 0, 1); // 목표 알파 값
+
+        while (timer < delay)
+        {
+            timer += Time.deltaTime;
+            float lerpValue = Mathf.Clamp01(timer / percent);       // 타이머가 얼마나 진행되었는지 비율로 계산
+            loadingImage.color = Color.Lerp(loadingImage.color, targetColor, lerpValue);    // 색상의 알파 값을 서서히 변경
+            yield return null;
+        }
+    }
+
 
     private void LoadLevel()
     {
@@ -38,43 +58,4 @@ public class TutorialSceneManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom("Main", roomOptions, TypedLobby.Default);     // Room은 가상의 이름 "main"으로 지은 것
         Debug.Log("main 방참가");
     }
-
-    /*private void LoadNextScene()
-    {
-        // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
-        StartCoroutine(LoadMyAsyncScene());
-    }
-    
-    IEnumerator LoadMyAsyncScene()
-    {    
-        // AsyncOperation을 통해 Scene Load 정도를 알 수 있다.
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneName);
-        asyncLoad.allowSceneActivation = false;
-        
-        timer = 0;
-        float fakeLoadingDuration = 1f / fakeLoadingTime; // 페이크 로딩 시간의 역수 계산
-        
-        // Scene을 불러오는 것이 완료될 때까지 대기한다.
-        while (!asyncLoad.isDone)
-        {
-            // 진행상황 확인
-            if (asyncLoad.progress < 0.9f)
-            {
-                percent = asyncLoad.progress * 100f;
-            }
-            else
-            {
-                // 1초간 페이크 로딩
-                // 페이크 로딩
-                timer += Time.deltaTime * fakeLoadingDuration;
-                percent = Mathf.Lerp(90f, 100f, timer);
-                if (percent >= 100)
-                {
-                    asyncLoad.allowSceneActivation = true;
-                    yield break;
-                }
-            }
-            yield return null;
-        }
-    }*/
 }

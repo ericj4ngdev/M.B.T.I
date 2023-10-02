@@ -5729,13 +5729,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1524810192}
+  - {fileID: 1823381512}
   - {fileID: 1279357947}
   - {fileID: 1293458757}
-  - {fileID: 1823381512}
+  - {fileID: 492345195}
   - {fileID: 1488409270}
   - {fileID: 1894869418}
   - {fileID: 1229958217}
-  - {fileID: 492345195}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9501,7 +9501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: KWU
+  m_text: Main
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
