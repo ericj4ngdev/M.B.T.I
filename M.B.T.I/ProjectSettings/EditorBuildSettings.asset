@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: bde708b3b00faab4a89b28a2c44bd226
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_Main_Net.unity
-    guid: 830f304d74b897243b4769234ee06011
+    guid: 8844aefcf02bcc549bbf6897614caddf
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_KU_Net.unity
     guid: 927fced6919e2f446aad3441717bbbbc
@@ -28,10 +28,10 @@ EditorBuildSettings:
     guid: 929acecb557c66e4ea9af5d56ca0e772
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_JJU_Net.unity
-    guid: 88474cbc07f23e344a59b1c26315ef1c
+    guid: 0e30f484ff788f74f87c21032cb7d5d8
   - enabled: 1
     path: Assets/Scenes/MBTI/MBTI_Firework.unity
-    guid: 498f65dbb653bb844b7455273667432c
+    guid: 1a323db21a2e78c43bcfcbfd39f37766
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0ce83808899a92148a31264552372a7d,
       type: 2}

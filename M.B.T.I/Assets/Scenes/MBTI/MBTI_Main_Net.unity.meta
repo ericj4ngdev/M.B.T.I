@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: 830f304d74b897243b4769234ee06011
+<<<<<<<< HEAD:M.B.T.I/Assets/JMO Assets.meta
+guid: 8844aefcf02bcc549bbf6897614caddf
+folderAsset: yes
+========
+guid: 3de2d20dde615ee419bc438bd50dc90f
+>>>>>>>> origin/feature/JOOHONG_MAP_Design:M.B.T.I/Assets/Scenes/MBTI/MBTI_Main (JOOHONG ver).unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
