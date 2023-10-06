@@ -8,7 +8,9 @@ using Photon.Realtime;
 public class ScreenController : MonoBehaviourPunCallbacks, IPunObservable
 {
     public VideoClip[] videoClips;
+    public AudioClip[] audioClips;
     private VideoPlayer videoPlayer;
+    public AudioSource audioSource;
     private PhotonView PV;
     public int index;
 
@@ -17,6 +19,14 @@ public class ScreenController : MonoBehaviourPunCallbacks, IPunObservable
     {
         PV = GetComponent<PhotonView>();
         videoPlayer = GetComponent<VideoPlayer>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlayMusic(int index)
+    {
+        audioSource.Stop();
+        audioSource.clip = audioClips[index];
+        audioSource.Play();
     }
 
     // IPunObservable 인터페이스를 구현해야한다.

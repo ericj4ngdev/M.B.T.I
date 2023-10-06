@@ -1,3 +1,1 @@
-2023-10-03 오후 5:46:33 destination : KU
-2023-10-03 오후 5:46:47 destination : Main
-2023-10-03 오후 5:46:59 destination : KU
+2023-10-06 오후 9:54:11 destination : KWU
