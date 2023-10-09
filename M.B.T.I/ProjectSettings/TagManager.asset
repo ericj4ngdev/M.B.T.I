@@ -13,6 +13,7 @@ TagManager:
   - Arrow
   - Target
   - Ground
+  - Bow
   layers:
   - Default
   - TransparentFX

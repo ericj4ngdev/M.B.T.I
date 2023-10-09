@@ -814,9 +814,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 5151750093877492275, guid: c31830bc9ccad0946bcb1b57825bbb58,
     type: 3}
   arrowSpawnPoint: {fileID: 1738289508779458876}
-  arrowRotationPoint: {fileID: 0}
   bowPrefab: {fileID: 177396484638022363}
-  respawnTransform: {fileID: 0}
   arrowMaxSpeed: 10
 --- !u!114 &7629317879101166192
 MonoBehaviour:
