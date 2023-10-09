@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +32,7 @@ public class BowStringController : MonoBehaviour
 
     public void ResetBowString()
     {
+        Debug.Log("ResetBowString");
         OnBowReleased?.Invoke(strength);
         strength = 0;
         interactor = null;
