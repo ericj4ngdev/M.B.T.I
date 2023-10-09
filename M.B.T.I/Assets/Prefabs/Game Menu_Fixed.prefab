@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8cd067c58140a46aebfb4a8ec8cb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
   spawnDistance: 1.5
   menu: {fileID: 4555809824922819493}
   initScreen: {fileID: 4555809824992843950}
   checkBox: {fileID: 4555809824111611440}
   startBtn: {fileID: 4555809824385966846}
+  endBtn: {fileID: 4555809824261266558}
   showButton:
     m_UseReference: 1
     m_Action:
