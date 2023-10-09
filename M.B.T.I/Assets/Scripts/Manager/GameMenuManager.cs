@@ -17,6 +17,7 @@ public class GameMenuManager : MonoBehaviour
     public GameObject initScreen;
     public GameObject checkBox;
     public GameObject startBtn;
+    public GameObject endBtn;
     public InputActionProperty showButton;
 
     HashSet<string> completeChallenges = new HashSet<string>();
@@ -58,6 +59,7 @@ public class GameMenuManager : MonoBehaviour
                 menu.SetActive(false);
                 checkBox.SetActive(true);
                 startBtn.SetActive(false);
+                endBtn.SetActive(true);
                 initScreen.SetActive(false);
                 SetMovement(true);
                 break; // 이미 일치하는 요소를 찾았으므로 나머지 요소들을 확인할 필요가 없습니다.
@@ -76,7 +78,7 @@ public class GameMenuManager : MonoBehaviour
     // 시작 버튼 이벤트
     public void SetMovement(bool canMove)
     {
-        //SetComponentEnabled<ActionBasedContinuousMoveProvider>(canMove);
+        // SetComponentEnabled<ActionBasedContinuousMoveProvider>(canMove);
         // 컴포넌트 비활성화하면 Null오류가 떠서 속도를 0으로 만들어버리려 한다. 
         var move = xrOrigin.GetComponent<ActionBasedContinuousMoveProvider>();
         move.moveSpeed = canMove ? 2 : 0;
@@ -100,7 +102,9 @@ public class GameMenuManager : MonoBehaviour
             // 메뉴 활성화
             Debug.Log("Menu");
             menu.SetActive(!menu.activeSelf);
-
+            startBtn.SetActive(false);      // 처음 메뉴 누르면 시작버튼도 사라짐
+            endBtn.SetActive(true);
+            SetMovement(true);
             // 플레이어 앞에 띄우기
             menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
         }
