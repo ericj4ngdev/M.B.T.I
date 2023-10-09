@@ -21,7 +21,7 @@ public class TriggerArea : MonoBehaviour
         // XRInteractionManager 컴포넌트를 찾아 변수에 할당
         interactionManager = FindObjectOfType<XRInteractionManager>();
     }
-
+    
     private void OnTriggerStay(Collider other)
     {
         SetInteractiable(other);
@@ -34,6 +34,7 @@ public class TriggerArea : MonoBehaviour
                 Debug.Log("Object entered the trigger area: " + interactable.name);
                 isCheck = true;
                 CheckCollision(other.transform.position);
+
             }
         }
 
