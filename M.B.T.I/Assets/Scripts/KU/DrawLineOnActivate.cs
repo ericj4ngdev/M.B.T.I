@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -25,8 +25,8 @@ public class DrawLineOnActivate : MonoBehaviour
     {
         isPressed = false;
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
-        grabbable.selectEntered.AddListener(EnableMenu);
-        grabbable.selectExited.AddListener(DisableMenu);
+        // grabbable.selectEntered.AddListener(EnableMenu);
+        // grabbable.selectExited.AddListener(DisableMenu);
         grabbable.activated.AddListener(DrawLine);
         grabbable.deactivated.AddListener(EndLine);
 
