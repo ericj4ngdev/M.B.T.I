@@ -5,17 +5,15 @@ using UnityEngine;
 public class Lantern : MonoBehaviour
 {
     [SerializeField]
-    private GameObject lantern;
-    private float spawnTransformX;
-    private float spawnTransformZ;
+    private GameObject lantern, lanternVisual;
     private float randomYRotation;
+    [SerializeField]
+    private AudioSource collisionSound;
+    [SerializeField]
+    private ParticleSystem particle;
 
     void Start()
     {
-        lantern.transform.parent = null;
-
-        lantern.transform.position = new Vector3(0, 0, 0);
-
         randomYRotation = Random.Range(0f, 360f);
 
         lantern.transform.rotation = Quaternion.Euler(0f, randomYRotation, 0f);
@@ -24,6 +22,12 @@ public class Lantern : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        Destroy(lantern);
+        ChallengeManager.GetInstance().CompleteJJUChallenge();
+        lanternVisual.SetActive(false);
+        collisionSound.Play();
+        particle.Play();
+
+        Debug.Log("충돌");
+
     }
 }

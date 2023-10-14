@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class JJUManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject lanternPrefab;
-    [SerializeField]
-    private Transform spawnPoint;
-    private float spawnTransformX;
-    private float spawnTransformZ;
-    private float randomYRotation;
 
-    private void Start()
+    [SerializeField]
+    private List<GameObject> spawnPointList;
+
+    void Start()
     {
-       
-        InvokeRepeating("SpawnLantern", 0f, 1f);
+        InvokeRepeating("SpawnLantern", 0.3f, 2f);
     }
+
     public void CompleteChallenge()
     {
         ChallengeManager.GetInstance().CompleteJJUChallenge();
@@ -24,14 +23,7 @@ public class JJUManager : MonoBehaviour
 
     private void SpawnLantern()
     {
-        spawnTransformX = Random.Range(4f, 17f);
-        spawnTransformZ = Random.Range(32f, 37f);
-        randomYRotation = Random.Range(0f, 360f);
-
-        Vector3 startPosition = new Vector3(spawnTransformX, 2, spawnTransformZ);
-
-        spawnPoint.position = startPosition;
-
-        Instantiate(lanternPrefab, spawnPoint);
+        int randomIndex = Random.Range(0, 8);
+        Instantiate(lanternPrefab, spawnPointList[randomIndex].transform);
     }
 }

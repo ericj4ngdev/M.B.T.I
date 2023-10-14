@@ -3700,7 +3700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e7be879e30205d24ab714cd8e3bf4a27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7edde3e0f1a2961489c2ca89bec8ce29, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4113,6 +4113,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Menu_Fixed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555809823609443029, guid: cae308aef53d4a147a0a85b746bc8e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4555809824111611454, guid: cae308aef53d4a147a0a85b746bc8e7d,
         type: 3}
@@ -18785,6 +18790,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7261031217731091497, guid: bfba4dc7c833946448afabc6974a01e3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2532197596911439093, guid: 6342542885363934c8f11ae5dec47427,
+        type: 3}
+    - target: {fileID: 7261031217764670706, guid: bfba4dc7c833946448afabc6974a01e3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -889180119648741084, guid: 6342542885363934c8f11ae5dec47427,
+        type: 3}
+    - target: {fileID: 7261031218152770550, guid: bfba4dc7c833946448afabc6974a01e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261031218309003473, guid: bfba4dc7c833946448afabc6974a01e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261031219111789870, guid: bfba4dc7c833946448afabc6974a01e3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8632993429437876281, guid: 6342542885363934c8f11ae5dec47427,
+        type: 3}
+    - target: {fileID: 7261031219389027033, guid: bfba4dc7c833946448afabc6974a01e3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4189575836506834876, guid: 6342542885363934c8f11ae5dec47427,
+        type: 3}
+    - target: {fileID: 7261031219795162889, guid: bfba4dc7c833946448afabc6974a01e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7261031219801507042, guid: bfba4dc7c833946448afabc6974a01e3,
         type: 3}
       propertyPath: m_Name
