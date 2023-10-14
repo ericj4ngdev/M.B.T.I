@@ -7,6 +7,9 @@ public class ArrowController : MonoBehaviour
     [SerializeField]
     private GameObject midPointVisual, arrowPrefab, arrowSpawnPoint, bowPrefab;
 
+    [SerializeField]
+    private AudioSource arrowSound;
+
 
 
     [SerializeField]
@@ -22,6 +25,7 @@ public class ArrowController : MonoBehaviour
     {
         Debug.Log("ReleaseArrow");
         midPointVisual.SetActive(false);
+        arrowSound.Play();
 
         GameObject arrow = Instantiate(arrowPrefab);
 
