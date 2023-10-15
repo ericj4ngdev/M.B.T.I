@@ -1,3 +1,5 @@
-2023-10-15 오후 3:18:23 destination : CAU
-2023-10-15 오후 3:19:07 destination : Main
-2023-10-15 오후 3:19:09 destination : Main
+2023-10-15 오후 4:02:39 destination : KHU
+2023-10-15 오후 4:04:14 destination : Main
+2023-10-15 오후 4:41:21 destination : KU
+2023-10-15 오후 4:41:27 destination : KU
+2023-10-15 오후 4:41:28 destination : KU

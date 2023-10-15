@@ -24,9 +24,6 @@ public class KHUManager : MonoBehaviour
     private GameObject robot3X3, robot5X5;
 
     [SerializeField]
-    private GameObject stamp;
-
-    [SerializeField]
     private Animator trophyAnim3X3, trophyAnim5X5;
 
     [SerializeField]
@@ -78,7 +75,6 @@ public class KHUManager : MonoBehaviour
         Debug.Log("축하합니다.");
         if (!isTutorial)
         {
-            stamp.SetActive(true);
             trophyAnim5X5.enabled = true;
             trophyAnim5X5.Play("GetTrophy", -1, 0);
         }
@@ -87,13 +83,11 @@ public class KHUManager : MonoBehaviour
             Debug.Log("튜토리얼 완료");
             trophyAnim3X3.enabled = true;
             trophyAnim3X3.Play("GetTrophy", -1, 0);
-
-            ChallengeManager.GetInstance().CompleteKHUChallenge();
         }
         StartCoroutine(CloseGate());
     }
 
-    public void TestSuccess()
+    public void CompleteChallenge()
     {
         ChallengeManager.GetInstance().CompleteKHUChallenge();
     }

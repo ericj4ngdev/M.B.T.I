@@ -16355,6 +16355,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Univ_Test_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7374472124794136183, guid: c90a73d5c21654e4c86e2a27acad3383,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c90a73d5c21654e4c86e2a27acad3383, type: 3}
 --- !u!1 &514882582
@@ -21233,7 +21238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782620941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.747, y: 0.66, z: -1.875}
+  m_LocalPosition: {x: 2.747, y: 0.962, z: -1.875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -24499,7 +24504,7 @@ PrefabInstance:
     - target: {fileID: 4555809823609443026, guid: cae308aef53d4a147a0a85b746bc8e7d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.412
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 4555809823609443026, guid: cae308aef53d4a147a0a85b746bc8e7d,
         type: 3}
@@ -45304,7 +45309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2068426943
 MonoBehaviour:
   m_ObjectHideFlags: 0
