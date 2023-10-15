@@ -14,6 +14,8 @@ public class TriggerArea : MonoBehaviour
     public Transform particleCAU_list;
     //public float particleLifetime = 2.0f;
 
+    public GameObject checkboxUI;
+
     private XRInteractionManager interactionManager; // XRInteractionManager를 참조하기 위한 변수 추가
 
     private void Start()
@@ -34,6 +36,8 @@ public class TriggerArea : MonoBehaviour
                 Debug.Log("Object entered the trigger area: " + interactable.name);
                 isCheck = true;
                 CheckCollision(other.transform.position);
+                ChallengeManager.GetInstance().CompleteCAUChallenge();
+                checkboxUI.SetActive(true);
             }
         }
 
