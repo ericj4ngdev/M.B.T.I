@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4571976344987019373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6857683522929023337}
+  m_Layer: 0
+  m_Name: Rollercoaster2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6857683522929023337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4571976344987019373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 159.02225, y: 72.722855, z: 263.29022}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6423809821139916355}
+  - {fileID: 2773787315154137619}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &365878770407690754
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6857683522929023337}
+    m_Modifications:
+    - target: {fileID: 6304468412387319547, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_Name
+      value: attraction_entrance_001 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 69.47775
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -72.52286
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -54.49022
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70666903
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0005388655
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.707544
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00023405961
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd, type: 3}
+--- !u!4 &6423809821139916355 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6644542498678244417, guid: a4c17a72bbf79ec4ab8b54dc3fad21bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 365878770407690754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7247109083937683881
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6857683522929023337}
+    m_Modifications:
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 86.84943
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -72.98574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -68.546936
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307297692455784704, guid: bb7ebecf5046aee4baf8177820126119,
+        type: 3}
+      propertyPath: m_Name
+      value: roller_coaster_001 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bb7ebecf5046aee4baf8177820126119, type: 3}
+--- !u!4 &2773787315154137619 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4822404730399722426, guid: bb7ebecf5046aee4baf8177820126119,
+    type: 3}
+  m_PrefabInstance: {fileID: 7247109083937683881}
+  m_PrefabAsset: {fileID: 0}
