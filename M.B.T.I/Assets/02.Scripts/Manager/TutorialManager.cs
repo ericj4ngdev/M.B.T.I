@@ -61,7 +61,7 @@ public class TutorialManager : MonoBehaviourPunCallbacks
     
     [Header("Tutorial Object")]
     public GameObject vrButton;
-    public GameObject portal;
+    // public GameObject portal;
     public List<GameObject> grabableCube = new List<GameObject>();
     public List<TicketGate> toolTip = new List<TicketGate>();
     public List<TicketGate> ticketGates;
@@ -675,7 +675,7 @@ public class TutorialManager : MonoBehaviourPunCallbacks
         PlayVoice(curIndex + 4);
         // 이동하려면 엄지로 아날로그 스틱을 움직여보세요.
         // 왼쪽은 이동, 오른쪽은 회전입니다.
-        while (curIndex == 11)
+        while (curIndex == tutorialUIIndex - 1)
         {
             Debug.Log("이동하려면 엄지로 아날로그 스틱을 움직여보세요.");
             SetComponentEnabled<ActionBasedContinuousMoveProvider>(true);
@@ -700,19 +700,20 @@ public class TutorialManager : MonoBehaviourPunCallbacks
                 {
                     audioSource.Stop();
                     // 다음 UI띄우기
-                    curIndex++;
-                    showUI.sprite = m_tutorialImgData[curIndex];
+                    // curIndex++;
+                    // showUI.sprite = m_tutorialImgData[curIndex];
                     temp = 0f;
                     isBtn1Pressed = false;
                     isBtn2Pressed = false;
-                    portal.SetActive(true); // 포탈 활성화
+                    EntranceSentence();
+                    // portal.SetActive(true); // 포탈 활성화
                     break;
                 }
             }
             yield return null;
         }
 
-        PlayVoice(curIndex + 4);
+        /*PlayVoice(curIndex + 4);
         // 거대한 원기둥에 레이저를 갖다대면 빠르게 이동이 가능합니다.
         while (curIndex == tutorialUIIndex - 1)
         {
@@ -732,7 +733,7 @@ public class TutorialManager : MonoBehaviourPunCallbacks
                 }
             }
             yield return null;
-        }
+        }*/
     }
 
     #endregion
