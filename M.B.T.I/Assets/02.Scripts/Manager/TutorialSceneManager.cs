@@ -9,7 +9,8 @@ public class TutorialSceneManager : MonoBehaviourPunCallbacks
 {    
     public int maxPlayer;
     public Image loadingImage;
-
+    public string mainSceneName;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -44,7 +45,7 @@ public class TutorialSceneManager : MonoBehaviourPunCallbacks
 
     private void LoadLevel()
     {
-        PhotonNetwork.LoadLevel("MBTI_Main_Net (New JOOHONG)");    // 불러올 씬 
+        PhotonNetwork.LoadLevel(mainSceneName);    // 불러올 씬 
         Debug.Log("main 레벨 불러옴");
     }
 

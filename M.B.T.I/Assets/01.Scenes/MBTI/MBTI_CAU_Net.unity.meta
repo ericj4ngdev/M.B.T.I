@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: 929acecb557c66e4ea9af5d56ca0e772
+<<<<<<<< HEAD:M.B.T.I/Assets/Volume Fog V2.meta
+guid: 9a62d4652efb5d844b4de2eebb5c3059
+folderAsset: yes
+========
+guid: 28b05d1ba82a4ae4283b41af855fd451
+>>>>>>>> origin/feature/JOOHONG_Edit_Ver2:M.B.T.I/Assets/Scenes/MBTI/MBTI_CAU_Net (JOOHONG Edit).unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

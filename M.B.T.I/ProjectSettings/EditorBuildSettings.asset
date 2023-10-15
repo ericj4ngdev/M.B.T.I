@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/01.Scenes/MBTI/01.MBTI_KMU.unity
     guid: bde708b3b00faab4a89b28a2c44bd226
   - enabled: 1
-    path: Assets/01.Scenes/MBTI/MBTI_Main_Net (New JOOHONG).unity
+    path: Assets/01.Scenes/MBTI/MBTI_Main_Net.unity
     guid: 0ccef4adf9b559e479ab51a094a6c090
   - enabled: 0
-    path: Assets/01.Scenes/MBTI/MBTI_Main_Net.unity
+    path: Assets/01.Scenes/MBTI/MBTI_Main_Net_.unity
     guid: 8844aefcf02bcc549bbf6897614caddf
   - enabled: 1
     path: Assets/01.Scenes/MBTI/MBTI_KU_Net.unity
