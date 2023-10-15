@@ -44,7 +44,7 @@ public class TutorialSceneManager : MonoBehaviourPunCallbacks
 
     private void LoadLevel()
     {
-        PhotonNetwork.LoadLevel("MBTI_Main_Net");    // 불러올 씬 
+        PhotonNetwork.LoadLevel("MBTI_Main_Net (New JOOHONG)");    // 불러올 씬 
         Debug.Log("main 레벨 불러옴");
     }
 

@@ -22,12 +22,10 @@ public class Lantern : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        ChallengeManager.GetInstance().CompleteJJUChallenge();
         lanternVisual.SetActive(false);
         collisionSound.Play();
         particle.Play();
 
         Debug.Log("충돌");
-
     }
 }

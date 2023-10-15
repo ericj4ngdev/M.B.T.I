@@ -36,7 +36,7 @@ public class TriggerArea : MonoBehaviour
                 Debug.Log("Object entered the trigger area: " + interactable.name);
                 isCheck = true;
                 CheckCollision(other.transform.position);
-                ChallengeManager.GetInstance().CompleteCAUChallenge();
+                // ChallengeManager.GetInstance().CompleteCAUChallenge();
                 checkboxUI.SetActive(true);
             }
         }
