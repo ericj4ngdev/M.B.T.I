@@ -1,4 +1,4 @@
-Shader "Unlit/PortalMask"
+﻿Shader "Unlit/PortalMask"
 {
     Properties
     {
@@ -6,7 +6,7 @@ Shader "Unlit/PortalMask"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue"="Transparent"}
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent+1" }
         Blend SrcAlpha OneMinusSrcAlpha
         AlphaToMask On
         LOD 100
