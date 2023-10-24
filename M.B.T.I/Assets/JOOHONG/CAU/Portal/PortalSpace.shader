@@ -1,4 +1,4 @@
-Shader "Unlit/PortalSpace"
+﻿Shader "Unlit/PortalSpace"
 {
     Properties
     {
@@ -7,9 +7,9 @@ Shader "Unlit/PortalSpace"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue" = "Transparent+1"}
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent+1" }
         ZWrite Off
-        ZTest Greater
+        ZTest Less
         Blend SrcAlpha OneMinusSrcAlpha
         Cull Front
         LOD 100
