@@ -1,4 +1,4 @@
-using Unity.XR.CoreUtils;
+﻿using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -12,7 +12,7 @@ public class ColorMenuManager : MonoBehaviour
     public Vector3 offset;
     public GameObject menu;
     public InputActionProperty menuBtn;
-    
+    public GameObject toolTip;
     
     private GameObject XRPlayer;
     // Start is called before the first frame update
@@ -28,6 +28,7 @@ public class ColorMenuManager : MonoBehaviour
         {
             Debug.Log("Menu");
             menu.SetActive(!menu.activeSelf);
+            toolTip.SetActive(false);
         }
 
         // menu.transform.position = leftHand.position + offset;

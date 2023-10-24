@@ -1,0 +1,8 @@
+2023-10-23 오후 7:26:42 destination : KU
+2023-10-23 오후 7:26:43 destination : KU
+2023-10-23 오후 7:27:08 destination : Main
+2023-10-23 오후 7:27:12 destination : Main
+2023-10-23 오후 7:27:23 destination : KU
+2023-10-23 오후 7:27:25 destination : KU
+2023-10-23 오후 7:28:00 destination : KU
+2023-10-23 오후 7:28:02 destination : KU
