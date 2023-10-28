@@ -1,4 +1,4 @@
-Shader "Unlit/PortalGlow"
+﻿Shader "Unlit/PortalGlow"
 {
     Properties
     {
@@ -7,7 +7,7 @@ Shader "Unlit/PortalGlow"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue" = "Transparent+4"}
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent+4"}
         ZWrite Off
         Blend SrcAlpha One
         LOD 100

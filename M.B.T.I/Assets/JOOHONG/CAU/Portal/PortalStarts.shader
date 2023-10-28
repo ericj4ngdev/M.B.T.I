@@ -1,4 +1,4 @@
-Shader "Unlit/PortalStarts"
+﻿Shader "Unlit/PortalStarts"
 {
     Properties
     {
@@ -6,7 +6,7 @@ Shader "Unlit/PortalStarts"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue" = "Transparent+3"}
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent+3"}
         ZWrite Off
         ZTest Greater
         Blend SrcAlpha One

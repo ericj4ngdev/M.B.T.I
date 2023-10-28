@@ -1,4 +1,4 @@
-Shader "Unlit/PortalVortice"
+﻿Shader "Unlit/PortalVortice"
 {
     Properties
     {
@@ -9,7 +9,7 @@ Shader "Unlit/PortalVortice"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue" = "Transparent+2"}
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent+2"}
         ZWrite Off
         ZTest Greater
         Blend SrcAlpha One
