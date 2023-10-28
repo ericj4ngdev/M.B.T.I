@@ -2882,6 +2882,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2664096212524804766, guid: c1549fb069818c646b268dd80a0f8039,
+        type: 3}
+      propertyPath: m_PositionInput.m_Action.m_Id
+      value: b7b51c80-6c97-4e75-b8f4-fbe6af91e17c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664096212524804766, guid: c1549fb069818c646b268dd80a0f8039,
+        type: 3}
+      propertyPath: m_RotationInput.m_Action.m_Id
+      value: f125bc34-f5ab-49fc-94c0-34c292f275ea
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664096212524804766, guid: c1549fb069818c646b268dd80a0f8039,
+        type: 3}
+      propertyPath: m_PositionInput.m_Action.m_Name
+      value: Position Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664096212524804766, guid: c1549fb069818c646b268dd80a0f8039,
+        type: 3}
+      propertyPath: m_RotationInput.m_Action.m_Name
+      value: Rotation Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664096212524804767, guid: c1549fb069818c646b268dd80a0f8039,
+        type: 3}
+      propertyPath: m_Antialiasing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664096212524804767, guid: c1549fb069818c646b268dd80a0f8039,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1549fb069818c646b268dd80a0f8039, type: 3}
 --- !u!1 &741227921
