@@ -85,7 +85,7 @@ public class GameMenuManager : MonoBehaviour
         var turn = xrOrigin.GetComponent<ActionBasedContinuousTurnProvider>();
         turn.turnSpeed = canMove ? 60 : 0;
         SetComponentEnabled<TeleportationProvider>(canMove);
-        SetComponentEnabled<ActivateTeleportationRay>(canMove);
+        // SetComponentEnabled<ActivateTeleportationRay>(canMove);
     }
 
     void Update()

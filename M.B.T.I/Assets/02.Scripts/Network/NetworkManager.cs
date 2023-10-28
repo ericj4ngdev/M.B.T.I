@@ -61,10 +61,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             CheckInfo();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             PhotonNetwork.JoinLobby();
-        }
+        }*/
         isMaster = PhotonNetwork.IsMasterClient;
     }
 

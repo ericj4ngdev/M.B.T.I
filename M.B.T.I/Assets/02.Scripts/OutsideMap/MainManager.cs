@@ -14,6 +14,12 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (ChallengeManager.GetInstance().IsCompleteAllChallenge())
+        {
+            // UI 뜨기
+            SceneManager.LoadScene("MBTI_Firework");
+        }
+
         mainBGM.Play();
 
         HashSet<string> completeChallenges = ChallengeManager.GetInstance().getCompleteChallenges();
@@ -29,12 +35,6 @@ public class MainManager : MonoBehaviour
         if (completeChallenges.Contains("CAU"))
             changeCAU.SetActive(true);
         if (completeChallenges.Contains("JJU"))
-            changeJJU.SetActive(true);
-
-        if (ChallengeManager.GetInstance().IsCompleteAllChallenge())
-        {
-            // UI 뜨기
-            SceneManager.LoadScene("MBTI_Firework");
-        }
+            changeJJU.SetActive(true);        
     }
 }

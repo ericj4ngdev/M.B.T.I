@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/MBTI/MBTI_JJU_Net.unity
     guid: 30c44bc17a95c8049a7cf2426ccb6f37
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_Firework(JOOHONG ver).unity
+    guid: 5e6e04e6dfa431a4096cc273b407ddbf
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0ce83808899a92148a31264552372a7d,
       type: 2}
