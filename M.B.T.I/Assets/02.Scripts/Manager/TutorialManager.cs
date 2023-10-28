@@ -126,7 +126,7 @@ public class TutorialManager : MonoBehaviourPunCallbacks
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(false);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(false);
         SetComponentEnabled<TeleportationProvider>(false);
-        SetComponentEnabled<tutorial.ActivateTeleportationRay>(false);
+        // SetComponentEnabled<tutorial.ActivateTeleportationRay>(false);
         
         foreach (var VARIABLE in L_Button)
         {
@@ -746,7 +746,7 @@ public class TutorialManager : MonoBehaviourPunCallbacks
         SetComponentEnabled<ActionBasedContinuousMoveProvider>(true);
         SetComponentEnabled<ActionBasedContinuousTurnProvider>(true);
         SetComponentEnabled<TeleportationProvider>(true);
-        SetComponentEnabled<tutorial.ActivateTeleportationRay>(true);
+        // SetComponentEnabled<tutorial.ActivateTeleportationRay>(true);
         foreach (var item in ticketGates)
         {
             item.OpenGate();
