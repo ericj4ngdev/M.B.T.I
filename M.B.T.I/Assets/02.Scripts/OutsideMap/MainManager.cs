@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,11 +30,6 @@ public class MainManager : MonoBehaviour
         if (completeChallenges.Contains("CAU"))
             changeCAU.SetActive(true);
         if (completeChallenges.Contains("JJU"))
-            changeJJU.SetActive(true);
-        if (ChallengeManager.GetInstance().IsCompleteAllChallenge())
-        {
-            // UI 뜨기
-            SceneManager.LoadScene("MBTI_Firework");
-        }
+            changeJJU.SetActive(true);        
     }
 }

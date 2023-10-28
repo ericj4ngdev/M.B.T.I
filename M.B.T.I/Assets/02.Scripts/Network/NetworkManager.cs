@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Unity.XR.CoreUtils;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -102,6 +103,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void JoinAnotherRoom()
     {
+        if (ChallengeManager.GetInstance().IsCompleteAllChallenge())
+        {
+            // UI 뜨기
+            SceneManager.LoadScene("MBTI_Firework(JOOHONG ver)");
+            return;
+        }
+
         LoadLevel(roomSetting);       // LoadLevel
         JoinRoom(roomSetting);        // JoinOrCreateRoom
     }

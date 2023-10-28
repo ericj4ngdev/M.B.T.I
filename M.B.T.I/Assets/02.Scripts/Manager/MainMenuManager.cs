@@ -39,7 +39,7 @@ public class MainMenuManager : MonoBehaviour
         //SetComponentEnabled<ActionBasedContinuousMoveProvider>(canMove);
         // 컴포넌트 비활성화하면 Null오류가 떠서 속도를 0으로 만들어버리려 한다. 
         var move = xrOrigin.GetComponent<ActionBasedContinuousMoveProvider>();
-        move.moveSpeed = canMove ? 2 : 0;
+        move.moveSpeed = canMove ? 5 : 0;
         var turn = xrOrigin.GetComponent<ActionBasedContinuousTurnProvider>();
         turn.turnSpeed = canMove ? 60 : 0;
         SetComponentEnabled<TeleportationProvider>(canMove);
