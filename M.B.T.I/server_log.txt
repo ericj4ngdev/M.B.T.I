@@ -1,0 +1,4 @@
+2023-10-28 오후 4:48:46 destination : JJU
+2023-10-28 오후 4:50:33 destination : Main
+2023-10-28 오후 4:51:29 destination : KHU
+2023-10-28 오후 9:48:32 destination : KHU

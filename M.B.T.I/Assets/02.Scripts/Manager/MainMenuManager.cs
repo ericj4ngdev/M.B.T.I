@@ -15,7 +15,6 @@ public class MainMenuManager : MonoBehaviour
     private Transform head;
     private XROrigin xrOrigin;
 
-    public List<Transform> spawnSpots;
     public float spawnDistance = 0.5f;
     public GameObject menu;
     public InputActionProperty showButton;
@@ -24,7 +23,6 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         if (xrOrigin == null) xrOrigin = FindObjectOfType<XROrigin>();
-        spawnSpots = new List<Transform>();
         head = xrOrigin.Camera.transform;
         // SetMovement(false);
     }
@@ -45,17 +43,16 @@ public class MainMenuManager : MonoBehaviour
         var turn = xrOrigin.GetComponent<ActionBasedContinuousTurnProvider>();
         turn.turnSpeed = canMove ? 60 : 0;
         SetComponentEnabled<TeleportationProvider>(canMove);
-        SetComponentEnabled<ActivateTeleportationRay>(canMove);
     }
 
     void Update()
     {
         // 키보드용
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Menu");
-            menu.SetActive(!menu.activeSelf);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     Debug.Log("Menu");
+        //     menu.SetActive(!menu.activeSelf);
+        // }
 
         ShowMenuOnHead();
     }
@@ -79,19 +76,5 @@ public class MainMenuManager : MonoBehaviour
     {
         xrOrigin.transform.position = SpawnSpot.position;
         xrOrigin.transform.rotation = SpawnSpot.rotation;
-    }
-
-    public void CheckDistance()
-    {
-        float distance = 0; // Vector3.Distance(xrOrigin.gameObject.transform.position, );
-
-        foreach (var item in spawnSpots)
-        {
-            distance = Vector3.Distance(xrOrigin.gameObject.transform.position, item.gameObject.transform.position);
-
-        }
-
-        // Transform spawnSpot;
-        // TeleportToBuildingForward(spawnSpot);
     }
 }
