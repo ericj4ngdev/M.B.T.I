@@ -1,18 +1,16 @@
 # M.B.T.I (메타 베이스 테마 아일랜드)
 
-팀 명 : E1I4  
-혁신융합대학 메타버스 콘테스트 VR가상 캠퍼스  
-http://coss-contest.kr/index.php
+혁신융합대학 메타버스 콘테스트 VR가상 캠퍼스 - http://coss-contest.kr/index.php
 
+![image](https://github.com/ericj4ngdev/M.B.T.I/assets/108036322/a61f8291-7f54-41cd-9b0c-c77617ecb494)
+플레이 영상 : https://youtu.be/XLQNi6DATpA
 
 ## 프로젝트 소개
-![image](https://github.com/ericj4ngdev/M.B.T.I/assets/108036322/a61f8291-7f54-41cd-9b0c-c77617ecb494)
-
-
+- 팀 명 : E1I4  
 - 제목 : M.B.T.I (메타 베이스 테마 아일랜드)
 - 장르 : 교육용 VR
 - 플랫폼 : Oculus Quest 2
-- 제작 기간 : 2023-07-01 ~ 2023-10-29(예정)
+- 제작 기간 : 2023-07-01 ~ 2023-10-29
 - 기획 의도
     
     여러 컨소시엄 중 <**실감미디어**> 분야의 전국에 7개로 나눠진 캠퍼스를 ‘**메타버스**‘ 라는 가상 공간을 통해 한군데에 모아 장소와 시간적 제약을 없애고, 각  캠퍼스에 있는 실제 수업의 목적에 맞게 콘텐츠를 구상하고 이를 ‘**VR 공간**’을 통해 실감적으로 경험해 볼 수 있도록 구현하고자 한다.
