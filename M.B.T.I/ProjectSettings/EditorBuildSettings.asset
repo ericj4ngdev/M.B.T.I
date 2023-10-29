@@ -6,6 +6,34 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+    path: Assets/01.Scenes/MBTI/01.MBTI_KMU.unity
+    guid: ea946ca482232a34c949fda27018b1d6
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_Main_Net.unity
+    guid: 428e43967c5e68c44994dfd7b725801b
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_KU_Net.unity
+    guid: 927fced6919e2f446aad3441717bbbbc
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_KWU_Net.unity
+    guid: 4aafb0c079b189c4798d1882df2eb8a4
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_KHU_Net.unity
+    guid: d4e0ec9eb02f2a04a99af3628fdf837b
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_PCU_Net.unity
+    guid: 4e75dd0a9ebba62468a5484c8ec8cc26
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_CAU_Net.unity
+    guid: 9a62d4652efb5d844b4de2eebb5c3059
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_JJU_Net.unity
+    guid: 30c44bc17a95c8049a7cf2426ccb6f37
+  - enabled: 1
+    path: Assets/01.Scenes/MBTI/MBTI_Firework(JOOHONG ver).unity
+    guid: 5e6e04e6dfa431a4096cc273b407ddbf
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0ce83808899a92148a31264552372a7d,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c2861493aeca4b24cadf7ef26608bb22,
+      type: 2}

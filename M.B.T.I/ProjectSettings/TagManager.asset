@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Left Hand
+  - Right Hand
+  - TutorialPortal
+  - Tablet
+  - Bullet
+  - Line
+  - Arrow
+  - Target
+  - Ground
+  - Bow
   layers:
   - Default
   - TransparentFX
@@ -11,6 +21,12 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - Interactable
+  - Arrow
+  - Bow
+  - Stamp
+  - TeleportationAnchor
   - 
   - 
   - 
@@ -27,16 +43,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - HandPlayer
+  - Hand
+  - Grabbable
+  - Grabbing
   m_SortingLayers:
   - name: Default
     uniqueID: 0
