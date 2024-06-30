@@ -2,6 +2,8 @@
 
 혁신융합대학 메타버스 콘테스트 VR가상 캠퍼스 - http://coss-contest.kr/index.php
 
+[다운로드 링크](http://naver.me/5VmUjy2F)
+
 ![image](https://github.com/ericj4ngdev/M.B.T.I/assets/108036322/a61f8291-7f54-41cd-9b0c-c77617ecb494)
 플레이 영상 : https://youtu.be/XLQNi6DATpA
 
